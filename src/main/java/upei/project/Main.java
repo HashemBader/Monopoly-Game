@@ -33,5 +33,5 @@ public class Main {
         }
 
     }
-    public int a(){return 1;}
+    public int a(){return 69;}
 }
