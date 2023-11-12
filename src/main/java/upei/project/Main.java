@@ -34,4 +34,5 @@ public class Main {
 
     }
     public int a(){return 69;}
+    // roll dice + money +  int position + strategy + status + landsowened.
 }
