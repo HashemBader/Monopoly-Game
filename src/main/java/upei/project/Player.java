@@ -10,6 +10,10 @@ public class Player {
         this.money = 1500;
         this.pos = 0;
         this.landsOwned = new ArrayList<>();
+        //buys 80% of time
+        //buys only utilities
+        //buys only stations
+        //buys 20%
 
     }
     public int RollDice(){
@@ -41,12 +45,13 @@ public class Player {
         }
     public void removeLandsOwned(String a){
         if (getLandsOwned().contains(a)){
-        this.landsOwned.remove(a);}
+            this.landsOwned.remove(a);
         }
+    }
 
-
-
-
-
+    public boolean makeChoice(){
+        return true;
+        //TODO
+    }
 
 }

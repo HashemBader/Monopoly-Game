@@ -1,19 +1,21 @@
 package upei.project;
 
-public class Utility extends BoardLocation{
+public class Countries extends BoardLocation{
+   // String color;
     private Player owner;
+    private boolean isMortgaged;
     private int[] rent;
     private int buyPrice;
-    public Utility(int iLoc, String name,int[] rent, int buyPrice){
+    public Countries(int iLoc, String name, int[] rent, int buyPrice){
         super(iLoc, name);
+        //this.color = color;
+        this.rent = rent;
         this.buyPrice = buyPrice;
         this.owner = null;
-        this.rent = rent;
-
+        this.isMortgaged = false;
     }
 
-    @Override
-    public void playerOnLocation(Player player) {
+    public void playerOnLocation(Player player){
         if (getOwner().equals(player)){
             return;
         }
@@ -24,9 +26,11 @@ public class Utility extends BoardLocation{
             }
         }
         else{
-            player.lessMoney(rent[0]);
-            getOwner().addMoney(rent[0]);
+            player.lessMoney(getRent()[0]);
+            getOwner().addMoney(getRent()[0]);
         }
+
+
     }
 
     public Player getOwner() {
@@ -35,6 +39,10 @@ public class Utility extends BoardLocation{
 
     public void setOwner(Player owner) {
         this.owner = owner;
+    }
+
+    public int[] getRent() {
+        return rent;
     }
 
     public void setRent(int[] rent) {
@@ -48,20 +56,8 @@ public class Utility extends BoardLocation{
     public void setBuyPrice(int buyPrice) {
         this.buyPrice = buyPrice;
     }
-
-    /**
-     * Returns the utility instance rent after determining it.
-     * @return rent
-     */
-    public int getRent(){
-        return calcRent();
-    }
-
-    /**
-     * Determines rent based on TODO
-     * @return
-     */
-    private int calcRent(){
-        return 0;
+    public boolean isMortgaged(){return this.isMortgaged;}
+    public int getMortgagePrice(){
+        return (int)(this.buyPrice / 2);
     }
 }
