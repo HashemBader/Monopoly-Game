@@ -19,4 +19,12 @@ public abstract class BoardLocation {
         this.iLoc = iLoc;
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "BoardLocation{" +
+                "iLoc=" + iLoc +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

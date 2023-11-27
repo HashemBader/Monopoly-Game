@@ -1,5 +1,7 @@
 package upei.project;
 
+import java.util.Arrays;
+
 public class Utility extends BoardLocation{
     private Player owner;
     private int[] rent;
@@ -63,5 +65,15 @@ public class Utility extends BoardLocation{
      */
     private int calcRent(){
         return 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Utility{" +
+                "iLoc=" +
+                "owner=" + owner +
+                ", rent=" + Arrays.toString(rent) +
+                ", buyPrice=" + buyPrice +
+                '}';
     }
 }
