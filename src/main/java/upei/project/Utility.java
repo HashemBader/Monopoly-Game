@@ -2,7 +2,7 @@ package upei.project;
 
 import java.util.Arrays;
 
-public class Utility extends BoardLocation{
+public class Utility extends BoardSquare {
     private Player owner;
     private int[] rent;
     private int buyPrice;

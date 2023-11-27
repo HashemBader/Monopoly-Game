@@ -1,7 +1,6 @@
 package upei.project;
 
-public abstract class BoardLocation {
-    // index location in the board
+public abstract class BoardSquare {
     private int iLoc;
     private String name;
 
@@ -15,7 +14,7 @@ public abstract class BoardLocation {
      * Constructor that creates a BoardLocation instance of iLoc
      * @param iLoc : location on the board
      */
-    public BoardLocation(int iLoc, String name){
+    public BoardSquare(int iLoc, String name){
         this.iLoc = iLoc;
         this.name = name;
     }

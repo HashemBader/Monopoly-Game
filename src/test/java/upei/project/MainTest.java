@@ -28,8 +28,8 @@ public class MainTest {
 
     @Test
     public void testBoardLocationConstructor(){
-        BoardLocation egypt = new Countries(1,"Egypt",new int[]{500}, 1000);
-        BoardLocation hansenElectric = new Utility(2,"Hansen",new int[]{200}, 300);
+        BoardSquare egypt = new Countries(1,"Egypt",500, 1000);
+        BoardSquare hansenElectric = new Utility(2,"Hansen",new int[]{200}, 300);
 
         assertEquals(egypt.toString(), "BoardLocation{" +
                 "iLoc=" + 1 +
@@ -39,7 +39,6 @@ public class MainTest {
                 "iLoc=" + 2 +
                 ", name='" + "Hansen" + '\'' +
                 '}');
-        hansenElectric.g
     }
 
 }

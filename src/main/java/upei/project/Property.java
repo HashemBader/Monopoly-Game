@@ -1,12 +1,14 @@
 package upei.project;
 
-public abstract class Property extends BoardLocation{
-    private Player owner;
+/**
+ * Properties have an owner
+ * */
+public abstract class Property extends BoardSquare {
+    protected Player owner;
     private boolean isMortgaged;
     public Property(int iLoc, String name){
         super(iLoc, name);
         this.owner = null;
-        this.isMortgaged = false;
 
     }
 }
