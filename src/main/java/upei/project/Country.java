@@ -3,12 +3,12 @@ package upei.project;
 /**
  * Countries are properties with rent
  */
-public class Countries extends Property {
+public class Country extends Property {
    // String color;
     private boolean isMortgaged;
     private int rent;
     private int buyPrice;
-    public Countries(int iLoc, String name, int rent, int buyPrice){
+    public Country(int iLoc, String name, int rent, int buyPrice){
         super(iLoc, name);
         //this.color = color;
         this.rent = rent;
@@ -17,11 +17,11 @@ public class Countries extends Property {
     }
 
     public void playerOnLocation(Player player){
-        if (this.getOwner().equals(player)){
+        if (this.getOwner() == player){
             return;
         }
-        else if (this.getOwner() != player && this.getOwner() == null){
-            if (player.makeChoice()){
+        else if (this.getOwner() != player && this.getOwner() == null){ // not owned
+            if (player.makeChoice(this.iLoc)){
                 this.setOwner(player);
                 player.lessMoney(this.getBuyPrice());
             }

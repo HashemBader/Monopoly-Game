@@ -9,18 +9,18 @@ the goal of the game and a brief description of the key objects in the game. Ple
 
 # Experiment Report
 ## Player Strategies
-_For each of 3 strategies you implemented, name the strategy, and then description of it (100 words each)_
+_For each of 3 STRATEGY you implemented, name the strategy, and then description of it (100 words each)_
 1. Strategy 1: Description here
 2. Strategy 2: Description here
 3. Strategy 3: Description here
 
 ## Procedure
 _A description of your procedure for running the experiment on your code. This should include information 
-regarding the setup of the experiment in terms of what it runs and how it compares the player strategies, 
+regarding the setup of the experiment in terms of what it runs and how it compares the player STRATEGY, 
 the number of trials the experiment and what data was collected. (250 words)_
 
 ## Results
-_A presentation on the results of your simulation of the strategies in table(s) or appropriate graphic(s) 
+_A presentation on the results of your simulation of the STRATEGY in table(s) or appropriate graphic(s) 
 with a short summary. (250 words)_
 
 **Example Image:**

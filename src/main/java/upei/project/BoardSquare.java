@@ -1,11 +1,11 @@
 package upei.project;
 
 public abstract class BoardSquare {
-    private int iLoc;
-    private String name;
+    protected int iLoc;
+    protected String name;
 
     /**
-     * Abstract method that does something when player lands on a BoardLocation
+     * Abstract method that does something when player lands on a BoardSquare
      * @param player : player object
      */
     public abstract void playerOnLocation(Player player);

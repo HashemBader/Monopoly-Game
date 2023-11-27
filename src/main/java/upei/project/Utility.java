@@ -2,32 +2,30 @@ package upei.project;
 
 import java.util.Arrays;
 
-public class Utility extends BoardSquare {
+public class Utility extends Property {
     private Player owner;
-    private int[] rent;
     private int buyPrice;
-    public Utility(int iLoc, String name,int[] rent, int buyPrice){
+    public Utility(int iLoc, String name, int buyPrice){
         super(iLoc, name);
         this.buyPrice = buyPrice;
         this.owner = null;
-        this.rent = rent;
 
     }
 
     @Override
     public void playerOnLocation(Player player) {
-        if (getOwner().equals(player)){
+        if (getOwner() == player){
             return;
         }
-        else if (!getOwner().equals(player) && getOwner() == null){
-            if (player.makeChoice()){
+        else if (getOwner() != player && getOwner() == null){
+            if (player.makeChoice(this.iLoc)){
                 setOwner(player);
                 player.lessMoney(getBuyPrice());
             }
         }
         else{
-            player.lessMoney(rent[0]);
-            getOwner().addMoney(rent[0]);
+            player.lessMoney(this.getRent(Driver.getDiceVal()));
+            getOwner().addMoney(this.getRent(Driver.getDiceVal()));
         }
     }
 
@@ -39,9 +37,6 @@ public class Utility extends BoardSquare {
         this.owner = owner;
     }
 
-    public void setRent(int[] rent) {
-        this.rent = rent;
-    }
 
     public int getBuyPrice() {
         return buyPrice;
@@ -55,25 +50,16 @@ public class Utility extends BoardSquare {
      * Returns the utility instance rent after determining it.
      * @return rent
      */
-    public int getRent(){
-        return calcRent();
+    public int getRent(int diceVal){
+        return calcRent(diceVal);
     }
 
     /**
      * Determines rent based on TODO
      * @return
      */
-    private int calcRent(){
-        return 0;
+    private int calcRent(int diceVal){
+        return diceVal*3; // might delete later
     }
 
-    @Override
-    public String toString() {
-        return "Utility{" +
-                "iLoc=" +
-                "owner=" + owner +
-                ", rent=" + Arrays.toString(rent) +
-                ", buyPrice=" + buyPrice +
-                '}';
-    }
 }
