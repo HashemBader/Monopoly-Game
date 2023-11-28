@@ -9,12 +9,22 @@ public class Player {
     // roll dice + money +  int position + strategy + status + landsowened.
     private int money;
     private int pos;
-    private STRATEGY STRATEGY;
+    private STRATEGY STRATEGY = this.STRATEGY.DEFAULT;
     private ArrayList<String> landsOwned;
 
     public Player(int money, STRATEGY STRATEGY) {
         this.money = money;
         this.STRATEGY = STRATEGY;
+        this.pos = 0;
+        this.landsOwned = new ArrayList<>();
+        //buys 80% of time
+        //buys only utilities
+        //buys only stations
+        //buys 20%
+
+    }
+    public Player(int money) {
+        this.money = money;
         this.pos = 0;
         this.landsOwned = new ArrayList<>();
         //buys 80% of time
@@ -50,7 +60,9 @@ public class Player {
     } // goto pos
 
     public void moveN(int n) {
-        this.pos += n;
+        this.pos = (this.pos + n + Driver.map.size()) % Driver.map.size();
+        // +size again to account for -ve's
+
     } // move n steps
 
     public void addMoney(int a) {
