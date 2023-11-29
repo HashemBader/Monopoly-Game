@@ -17,9 +17,9 @@ on your use of generative AI tools in the project.
 # Objectives
 - Develop a well-documented board game simulation using Test-Driven Development (TDD) and 
 object-oriented design (OOD) principles.
-- Create multiple player strategies, each designed by your team to address specific game scenarios.
-- Integrate player strategies into the game simulation.
-- Generate a report with data and analyses comparing player strategies' performance.
+- Create multiple player STRATEGY, each designed by your team to address specific game scenarios.
+- Integrate player STRATEGY into the game simulation.
+- Generate a report with data and analyses comparing player STRATEGY' performance.
 - Create a reflective assessment of the use of generative AI tools during the project.
 
 # Project Phases
@@ -42,7 +42,7 @@ design principles.
   - Pure card games (e.g. Poker, Uno) should not be chosen for implementation. Even though they can be quite complex in terms of rules 
   and choices for players, they are structurally simple and thus do not satisfy the objectives of the project.  If you 
   believe you have a card game that meets the requirements please speak with the instructor.
-  - Pure roll and move games (e.g. Snakes and Ladders, Candyland, Sorry, Ludo) should be avoided strategies are 
+  - Pure roll and move games (e.g. Snakes and Ladders, Candyland, Sorry, Ludo) should be avoided STRATEGY are 
   primarily determined by the die roll, not by player choices.
 - Apply object-oriented design principles to create cohesive well-documented objects with low coupling that provide 
 good encapsulation of data.
@@ -52,19 +52,19 @@ good encapsulation of data.
 
 ## Phase 2: Player Classes and Strategies (1 week)
 
-Using the class structure from **Phase 1** create a set of player classes and choose 3 strategies and implement the players
+Using the class structure from **Phase 1** create a set of player classes and choose 3 STRATEGY and implement the players
 making choices.  Strategies can be as complex or as simple as you like.
 
 **Tasks:**
--	Develop at least three distinct player strategies for your game.
+-	Develop at least three distinct player STRATEGY for your game.
 -	Apply object-oriented design principles to design cohesive player and related classes.
 -	Write failing tests for each player strategy to ensure they make valid and effective moves.
 -	Implement the player strategy code.
-- Integrate the player strategies into the game simulation while maintaining object-oriented design principles.
+- Integrate the player STRATEGY into the game simulation while maintaining object-oriented design principles.
 
 ## Phase 3: Simulation and Comparison (1 week)
 
-Using the class structures from **Phase 1** and **Phase 2**, to write a simulation and complete an experiment comparing your chosen strategies.
+Using the class structures from **Phase 1** and **Phase 2**, to write a simulation and complete an experiment comparing your chosen STRATEGY.
 
 **Tasks:**
 - Identify data that will provide you with insight into what is the best strategy.  All
@@ -72,15 +72,15 @@ simulations should report win rate, but you should add data that is appropriate 
 resource acquisition, average moves etc. to provide insight into what is happening in your simulation.
 - Write a simulation class called SimulationExperiment which runs a simulation experiment where it plays
 a series of games.  This class should have a main method that will run the complete simulation experiment
-that is appropriate for your game and chosen player strategies: 
-  - If you have a 2-player game, you should pair each of the 3 strategies against each other.  You should run a minimum of 20 trials for 
-  each pairing of these strategies.  More data may reveal more about how your strategies behave in different situations.
-  - If you have a 3 or more-player game, you should run a minimum of 60 trials with all strategies in play.  You may 
-  conduct more trials with more than 3 players combining different strategies which may reveal more about how your 
-  strategies behave in different combinations.
+that is appropriate for your game and chosen player STRATEGY: 
+  - If you have a 2-player game, you should pair each of the 3 STRATEGY against each other.  You should run a minimum of 20 trials for 
+  each pairing of these STRATEGY.  More data may reveal more about how your STRATEGY behave in different situations.
+  - If you have a 3 or more-player game, you should run a minimum of 60 trials with all STRATEGY in play.  You may 
+  conduct more trials with more than 3 players combining different STRATEGY which may reveal more about how your 
+  STRATEGY behave in different combinations.
   - Report human-readable, well-formatted, experimental data for use in analysis. 
 - Collect and analyze data on strategy performance based on win rates and additional data you have identified.
-- Document your findings and comparisons of the player strategies. From the data you should identify which strategy 
+- Document your findings and comparisons of the player STRATEGY. From the data you should identify which strategy 
 is best, justify that choice, and explain why one strategy does better than the others.
 
 ## Phase 4: Finalization, and Reporting (1 week) 
@@ -97,11 +97,11 @@ for this specific report. You may delete any _italicized_ text and any examples 
 - Prepare a report that contains the following (word counts are maximums): 
   - A summary description of the game that you chose.  This should include the name of the game, the goal of the 
   game and a brief description of the key objects in the game.  Please provide a link to the game and/or its rules online. (100 words)
-  - For each of 3 strategies you implemented, name the strategy, and then description of it (100 words each) 
+  - For each of 3 STRATEGY you implemented, name the strategy, and then description of it (100 words each) 
   - A description of your procedure for running the experiment on your code. This should include information 
-  regarding the setup of the experiment in terms of what it runs and how it compares the player strategies, 
+  regarding the setup of the experiment in terms of what it runs and how it compares the player STRATEGY, 
   the number of trials the experiment and what data was collected. (250 words)
-  - A presentation on the results of your simulation of the strategies in table(s) or appropriate graphic(s) with 
+  - A presentation on the results of your simulation of the STRATEGY in table(s) or appropriate graphic(s) with 
   a short summary. (250 words)
   - An interpretation of your data explaining why one strategy is better than the other supported with data 
   from your experiment. (500 words)
@@ -143,7 +143,7 @@ coupling between classes to ensure future extension, and will be fully encapsula
 will have exceptional quality in the above and/or use advanced features in Java such as abstract 
 classes or interfaces appropriately. It is strongly recommended you document design choices in your class/method header Javadoc 
 documentation.
-- **Strategy Design (10 marks):** Average OOD will have all strategies implemented, provide an object structure for players 
+- **Strategy Design (10 marks):** Average OOD will have all STRATEGY implemented, provide an object structure for players 
 playing the game with a given strategy, and follow good principles of encapsulation and modularity.  Excellent solutions will
 use Java advanced features cleverly. It is strongly recommended you document design choices in your class/method header Javadoc
 documentation.
@@ -167,7 +167,7 @@ is as follows:
 - Complex class structure due to choosing a very complex game which is good or excellent in its design. 
 - Advanced use of Java features such as functional interfaces, abstract classes above or beyond what might
 be expected at the second year level.
-- Advanced use of algorithms in the strategies for playing the game.
+- Advanced use of algorithms in the STRATEGY for playing the game.
 - Advanced use of Exceptions to manage different aspects of the code beyond the second year level.
 - Insightful reflections on the use of generative AI above and beyond what is expected in the criteria.
 
