@@ -6,9 +6,7 @@ package upei.project;
  */
 public class Go extends BoardSquare{
     /**
-     * Constructor for creating a "Go" instance on the game board.
-     * @param iLoc Location index on the board.
-     * @param name Name of the "Go" square.
+
      */
     public Go(int iLoc, String name) {
         super(iLoc, name);
