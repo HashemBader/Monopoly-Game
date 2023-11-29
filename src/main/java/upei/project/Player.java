@@ -1,40 +1,42 @@
 package upei.project;
 
 import java.util.ArrayList;
+/**
+ * The Player class represents a player in a game.
+ */
 public class Player {
+    // Enum defining different strategies for the player
     public enum STRATEGY {
         GREEDY, STATION_GUY, UTILITY_GUY, STINGY, DEFAULT
     }
-
-    // roll dice + money +  int position + strategy + status + landsowened.
-    private int money;
-    private int pos;
-    private STRATEGY STRATEGY = this.STRATEGY.DEFAULT;
-    private ArrayList<String> landsOwned;
-
+    // Attributes of a player
+    private int money;  // Player's money
+    private int pos;// Player's position on the game board
+    private STRATEGY STRATEGY = this.STRATEGY.DEFAULT;// Player's chosen strategy
+    private ArrayList<String> landsOwned;// List of properties owned by the player
+    /**
+     * Constructor to create a player with a specific initial money and strategy.
+     * @param money Initial amount of money the player has.
+     * @param STRATEGY Strategy the player follows (from the STRATEGY enum).
+     */
     public Player(int money, STRATEGY STRATEGY) {
         this.money = money;
         this.STRATEGY = STRATEGY;
         this.pos = 0;
         this.landsOwned = new ArrayList<>();
-        //buys 80% of time
-        //buys only utilities
-        //buys only stations
-        //buys 20%
-
     }
+    /**
+     * Constructor to create a player with a specific initial money and default strategy.
+     * @param money Initial amount of money the player has.
+     */
     public Player(int money) {
         this.money = money;
         this.pos = 0;
         this.landsOwned = new ArrayList<>();
-        //buys 80% of time
-        //buys only utilities
-        //buys only stations
-        //buys 20%
-
     }
-
-
+    /**
+     * Returns a string representation of the player's information.
+     */
     @Override
     public String toString() {
         return "Player{ " +
@@ -42,7 +44,7 @@ public class Player {
                 "Position: " + this.pos +
                 " }";
     }
-
+    // setters and getters
     public int getPos() {
         return this.pos;
     }
@@ -58,13 +60,12 @@ public class Player {
     public void setPos(int pos) {
         this.pos = pos;
     } // goto pos
-
+    // Method to move the player by 'n' steps on the game board
     public void moveN(int n) {
         this.pos = (this.pos + n + Driver.map.size()) % Driver.map.size();
-        // +size again to account for -ve's
-
-    } // move n steps
-
+        // Adds 'size' again to account for negative positions
+    }
+    // Methods to update player's money
     public void addMoney(int a) {
         this.money += a;
     }
@@ -72,19 +73,22 @@ public class Player {
     public void lessMoney(int a) {
         this.money -= a;
     }
-
+    // Methods to manage properties owned by the player
     public void addLandsOwned(String a) {
         if (!getLandsOwned().contains(a)) {
             this.landsOwned.add(a);
         }
     }
-
     public void removeLandsOwned(String a) {
         if (getLandsOwned().contains(a)) {
             this.landsOwned.remove(a);
         }
     }
-
+    /**
+     * Method for the player to make a decision based on their strategy when interacting with a specific location.
+     * @param iLoc Index of the location on the game board.
+     * @return A boolean representing the decision made by the player based on their strategy.
+     */
     public boolean makeChoice(int iLoc) {
         boolean res = Math.random() <= 0.5;
         switch (this.STRATEGY) {

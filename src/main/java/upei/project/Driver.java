@@ -1,11 +1,19 @@
 package upei.project;
 
 import java.util.ArrayList;
-
+/**
+ * The Driver class initializes the game board and manages the main functionality of the game.
+ */
 public class Driver {
+    // ArrayList to hold the game board squares
     public static ArrayList<BoardSquare> map = createBoard();
+    /**
+     * Creates and initializes the game board with various types of BoardSquare objects.
+     * @return An ArrayList containing BoardSquare objects representing the game board.
+     */
     public static ArrayList<BoardSquare> createBoard(){
         ArrayList<BoardSquare> boardMap = new ArrayList<>();
+        // Adding different types of BoardSquare objects to the board
         boardMap.add(new Go(0, "GO"));
         boardMap.add(new Country(1, "SUDAN", 2, 60));
         boardMap.add(new WildSquare(2, "CHEST"));
@@ -49,14 +57,27 @@ public class Driver {
 
         return boardMap;
     }
+    /**
+     * The main method of the program.
+     * @param args Command-line arguments passed to the program.
+     */
     public static void main(String[] args) {
+        // Creating the game board
         ArrayList<BoardSquare> boardMap = createBoard();
     }
-
+    // Static variables to manage dice value
     public static int diceVal = 0;
+    /**
+     * Retrieves the current value of the dice.
+     * @return The current value of the dice.
+     */
     public static int getDiceVal(){
         return diceVal;
     }
+    /**
+     * Sets the value of the dice.
+     * @param value The value to set for the dice.
+     */
     public static void setDiceVal(int value){
         diceVal = value;
     }
