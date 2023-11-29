@@ -2,7 +2,7 @@ package upei.project;
 
 public class Go extends BoardSquare{
     /**
-     * Constructor that creates a BoardLocation instance of iLoc
+     * Constructor that creates a BoardSquare instance Go
      *
      * @param iLoc : location on the board
      * @param name
