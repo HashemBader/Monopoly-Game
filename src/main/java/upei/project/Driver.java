@@ -10,7 +10,7 @@ public class Driver {
         boardMap.add(new Country(1, "SUDAN", 2, 60));
         boardMap.add(new WildSquare(2, "CHEST"));
         boardMap.add(new Country(3, "LEBANON", 4, 60));
-        boardMap.add(new Taxe(4, "INCOME TAX"));
+        boardMap.add(new Tax(4, "INCOME TAX"));
         boardMap.add(new Station(5, "GIZA STATION"));
         boardMap.add(new Country(6, "SYRIA", 6, 100));
         boardMap.add(new WildSquare(7, "CHANCE"));
@@ -44,7 +44,7 @@ public class Driver {
         boardMap.add(new Station(35, "QNL STATION"));
         boardMap.add(new WildSquare(36, "CHANCE"));
         boardMap.add(new Country(37, "QATAR", 35, 350));
-        boardMap.add(new Taxe(38, "LUXURY TAX"));
+        boardMap.add(new Tax(38, "LUXURY TAX"));
         boardMap.add(new Country(39, "EGYPT", 50, 400));
 
         return boardMap;
