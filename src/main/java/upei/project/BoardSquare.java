@@ -11,7 +11,7 @@ public abstract class BoardSquare {
     public abstract void playerOnLocation(Player player);
 
     /**
-     * Constructor that creates a BoardLocation instance of iLoc
+     * Constructor that creates a BoardSquare instance
      * @param iLoc : location on the board
      */
     public BoardSquare(int iLoc, String name){

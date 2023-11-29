@@ -39,4 +39,19 @@ public class MainTest {
 
         assertEquals(egypt.getOwner() == p1, p1.getMoney());
     }
+
+    @Test
+    public void testGoToJail(){
+        Player p1 = new Player(1500);
+        p1.setPos(30);
+        Driver.map.get(p1.getPos()).playerOnLocation(p1);
+        assertEquals(10, p1.getPos());
+    }
+    @Test
+    public void testGetOutOfJail(){
+        Player p1 = new Player(1500);
+        p1.setPos(30);
+        Driver.map.get(p1.getPos()).playerOnLocation(p1);
+        assertEquals(1500, p1.getMoney());
+    }
 }

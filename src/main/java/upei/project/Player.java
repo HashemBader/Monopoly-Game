@@ -6,8 +6,8 @@ public class Player {
         GREEDY, STATION_GUY, UTILITY_GUY, STINGY, DEFAULT
     }
 
-    // roll dice + money +  int position + strategy + status + landsowened.
     private int money;
+    private String name = "anonymous";
     private int pos;
     private STRATEGY STRATEGY = this.STRATEGY.DEFAULT;
     private ArrayList<String> landsOwned;
@@ -31,6 +31,16 @@ public class Player {
         //buys only utilities
         //buys only stations
         //buys 20%
+    }
+    public Player(int money, STRATEGY STRATEGY, String name) {
+        this.money = money;
+        this.pos = 0;
+        this.landsOwned = new ArrayList<>();
+        this.name = name;
+        //buys 80% of time
+        //buys only utilities
+        //buys only stations
+        //buys 20%
 
     }
 
@@ -38,6 +48,7 @@ public class Player {
     @Override
     public String toString() {
         return "Player{ " +
+                "Name: " + this.name + "; " +
                 "Money: " + this.money + "; " +
                 "Position: " + this.pos +
                 " }";
@@ -70,7 +81,13 @@ public class Player {
     }
 
     public void lessMoney(int a) {
-        this.money -= a;
+        if(this.money - a < 0){
+            this.money = 0;
+        }
+        else {
+            this.money -= a;
+        }
+
     }
 
     public void addLandsOwned(String a) {

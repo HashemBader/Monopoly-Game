@@ -51,6 +51,7 @@ public class Driver {
     }
     public static void main(String[] args) {
         ArrayList<BoardSquare> boardMap = createBoard();
+
     }
 
     public static int diceVal = 0;
