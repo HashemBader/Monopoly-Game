@@ -1,6 +1,6 @@
 package upei.project;
 
-public class Taxe extends BoardSquare{
+public class Tax extends BoardSquare{
 
 
     /**
@@ -9,7 +9,7 @@ public class Taxe extends BoardSquare{
      * @param iLoc : location on the board
      * @param name
      */
-    public Taxe(int iLoc, String name) {
+    public Tax(int iLoc, String name) {
         super(iLoc, name);
     }
 
