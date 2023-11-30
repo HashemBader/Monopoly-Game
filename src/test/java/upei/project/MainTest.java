@@ -1,5 +1,8 @@
 package upei.project;
 import org.junit.jupiter.api.Test;
+import upei.project.Properties.Country;
+import upei.project.Properties.Property;
+import upei.project.Properties.Utility;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,6 @@
-package upei.project;
+package upei.project.Properties;
+
+import upei.project.Player;
 
 /**
  * The Country class represents a country property on the game board.
@@ -29,7 +31,7 @@ public class Country extends Property {
             return;  // Do nothing if the current player is the owner
         }
         else if (this.getOwner() != player && this.getOwner() == null){ // Property not owned
-            if (player.makeChoice(this.iLoc)){// make a choice depend on the strategy
+            if (player.getMoney() > this.getBuyPrice() && player.makeChoice(this)){// make a choice depend on the strategy
                 this.setOwner(player);
                 player.lessMoney(this.getBuyPrice());
             }

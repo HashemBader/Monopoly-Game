@@ -1,5 +1,10 @@
 package upei.project;
 
+import upei.project.Properties.Country;
+import upei.project.Properties.Property;
+import upei.project.Properties.Station;
+import upei.project.Properties.Utility;
+
 import java.util.ArrayList;
 /**
  * The Player class represents a player in a game.
@@ -112,26 +117,28 @@ public class Player {
 
     /**
      * Method for the player to make a decision based on their strategy when interacting with a specific location.
-     * @param iLoc Index of the location on the game board.
+     *
+     * @param property Index of the location on the game board.
      * @return A boolean representing the decision made by the player based on their strategy.
      */
-    public boolean makeChoice(int iLoc) {
+    public boolean makeChoice(Property property) {
         boolean res = Math.random() <= 0.5;
         switch (this.pStrategy) {
             case GREEDY ->
-                res = Math.random() <= 0.8;
+            {res = Math.random() <= 0.8;
+            }
 
             case STINGY ->
                 res = Math.random() <= 0.2;
 
             case UTILITY_GUY -> {
-                if (Driver.map.get(iLoc) instanceof Utility) {
+                if (property instanceof Utility) {
                     res = Math.random() <= 0.90;
                 } else
                     res = Math.random() <= 0.5;
             }
             case STATION_GUY -> {
-                if (Driver.map.get(iLoc) instanceof Station) {
+                if (property instanceof Station) {
                     res = Math.random() <= 0.90;
                 } else {
                     res = Math.random() <= 0.5;

@@ -1,4 +1,7 @@
-package upei.project;
+package upei.project.Properties;
+
+import upei.project.BoardSquare;
+import upei.project.Player;
 
 /**
  * Properties have an owner

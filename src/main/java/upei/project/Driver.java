@@ -1,5 +1,9 @@
 package upei.project;
 
+import upei.project.Properties.Country;
+import upei.project.Properties.Station;
+import upei.project.Properties.Utility;
+
 import java.util.ArrayList;
 /**
  * The Driver class initializes the game board and manages the main functionality of the game.

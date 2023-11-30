@@ -1,4 +1,7 @@
-package upei.project;
+package upei.project.Properties;
+
+import upei.project.Player;
+import upei.project.Properties.Property;
 
 public class Station extends Property {
     /**
@@ -8,7 +11,6 @@ public class Station extends Property {
      * @param name
      */
     private int rent;
-
     private int buyPrice;
     public Station(int iLoc, String name, int buyPrice) {
         super(iLoc, name, buyPrice);
@@ -21,7 +23,7 @@ public class Station extends Property {
             return;
         }
         else if (this.getOwner() != player && this.getOwner() == null){ // not owned
-            if (player.makeChoice(this.iLoc)){
+            if (player.getMoney() > this.getBuyPrice() && player.makeChoice(this)){
                 this.setOwner(player);
                 player.lessMoney(this.getBuyPrice());
             }
