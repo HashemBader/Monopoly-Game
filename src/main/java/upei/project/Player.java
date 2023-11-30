@@ -1,6 +1,9 @@
 package upei.project;
 
 import java.util.ArrayList;
+/**
+ * The Player class represents a player in a game.
+ */
 public class Player {
     public enum strategy {
         GREEDY, STATION_GUY, UTILITY_GUY, STINGY, DEFAULT
@@ -13,16 +16,16 @@ public class Player {
     private ArrayList<String> landsOwned;
 
     public Player(int money, strategy STRATEGY) {
+
         this.money = money;
         this.pStrategy = STRATEGY;
         this.pos = 0;
         this.landsOwned = new ArrayList<>();
-        //buys 80% of time
-        //buys only utilities
-        //buys only stations
-        //buys 20%
-
     }
+    /**
+     * Constructor to create a player with a specific initial money and default strategy.
+     * @param money Initial amount of money the player has.
+     */
     public Player(int money) {
         this.money = money;
         this.pos = 0;
@@ -45,7 +48,6 @@ public class Player {
 
     }
 
-
     public int getPos() {
         return this.pos;
     }
@@ -61,13 +63,12 @@ public class Player {
     public void setPos(int pos) {
         this.pos = pos;
     } // goto pos
-
+    // Method to move the player by 'n' steps on the game board
     public void moveN(int n) {
         this.pos = (this.pos + n + Driver.map.size()) % Driver.map.size();
-        // +size again to account for -ve's
-
-    } // move n steps
-
+        // Adds 'size' again to account for negative positions
+    }
+    // Methods to update player's money
     public void addMoney(int a) {
         this.money += a;
     }
@@ -81,19 +82,22 @@ public class Player {
         }
 
     }
-
+    // Methods to manage properties owned by the player
     public void addLandsOwned(String a) {
         if (!getLandsOwned().contains(a)) {
             this.landsOwned.add(a);
         }
     }
-
     public void removeLandsOwned(String a) {
         if (getLandsOwned().contains(a)) {
             this.landsOwned.remove(a);
         }
     }
-
+    /**
+     * Method for the player to make a decision based on their strategy when interacting with a specific location.
+     * @param iLoc Index of the location on the game board.
+     * @return A boolean representing the decision made by the player based on their strategy.
+     */
     public boolean makeChoice(int iLoc) {
         boolean res = Math.random() <= 0.5;
         switch (this.pStrategy) {
