@@ -2,19 +2,19 @@ package upei.project;
 
 import java.util.ArrayList;
 public class Player {
-    public enum STRATEGY {
+    public enum strategy {
         GREEDY, STATION_GUY, UTILITY_GUY, STINGY, DEFAULT
     }
 
     private int money;
     private String name = "anonymous";
     private int pos;
-    private STRATEGY STRATEGY = this.STRATEGY.DEFAULT;
+    private strategy pStrategy = strategy.DEFAULT;
     private ArrayList<String> landsOwned;
 
-    public Player(int money, STRATEGY STRATEGY) {
+    public Player(int money, strategy STRATEGY) {
         this.money = money;
-        this.STRATEGY = STRATEGY;
+        this.pStrategy = STRATEGY;
         this.pos = 0;
         this.landsOwned = new ArrayList<>();
         //buys 80% of time
@@ -32,11 +32,12 @@ public class Player {
         //buys only stations
         //buys 20%
     }
-    public Player(int money, STRATEGY STRATEGY, String name) {
+    public Player(int money, strategy STRATEGY, String name) {
         this.money = money;
         this.pos = 0;
         this.landsOwned = new ArrayList<>();
         this.name = name;
+        this.pStrategy = STRATEGY;
         //buys 80% of time
         //buys only utilities
         //buys only stations
@@ -44,15 +45,6 @@ public class Player {
 
     }
 
-
-    @Override
-    public String toString() {
-        return "Player{ " +
-                "Name: " + this.name + "; " +
-                "Money: " + this.money + "; " +
-                "Position: " + this.pos +
-                " }";
-    }
 
     public int getPos() {
         return this.pos;
@@ -104,9 +96,9 @@ public class Player {
 
     public boolean makeChoice(int iLoc) {
         boolean res = Math.random() <= 0.5;
-        switch (this.STRATEGY) {
+        switch (this.pStrategy) {
             case GREEDY ->
-                res = Math.random() <= 0.8;
+                res = Math.random() <= 1;
 
             case STINGY ->
                 res = Math.random() <= 0.2;
@@ -129,6 +121,16 @@ public class Player {
 
         }
         return res;
+    }
+
+    @Override
+    public String toString() {
+        return "Player{ " +
+                "Strategy: " + this.pStrategy +"; " +
+                "Name: " + this.name + "; " +
+                "Money: " + this.money + "; " +
+                "Position: " + this.pos +
+                " }";
     }
 }
 

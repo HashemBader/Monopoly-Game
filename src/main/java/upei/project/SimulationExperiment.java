@@ -1,7 +1,6 @@
 package upei.project;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 public class SimulationExperiment {
 
@@ -15,22 +14,13 @@ public class SimulationExperiment {
     }
 
     public static void main(String[] args) {
-        ArrayList<Player> players = new ArrayList<>();
-        Player p1 = new Player(1500, Player.STRATEGY.STINGY, "Zeyad");
-        Player p2 = new Player(1500, Player.STRATEGY.DEFAULT ,"Hashem");
-        Player p3 = new Player(1500, Player.STRATEGY.GREEDY, "Nadz");
-        Player p5 = new Player(1500, Player.STRATEGY.UTILITY_GUY, "RJ");
-        Player p4 = new Player(1500, Player.STRATEGY.STATION_GUY, "Yasser");
-        players.add(p1);
-        players.add(p2);
-        players.add(p3);
-        players.add(p4);
-        players.add(p5);
+        ArrayList<Player> players = getPlayers(new String[] {"zeyad","yasser","hashem"},new Player.strategy[] {Player.strategy.GREEDY, Player.strategy.STINGY, Player.strategy.STATION_GUY});
         ArrayList<BoardSquare> map = Driver.createBoard();
         int diceVal = 0;
         Node currPlayer;
         int numPlayers = players.size();
         int rounds = 0;
+        int rounds_real = 0;
 
         Node firstPlayer = new Node(players.get(0));
         currPlayer = firstPlayer;
@@ -46,7 +36,9 @@ public class SimulationExperiment {
 
         while(numPlayers > 1){
             rounds++;
-            System.out.println("Round: " + rounds);
+            rounds_real = (int)(rounds / numPlayers);
+
+            System.out.println("Round: " + rounds_real);
             diceVal = Dice.rollDice2();
             System.out.println("DICEVAL: " + diceVal);
             currPlayer.player.moveN(diceVal);
@@ -67,5 +59,13 @@ public class SimulationExperiment {
         }
         System.out.print(currPlayer.player);
 
+    }
+
+    private static ArrayList<Player> getPlayers(String[] names, Player.strategy[] strategies) {
+        ArrayList<Player> players = new ArrayList<>();
+        for(int i=0; i<names.length; i++){
+            players.add(new Player(1500, strategies[i], names[i]));
+        }
+        return players;
     }
 }
