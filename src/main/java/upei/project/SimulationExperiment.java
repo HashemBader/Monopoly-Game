@@ -14,13 +14,12 @@ public class SimulationExperiment {
     }
 
     public static void main(String[] args) {
-        ArrayList<Player> players = getPlayers(new String[] {"zeyad","yasser","hashem"},new Player.strategy[] {Player.strategy.GREEDY, Player.strategy.STINGY, Player.strategy.STATION_GUY});
+        ArrayList<Player> players = getPlayers(new String[] {"Zeyad","Yasser"}, new Player.strategy[] {Player.strategy.GREEDY, Player.strategy.STATION_GUY});
         ArrayList<BoardSquare> map = Driver.createBoard();
-        int diceVal = 0;
         Node currPlayer;
         int numPlayers = players.size();
+        int diceRolls = 0;
         int rounds = 0;
-        int rounds_real = 0;
 
         Node firstPlayer = new Node(players.get(0));
         currPlayer = firstPlayer;
@@ -35,19 +34,16 @@ public class SimulationExperiment {
         currPlayer = currPlayer.next;
 
         while(numPlayers > 1){
-            rounds++;
-            rounds_real = (int)(rounds / numPlayers);
+            diceRolls++;
+            rounds = (int)(diceRolls / numPlayers);
 
-            System.out.println("Round: " + rounds_real);
-            diceVal = Dice.rollDice2();
-            System.out.println("DICEVAL: " + diceVal);
-            currPlayer.player.moveN(diceVal);
+            System.out.println("Round: " + rounds);
+            currPlayer.player.rollDice();
+            System.out.println("DICEVAL: " + Player.diceVal);
+            currPlayer.player.moveN(Player.diceVal);
             System.out.println("PLAYER before: " + currPlayer.player);
             map.get(currPlayer.player.getPos()).playerOnLocation(currPlayer.player);
             System.out.println("PLAYER after: " + currPlayer.player);
-
-
-            currPlayer = currPlayer.next;
 
             if (currPlayer.player.getMoney() == 0){
                 currPlayer.prev.next = currPlayer.next;
@@ -55,7 +51,7 @@ public class SimulationExperiment {
                 currPlayer = currPlayer.next;
                 numPlayers--;
             }
-
+            currPlayer = currPlayer.next;
         }
         System.out.print(currPlayer.player);
 

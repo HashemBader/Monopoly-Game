@@ -8,7 +8,6 @@ public class Country extends Property {
    // String color;
     private boolean isMortgaged;// Indicates whether the country property is mortgaged
     private int rent; // Rent amount for landing on the property
-    private int buyPrice;// Buying price of the country property
     /**
      * Constructor to create a Country instance with specified parameters.
      * @param iLoc Location index of the country property on the board.
@@ -17,9 +16,8 @@ public class Country extends Property {
      * @param buyPrice Buying price of the country property.
      */
     public Country(int iLoc, String name, int rent, int buyPrice){
-        super(iLoc, name);// Calls the constructor of the superclass 'Property'
+        super(iLoc, name, buyPrice);// Calls the constructor of the superclass 'Property'
         this.rent = rent;
-        this.buyPrice = buyPrice;
         this.isMortgaged = false;
     }
     /**
@@ -42,13 +40,6 @@ public class Country extends Property {
         }
     }
     // Getter and Setter methods for various attributes
-    public Player getOwner() {
-        return this.owner;
-    }
-
-    public void setOwner(Player owner) {
-        this.owner = owner;
-    }
 
     public int getRent() {return rent;}
 
@@ -56,13 +47,7 @@ public class Country extends Property {
         this.rent = rent;
     }
 
-    public int getBuyPrice() {
-        return buyPrice;
-    }
 
-    public void setBuyPrice(int buyPrice) {
-        this.buyPrice = buyPrice;
-    }
     /**
      * Checks if the country property is mortgaged.
      * @return A boolean indicating whether the property is mortgaged.

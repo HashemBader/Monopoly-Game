@@ -53,7 +53,8 @@ public class MainTest {
         p1.setPos(30);
         Driver.map.get(p1.getPos()).playerOnLocation(p1);
         assertEquals(1500, p1.getMoney());
-    }@Test
+    }
+    @Test
     public void testBuyStation(){
         Player p1 = new Player(1500, Player.strategy.STATION_GUY);
         p1.setPos(25);
