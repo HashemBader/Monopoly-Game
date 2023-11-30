@@ -24,8 +24,7 @@ public class WildSquare extends BoardSquare {
             //From sale of stock you get $50
             case 4 -> player.addMoney(50);
             //School fees. Pay $50
-            case 5 -> player.lessMoney(50);
-            //Go to Jail. todo
+            case 5 -> player.setPos(10);
             case 6 -> player.setPos(0);
             //Advance to EGYPT.
             case 7 -> player.setPos(39);

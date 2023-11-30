@@ -5,23 +5,20 @@ import java.util.ArrayList;
  * The Player class represents a player in a game.
  */
 public class Player {
-    // Enum defining different strategies for the player
-    public enum STRATEGY {
+    public enum strategy {
         GREEDY, STATION_GUY, UTILITY_GUY, STINGY, DEFAULT
     }
-    // Attributes of a player
-    private int money;  // Player's money
-    private int pos;// Player's position on the game board
-    private STRATEGY STRATEGY = this.STRATEGY.DEFAULT;// Player's chosen strategy
-    private ArrayList<String> landsOwned;// List of properties owned by the player
-    /**
-     * Constructor to create a player with a specific initial money and strategy.
-     * @param money Initial amount of money the player has.
-     * @param STRATEGY Strategy the player follows (from the STRATEGY enum).
-     */
-    public Player(int money, STRATEGY STRATEGY) {
+
+    private int money;
+    private String name = "anonymous";
+    private int pos;
+    private strategy pStrategy = strategy.DEFAULT;
+    private ArrayList<String> landsOwned;
+
+    public Player(int money, strategy STRATEGY) {
+
         this.money = money;
-        this.STRATEGY = STRATEGY;
+        this.pStrategy = STRATEGY;
         this.pos = 0;
         this.landsOwned = new ArrayList<>();
     }
@@ -33,18 +30,24 @@ public class Player {
         this.money = money;
         this.pos = 0;
         this.landsOwned = new ArrayList<>();
+        //buys 80% of time
+        //buys only utilities
+        //buys only stations
+        //buys 20%
     }
-    /**
-     * Returns a string representation of the player's information.
-     */
-    @Override
-    public String toString() {
-        return "Player{ " +
-                "Money: " + this.money + "; " +
-                "Position: " + this.pos +
-                " }";
+    public Player(int money, strategy STRATEGY, String name) {
+        this.money = money;
+        this.pos = 0;
+        this.landsOwned = new ArrayList<>();
+        this.name = name;
+        this.pStrategy = STRATEGY;
+        //buys 80% of time
+        //buys only utilities
+        //buys only stations
+        //buys 20%
+
     }
-    // setters and getters
+
     public int getPos() {
         return this.pos;
     }
@@ -71,7 +74,13 @@ public class Player {
     }
 
     public void lessMoney(int a) {
-        this.money -= a;
+        if(this.money - a < 0){
+            this.money = 0;
+        }
+        else {
+            this.money -= a;
+        }
+
     }
     // Methods to manage properties owned by the player
     public void addLandsOwned(String a) {
@@ -91,9 +100,9 @@ public class Player {
      */
     public boolean makeChoice(int iLoc) {
         boolean res = Math.random() <= 0.5;
-        switch (this.STRATEGY) {
+        switch (this.pStrategy) {
             case GREEDY ->
-                res = Math.random() <= 0.8;
+                res = Math.random() <= 1;
 
             case STINGY ->
                 res = Math.random() <= 0.2;
@@ -116,6 +125,16 @@ public class Player {
 
         }
         return res;
+    }
+
+    @Override
+    public String toString() {
+        return "Player{ " +
+                "Strategy: " + this.pStrategy +"; " +
+                "Name: " + this.name + "; " +
+                "Money: " + this.money + "; " +
+                "Position: " + this.pos +
+                " }";
     }
 }
 
