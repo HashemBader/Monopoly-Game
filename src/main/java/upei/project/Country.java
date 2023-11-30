@@ -5,7 +5,7 @@ package upei.project;
  * It extends the Property class and implements specific behaviors for country properties.
  */
 public class Country extends Property {
-   // String color;
+    // String color;
     private boolean isMortgaged;// Indicates whether the country property is mortgaged
     private int rent; // Rent amount for landing on the property
     /**
@@ -35,17 +35,13 @@ public class Country extends Property {
             }
         }
         else{ // A player has landed on another player's property
-            player.lessMoney(getRent());// Deduct rent from the current player
-            getOwner().addMoney(getRent());// Add rent to the property owner's money
+            player.lessMoney(this.getRent());// Deduct rent from the current player
+            getOwner().addMoney(this.getRent());// Add rent to the property owner's money
         }
     }
     // Getter and Setter methods for various attributes
 
     public int getRent() {return rent;}
-
-    public void setRent(int rent) {
-        this.rent = rent;
-    }
 
 
     /**

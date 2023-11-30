@@ -61,4 +61,17 @@ public class MainTest {
         Driver.map.get(p1.getPos()).playerOnLocation(p1);
         assertEquals(1500, p1.getMoney());
     }
+
+    @Test
+    public void testBuyUtilities(){
+        Player p1 = new Player(1500);
+        Property s = (Property) Driver.map.get(5);
+        Property u = (Utility) Driver.map.get(12);
+        Property c = (Property) Driver.map.get(39);
+
+        u.setOwner(p1);
+        s.setOwner(p1);
+        c.setOwner(p1);
+        assertEquals(1500, p1.getLandsOwned());
+    }
 }

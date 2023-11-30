@@ -43,7 +43,7 @@ public class SimulationExperiment {
             currPlayer.player.moveN(Player.diceVal);
             System.out.println("PLAYER before: " + currPlayer.player);
             map.get(currPlayer.player.getPos()).playerOnLocation(currPlayer.player);
-            System.out.println("PLAYER after: " + currPlayer.player);
+            System.out.println("PLAYER after: " + currPlayer.player + "\n" +currPlayer.player.getLandsOwned());
 
             if (currPlayer.player.getMoney() == 0){
                 currPlayer.prev.next = currPlayer.next;

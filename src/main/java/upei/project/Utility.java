@@ -3,12 +3,11 @@ package upei.project;
 import java.util.Arrays;
 
 public class Utility extends Property {
-    private Player owner;
+    Player owner;
 
     public Utility(int iLoc, String name, int buyPrice){
         super(iLoc, name, buyPrice);
         this.owner = null;
-
     }
 
 

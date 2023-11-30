@@ -13,7 +13,7 @@ public class Player {
     private String name = "anonymous";
     private int pos;
     private strategy pStrategy = strategy.DEFAULT;
-    private ArrayList<String> landsOwned;
+    private ArrayList<Property> landsOwned;
 
     public Player(int money, strategy STRATEGY) {
 
@@ -56,9 +56,37 @@ public class Player {
         return this.money;
     }
 
-    public ArrayList<String> getLandsOwned() {
+    public ArrayList<Property> getLandsOwned() {
         return this.landsOwned;
     }
+    public ArrayList<Station> getStationsOwned() {
+        ArrayList<Station> stationsOwned = new ArrayList<>();
+        for(Property p : this.landsOwned){
+            if(p instanceof Station){
+                stationsOwned.add((Station)p);
+            }
+        }
+        return stationsOwned;
+    }
+    public ArrayList<Country> getCountriesOwned() {
+        ArrayList<Country> countriesOwned = new ArrayList<>();
+        for(Property p : this.landsOwned){
+            if(p instanceof Country){
+                countriesOwned.add((Country)p);
+            }
+        }
+        return countriesOwned;
+    }
+    public ArrayList<Utility> getUtilitiesOwned() {
+        ArrayList<Utility> utilitiesOwned = new ArrayList<>();
+        for(Property p : this.landsOwned){
+            if(p instanceof Utility){
+                utilitiesOwned.add((Utility) p);
+            }
+        }
+        return utilitiesOwned;
+    }
+
 
     public void setPos(int pos) {
         this.pos = pos;
@@ -80,19 +108,8 @@ public class Player {
         else {
             this.money -= a;
         }
+    }
 
-    }
-    // Methods to manage properties owned by the player
-    public void addLandsOwned(String a) {
-        if (!getLandsOwned().contains(a)) {
-            this.landsOwned.add(a);
-        }
-    }
-    public void removeLandsOwned(String a) {
-        if (getLandsOwned().contains(a)) {
-            this.landsOwned.remove(a);
-        }
-    }
     /**
      * Method for the player to make a decision based on their strategy when interacting with a specific location.
      * @param iLoc Index of the location on the game board.
@@ -109,13 +126,13 @@ public class Player {
 
             case UTILITY_GUY -> {
                 if (Driver.map.get(iLoc) instanceof Utility) {
-                    res = Math.random() <= 0.95;
+                    res = Math.random() <= 0.90;
                 } else
                     res = Math.random() <= 0.5;
             }
             case STATION_GUY -> {
                 if (Driver.map.get(iLoc) instanceof Station) {
-                    res = Math.random() <= 0.95;
+                    res = Math.random() <= 0.90;
                 } else {
                     res = Math.random() <= 0.5;
                 }
