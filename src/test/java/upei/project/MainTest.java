@@ -2,6 +2,7 @@ package upei.project;
 import org.junit.jupiter.api.Test;
 import upei.project.Properties.Country;
 import upei.project.Properties.Property;
+import upei.project.Properties.Station;
 import upei.project.Properties.Utility;
 
 import java.util.ArrayList;
@@ -76,5 +77,17 @@ public class MainTest {
         s.setOwner(p1);
         c.setOwner(p1);
         assertEquals(1500, p1.getLandsOwned());
+    }
+    @Test
+    public void testRentOfStations(){
+        Player p1 = new Player(1500);
+        Player p2 = new Player(1500);
+        Property s = (Station) Driver.map.get(5);
+        Property s2 = (Station) Driver.map.get(15);
+        s.setOwner(p1);
+        s2.setOwner(p1);
+        s2.setOwner(p1);
+        Driver.map.get(5).playerOnLocation(p2);
+        assertEquals(1500, p2);
     }
 }

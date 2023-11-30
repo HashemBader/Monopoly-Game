@@ -33,17 +33,17 @@ public class Country extends Property {
         else if (this.getOwner() != player && this.getOwner() == null){ // Property not owned
             if (player.getMoney() > this.getBuyPrice() && player.makeChoice(this)){// make a choice depend on the strategy
                 this.setOwner(player);
-                player.lessMoney(this.getBuyPrice());
+                player.subtractMoney(this.getBuyPrice());
             }
         }
         else{ // A player has landed on another player's property
-            player.lessMoney(this.getRent());// Deduct rent from the current player
+            player.subtractMoney(this.getRent());// Deduct rent from the current player
             getOwner().addMoney(this.getRent());// Add rent to the property owner's money
         }
     }
     // Getter and Setter methods for various attributes
 
-    public int getRent() {return rent;}
+    public int getRent() {return rent;} //todo based on colors
 
 
     /**

@@ -1,7 +1,6 @@
 package upei.project.Properties;
 
 import upei.project.Player;
-import upei.project.Properties.Property;
 
 public class Utility extends Property {
 
@@ -17,11 +16,11 @@ public class Utility extends Property {
         else if (this.getOwner() != player && this.getOwner() == null){
             if (player.getMoney() > this.getBuyPrice() && player.makeChoice(this)){
                 this.setOwner(player);
-                player.lessMoney(this.getBuyPrice());
+                player.subtractMoney(this.getBuyPrice());
             }
         }
         else{
-            player.lessMoney(this.getRent());
+            player.subtractMoney(this.getRent());
             this.getOwner().addMoney(this.getRent());
         }
     }

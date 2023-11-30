@@ -23,7 +23,8 @@ public abstract class Property extends BoardSquare {
 
     public void setOwner(Player owner) {
         this.owner = owner;
-        owner.getLandsOwned().add(this);
+        if(!owner.getLandsOwned().contains(this))
+            owner.getLandsOwned().add(this);
     }
 
     public int getBuyPrice() {

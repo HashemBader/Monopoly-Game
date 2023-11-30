@@ -21,14 +21,13 @@ public class Jail extends BoardSquare{
     @Override
     public void playerOnLocation(Player player) {
         player.setPos(10); // Player is moved to the Jail position
-        player.lessMoney(50); // Deducts money as a penalty for being in Jail temporarily
+        player.subtractMoney(50); // Deducts money as a penalty for being in Jail temporarily
         final int MAX_TRIES = 3;// Maximum attempts to roll a double
         int tries = 0;
-        int dice1;
-        int dice2;
+        int dice1, dice2;
         while (tries < MAX_TRIES) {
-            dice1 = Dice.rollDice1();// Rolls the first dice
-            dice2 = Dice.rollDice1();// Rolls the second dice
+            dice1 = DiceUtils.rollDice1();// Rolls the first dice
+            dice2 = DiceUtils.rollDice1();// Rolls the second dice
             if (dice1 == dice2) {
                 player.addMoney(50); // If a double is rolled, player gets money back and leaves Jail
                 break;

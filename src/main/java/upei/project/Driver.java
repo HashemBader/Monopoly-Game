@@ -68,7 +68,6 @@ public class Driver {
     public static void main(String[] args) {
         // Creating the game board
         ArrayList<BoardSquare> boardMap = createBoard();
-
     }
     // Static variables to manage dice value
     public static int diceVal = 0;

@@ -16,9 +16,9 @@ public class Tax extends BoardSquare{
     @Override
     public void playerOnLocation(Player player) {
         if (player.getPos() == 4){
-            player.lessMoney(200);
+            player.subtractMoney(200);
         } else if (player.getPos() == 38) {
-            player.lessMoney(100);
+            player.subtractMoney(100);
         }
     }
 }

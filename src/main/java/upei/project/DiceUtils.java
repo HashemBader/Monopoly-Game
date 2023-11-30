@@ -2,7 +2,7 @@ package upei.project;
 /**
  * The Dice class provides methods to simulate rolling dice.
  */
-public class Dice {
+public class DiceUtils {
     /**
      * Simulates rolling a single six-sided die.
      * @return An integer representing the result of the roll (a number between 1 and 6 inclusive).

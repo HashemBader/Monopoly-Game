@@ -102,16 +102,16 @@ public class Player {
         // Adds 'size' again to account for negative positions
     }
     // Methods to update player's money
-    public void addMoney(int a) {
-        this.money += a;
+    public void addMoney(int amt) {
+        this.money += amt;
     }
 
-    public void lessMoney(int a) {
-        if(this.money - a < 0){
+    public void subtractMoney(int amt) {
+        if(this.money - amt < 0){
             this.money = 0;
         }
         else {
-            this.money -= a;
+            this.money -= amt;
         }
     }
 
@@ -125,8 +125,7 @@ public class Player {
         boolean res = Math.random() <= 0.5;
         switch (this.pStrategy) {
             case GREEDY ->
-            {res = Math.random() <= 0.8;
-            }
+            res = Math.random() <= 0.8;
 
             case STINGY ->
                 res = Math.random() <= 0.2;
@@ -152,7 +151,7 @@ public class Player {
     }
 
     public void rollDice(){
-        Player.diceVal = Dice.rollDice2();
+        Player.diceVal = DiceUtils.rollDice2();
     }
     public static int getDiceVal(){
         return Player.diceVal;

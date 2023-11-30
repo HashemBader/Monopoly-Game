@@ -1,7 +1,6 @@
 package upei.project.Properties;
 
 import upei.project.Player;
-import upei.project.Properties.Property;
 
 public class Station extends Property {
     /**
@@ -11,7 +10,6 @@ public class Station extends Property {
      * @param name
      */
     private int rent;
-    private int buyPrice;
     public Station(int iLoc, String name, int buyPrice) {
         super(iLoc, name, buyPrice);
         this.rent = 25;
@@ -25,34 +23,20 @@ public class Station extends Property {
         else if (this.getOwner() != player && this.getOwner() == null){ // not owned
             if (player.getMoney() > this.getBuyPrice() && player.makeChoice(this)){
                 this.setOwner(player);
-                player.lessMoney(this.getBuyPrice());
+                player.subtractMoney(this.getBuyPrice());
             }
         }
         else{ // a player has landed on owners land
-            if (getOwner().getStationsOwned().size() == 2) {
-                player.lessMoney(2 * getRent());
-                getOwner().addMoney(2 * getRent());
-            }
-            else if (getOwner().getStationsOwned().size() == 3) {
-                player.lessMoney(4*getRent());
-                getOwner().addMoney(4*getRent());
-            }
-            else if (getOwner().getStationsOwned().size() == 4) {
-                player.lessMoney(8*getRent());
-                getOwner().addMoney(8*getRent());
-            }
-            else {
-                player.lessMoney(getRent());
-                getOwner().addMoney(getRent());
-            }
+            player.subtractMoney(this.getRent());
+            this.getOwner().addMoney(this.getRent());
         }
     }
 
 
-    public int getRent() {return rent;}
+    public int getRent() {return calcRent();}
 
-    public void setRent(int rent) {
-        this.rent = rent;
+    public int calcRent() {
+        return (int) (Math.pow(2, this.getOwner().getStationsOwned().size()-1)) * this.rent;
     }
 
 }
