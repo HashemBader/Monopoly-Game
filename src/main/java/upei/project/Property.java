@@ -12,7 +12,6 @@ public abstract class Property extends BoardSquare {
         super(iLoc, name);
         this.owner = null;
         this.buyPrice = buyPrice;
-
     }
 
     public Player getOwner() {

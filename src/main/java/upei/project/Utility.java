@@ -17,15 +17,15 @@ public class Utility extends Property {
         if (getOwner() == player){
             return;
         }
-        else if (getOwner() != player && getOwner() == null){
+        else if (this.getOwner() != player && this.getOwner() == null){
             if (player.makeChoice(this.iLoc)){
-                setOwner(player);
-                player.lessMoney(getBuyPrice());
+                this.setOwner(player);
+                player.lessMoney(this.getBuyPrice());
             }
         }
         else{
             player.lessMoney(this.getRent());
-            getOwner().addMoney(this.getRent());
+            this.getOwner().addMoney(this.getRent());
         }
     }
 
