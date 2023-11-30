@@ -8,7 +8,7 @@ public class Player {
     public enum strategy {
         GREEDY, STATION_GUY, UTILITY_GUY, STINGY, DEFAULT
     }
-
+    public static int diceVal;
     private int money;
     private String name = "anonymous";
     private int pos;
@@ -102,7 +102,7 @@ public class Player {
         boolean res = Math.random() <= 0.5;
         switch (this.pStrategy) {
             case GREEDY ->
-                res = Math.random() <= 1;
+                res = Math.random() <= 0.8;
 
             case STINGY ->
                 res = Math.random() <= 0.2;
@@ -125,6 +125,13 @@ public class Player {
 
         }
         return res;
+    }
+
+    public void rollDice(){
+        Player.diceVal = Dice.rollDice2();
+    }
+    public static int getDiceVal(){
+        return Player.diceVal;
     }
 
     @Override

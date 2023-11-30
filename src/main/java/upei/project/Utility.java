@@ -24,8 +24,8 @@ public class Utility extends Property {
             }
         }
         else{
-            player.lessMoney(this.getRent(Driver.getDiceVal()));
-            getOwner().addMoney(this.getRent(Driver.getDiceVal()));
+            player.lessMoney(this.getRent(Player.getDiceVal()));
+            getOwner().addMoney(this.getRent(Player.getDiceVal()));
         }
     }
 
