@@ -51,9 +51,7 @@ public class SimulationExperiment {
                 currPlayer = currPlayer.next;
                 numPlayers--;
             }
-
             currPlayer = currPlayer.next;
-
         }
         System.out.print(currPlayer.player);
 

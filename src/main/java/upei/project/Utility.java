@@ -4,13 +4,13 @@ import java.util.Arrays;
 
 public class Utility extends Property {
     private Player owner;
-    private int buyPrice;
+
     public Utility(int iLoc, String name, int buyPrice){
-        super(iLoc, name);
-        this.buyPrice = buyPrice;
+        super(iLoc, name, buyPrice);
         this.owner = null;
 
     }
+
 
     @Override
     public void playerOnLocation(Player player) {
@@ -24,42 +24,18 @@ public class Utility extends Property {
             }
         }
         else{
-            player.lessMoney(this.getRent(Player.getDiceVal()));
-            getOwner().addMoney(this.getRent(Player.getDiceVal()));
+            player.lessMoney(this.getRent());
+            getOwner().addMoney(this.getRent());
         }
-    }
-
-    public Player getOwner() {
-        return owner;
-    }
-
-    public void setOwner(Player owner) {
-        this.owner = owner;
-    }
-
-
-    public int getBuyPrice() {
-        return buyPrice;
-    }
-
-    public void setBuyPrice(int buyPrice) {
-        this.buyPrice = buyPrice;
     }
 
     /**
      * Returns the utility instance rent after determining it.
      * @return rent
      */
-    public int getRent(int diceVal){
-        return calcRent(diceVal);
-    }
-
-    /**
-     * Determines rent based on TODO
-     * @return
-     */
-    private int calcRent(int diceVal){
-        return diceVal*3; // might delete later
+    @Override
+    public int getRent(){
+        return Player.getDiceVal()*3;
     }
 
 }

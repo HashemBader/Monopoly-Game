@@ -8,11 +8,11 @@ public class Station extends Property {
      * @param name
      */
     private int rent;
+
     private int buyPrice;
-    public Station(int iLoc, String name) {
-        super(iLoc, name);
+    public Station(int iLoc, String name, int buyPrice) {
+        super(iLoc, name, buyPrice);
         this.rent = 25;
-        this.buyPrice = 200;
     }
 
     @Override
@@ -46,13 +46,7 @@ public class Station extends Property {
             }
         }
     }
-    public Player getOwner() {
-        return this.owner;
-    }
 
-    public void setOwner(Player owner) {
-        this.owner = owner;
-    }
 
     public int getRent() {return rent;}
 
@@ -60,7 +54,4 @@ public class Station extends Property {
         this.rent = rent;
     }
 
-    public int getBuyPrice() {
-        return buyPrice;
-    }
 }
