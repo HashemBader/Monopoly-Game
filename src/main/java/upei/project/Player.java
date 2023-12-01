@@ -157,6 +157,9 @@ public class Player {
         return Player.diceVal;
     }
 
+    public String getName(){
+        return this.name;
+    }
     @Override
     public String toString() {
         return "Player{ " +

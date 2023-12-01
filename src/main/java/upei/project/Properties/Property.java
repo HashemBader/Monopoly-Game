@@ -35,7 +35,7 @@ public abstract class Property extends BoardSquare {
     @Override
     public String toString() {
         return "Property{" +
-                "owner=" + owner +
+                "owner=" + owner.getName() +
                 ", buyPrice=" + buyPrice +
                 "} " + super.toString();
     }

@@ -1,5 +1,8 @@
 package upei.project;
 
+import upei.project.Setup.BoardInit;
+import upei.project.Setup.PlayersInit;
+
 import java.util.ArrayList;
 
 public class SimulationExperiment {
@@ -14,16 +17,15 @@ public class SimulationExperiment {
     }
 
     public static void main(String[] args) {
-        ArrayList<Player> players = getPlayers(new String[] {"Zeyad","Yasser"}, new Player.strategy[] {Player.strategy.GREEDY, Player.strategy.STATION_GUY});
-        ArrayList<BoardSquare> map = Driver.createBoard();
-        Node currPlayer;
+        ArrayList<BoardSquare> map = BoardInit.createBoard();
+        ArrayList<Player> players = PlayersInit.getPlayers(new String[] {"Zeyad","Yasser"}, new Player.strategy[] {Player.strategy.GREEDY, Player.strategy.STATION_GUY});
         int numPlayers = players.size();
         int diceRolls = 0;
-        int rounds = 0;
+        int rounds;
 
+        Node currPlayer;
         Node firstPlayer = new Node(players.get(0));
         currPlayer = firstPlayer;
-
         for (int i=1; i< players.size(); i++){
             currPlayer.next = new Node(players.get(i));
             currPlayer.next.prev = currPlayer;
@@ -57,11 +59,4 @@ public class SimulationExperiment {
 
     }
 
-    private static ArrayList<Player> getPlayers(String[] names, Player.strategy[] strategies) {
-        ArrayList<Player> players = new ArrayList<>();
-        for(int i=0; i<names.length; i++){
-            players.add(new Player(1500, strategies[i], names[i]));
-        }
-        return players;
-    }
 }
