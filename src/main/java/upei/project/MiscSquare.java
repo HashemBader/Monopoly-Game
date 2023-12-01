@@ -1,13 +1,13 @@
 package upei.project;
 
-public class OtherSquare extends BoardSquare{
+public class MiscSquare extends BoardSquare{
     /**
      * Constructor to create a BoardSquare instance with a specified location and name.
      *
      * @param iLoc Location index on the board.
      * @param name Name of the board square.
      */
-    public OtherSquare(int iLoc, String name) {
+    public MiscSquare(int iLoc, String name) {
         super(iLoc, name);
     }
 

@@ -8,7 +8,7 @@ import java.util.HashMap;
 
 public class MonopolyGame {
     public static Player winner;
-    public static ArrayList<BoardSquare> boardMap;
+    public static ArrayList<BoardSquare> boardMap = BoardInit.createBoard();
 
     private static class Node{
         Player player;
@@ -20,7 +20,6 @@ public class MonopolyGame {
     }
     
     public static Player playGame(ArrayList<Player> players){
-        boardMap = BoardInit.createBoard();
         int numPlayers = players.size();
         int diceRolls = 0;
         int rounds;
@@ -40,7 +39,7 @@ public class MonopolyGame {
             diceRolls++;
             rounds = diceRolls / numPlayers;
 
-            //System.out.println("Round: " + rounds);
+            System.out.println("Round: " + rounds);
             currPlayer.player.rollDice();
             //System.out.println("DICEVAL: " + Player.diceVal);
             currPlayer.player.moveN(Player.diceVal);

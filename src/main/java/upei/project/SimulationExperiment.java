@@ -11,7 +11,7 @@ public class SimulationExperiment {
     public static void main(String[] args) {
         HashMap<Integer, Player> dataset = new HashMap<>();
         ArrayList<Player> players;
-        for(int i=0; i<1000; i++) {
+        for(int i=0; i<60; i++) {
             players = PlayersInit.getPlayers(new String[]{"Zeyad", "Hashem", "Nadz"},
                     new Player.strategy[]{Player.strategy.GREEDY, Player.strategy.STINGY, Player.strategy.DEFAULT});
             dataset.put(i, MonopolyGame.playGame(players));

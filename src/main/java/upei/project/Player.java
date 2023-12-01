@@ -106,7 +106,7 @@ public class Player {
         this.pos = (this.pos + n + MonopolyGame.boardMap.size()) % MonopolyGame.boardMap.size();
         // Adds 'size' again to account for negative positions
         if(this.pos < oldPos){ // player passed Go!
-            this.addMoney(200);
+            this.addMoney(50);
         }
     }
     // Methods to update player's money
