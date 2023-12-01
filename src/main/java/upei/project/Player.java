@@ -135,7 +135,7 @@ public class Player {
             res = Math.random() <= 0.8;
 
             case STINGY ->
-                res = Math.random() <= 0.2;
+                res = Math.random() <= 0.3;
 
             case UTILITY_GUY -> {
                 if (property instanceof Utility) {
@@ -167,6 +167,10 @@ public class Player {
 
     public String getName(){
         return this.name;
+    }
+
+    public strategy getStratey(){
+        return this.pStrategy;
     }
     @Override
     public String toString() {
