@@ -5,8 +5,6 @@ import upei.project.Properties.Property;
 import upei.project.Properties.Station;
 import upei.project.Properties.Utility;
 
-import java.util.ArrayList;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 

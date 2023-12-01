@@ -3,13 +3,14 @@ package upei.project.Properties;
 import upei.project.Player;
 
 public class Station extends Property {
+
+    private final int BASE_RENT = 25;
     /**
-     * Constructor that creates a BoardLocation instance of iLoc
+     * Constructor that creates a BoardSquare instance of iLoc
      *
      * @param iLoc : location on the board
      * @param name
      */
-    private final int BASE_RENT = 25;
     public Station(int iLoc, String name, int buyPrice) {
         super(iLoc, name, buyPrice);
     }

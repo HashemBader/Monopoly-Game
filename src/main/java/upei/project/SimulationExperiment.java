@@ -38,7 +38,7 @@ public class SimulationExperiment {
 
         while(numPlayers > 1){
             diceRolls++;
-            rounds = (int)(diceRolls / numPlayers);
+            rounds = diceRolls / numPlayers;
 
             System.out.println("Round: " + rounds);
             currPlayer.player.rollDice();

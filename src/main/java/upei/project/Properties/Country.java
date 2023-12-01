@@ -8,17 +8,18 @@ import upei.project.Player;
  */
 public class Country extends Property {
     // String color todo;
-    private int rent; // Rent amount for landing on the property
+    private final int RENT; // Rent amount for landing on the property
     /**
      * Constructor to create a Country instance with specified parameters.
      * @param iLoc Location index of the country property on the board.
      * @param name Name of the country property.
      * @param rent Rent amount for landing on the property.
+     *
      * @param buyPrice Buying price of the country property.
      */
     public Country(int iLoc, String name, int rent, int buyPrice){
         super(iLoc, name, buyPrice);// Calls the constructor of the superclass 'Property'
-        this.rent = rent;
+        this.RENT = rent;
     }
     /**
      * Determines the action to be taken when a player lands on a country property.
@@ -41,7 +42,7 @@ public class Country extends Property {
     }
     // Getter and Setter methods for various attributes
 
-    public int getRent() {return rent;} //todo based on colors
+    public int getRent() {return RENT;} //todo based on colors
 
 
     /**
@@ -49,13 +50,13 @@ public class Country extends Property {
      * @return The mortgage price calculated as half of the property's buy price.
      */
     public int getMortgagePrice(){
-        return (int)(this.BUYPRICE / 2);
+        return this.BUYPRICE / 2;
     }
 
     @Override
     public String toString() {
         return "Country{" +
-                "rent=" + rent +
+                "rent=" + RENT +
                 "} " + super.toString();
     }
 }
