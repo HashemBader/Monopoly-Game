@@ -10,7 +10,6 @@ public abstract class Property extends BoardSquare {
     protected Player owner;
     protected final int buyPrice;
 
-    private boolean isMortgaged;
     public Property(int iLoc, String name, int buyPrice){
         super(iLoc, name);
         this.owner = null;
@@ -32,4 +31,12 @@ public abstract class Property extends BoardSquare {
     }
 
     abstract int getRent();
+
+    @Override
+    public String toString() {
+        return "Property{" +
+                "owner=" + owner +
+                ", buyPrice=" + buyPrice +
+                "} " + super.toString();
+    }
 }

@@ -28,9 +28,16 @@ public class Utility extends Property {
      * Returns the utility instance rent after determining it.
      * @return rent
      */
-    @Override
+
     public int getRent(){
-        return Player.getDiceVal()*3;
+        return calcRent();
+    }
+    private int calcRent(){
+        if(this.getOwner().getUtilitiesOwned().size() == 1){
+            return Player.getDiceVal() * 4;
+        } else {
+            return Player.getDiceVal() * 10;
+        }
     }
 
 }

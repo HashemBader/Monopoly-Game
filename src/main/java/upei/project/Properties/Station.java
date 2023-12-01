@@ -9,10 +9,9 @@ public class Station extends Property {
      * @param iLoc : location on the board
      * @param name
      */
-    private int rent;
+    private final int BASE_RENT = 25;
     public Station(int iLoc, String name, int buyPrice) {
         super(iLoc, name, buyPrice);
-        this.rent = 25;
     }
 
     @Override
@@ -32,11 +31,16 @@ public class Station extends Property {
         }
     }
 
-
     public int getRent() {return calcRent();}
 
-    public int calcRent() {
-        return (int) (Math.pow(2, this.getOwner().getStationsOwned().size()-1)) * this.rent;
+    private int calcRent() {
+        return (int) (Math.pow(2, this.getOwner().getStationsOwned().size()-1)) * this.BASE_RENT;
     }
 
+    @Override
+    public String toString() {
+        return "Station{" +
+                "BASE_RENT=" + BASE_RENT +
+                "} " + super.toString();
+    }
 }

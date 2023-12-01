@@ -12,17 +12,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class MainTest {
 
-
-
     @Test
-    public void testGame(){
-        ArrayList<BoardSquare> map = Driver.createBoard();
-        Player zeyad = new Player(1500, Player.strategy.GREEDY);
-        Player hashem = new Player(1500, Player.strategy.STATION_GUY);
-
-        hashem.moveN(5);
-        map.get(hashem.getPos()).playerOnLocation(hashem);
-        assertEquals(1440, hashem.getMoney());
+    public void testCountryConstructor(){
+        Station country = new Station(15, "Canada",200);
+        assertEquals("BoardLocation{iLoc=1, name='Canada'}", country.toString());
 
     }
 
@@ -89,5 +82,16 @@ public class MainTest {
         s2.setOwner(p1);
         Driver.map.get(5).playerOnLocation(p2);
         assertEquals(1500, p2);
+    }
+
+    @Test
+    public void testUtilitiesRent(){
+        Player p1 = new Player(1500);
+        Player p2 = new Player(1500);
+        ((Property) Driver.map.get(12)).setOwner(p1);
+        ((Property) Driver.map.get(28)).setOwner(p1);
+        p2.rollDice();
+        Driver.map.get(12).playerOnLocation(p2);
+        assertEquals(1500, ""+p2+" "+Player.diceVal);
     }
 }

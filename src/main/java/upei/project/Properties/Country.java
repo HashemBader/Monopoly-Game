@@ -8,7 +8,6 @@ import upei.project.Player;
  */
 public class Country extends Property {
     // String color;
-    private boolean isMortgaged;// Indicates whether the country property is mortgaged
     private int rent; // Rent amount for landing on the property
     /**
      * Constructor to create a Country instance with specified parameters.
@@ -20,7 +19,6 @@ public class Country extends Property {
     public Country(int iLoc, String name, int rent, int buyPrice){
         super(iLoc, name, buyPrice);// Calls the constructor of the superclass 'Property'
         this.rent = rent;
-        this.isMortgaged = false;
     }
     /**
      * Determines the action to be taken when a player lands on a country property.
@@ -47,15 +45,17 @@ public class Country extends Property {
 
 
     /**
-     * Checks if the country property is mortgaged.
-     * @return A boolean indicating whether the property is mortgaged.
-     */
-    public boolean isMortgaged(){return this.isMortgaged;}
-    /**
      * Calculates the mortgage price of the country property.
      * @return The mortgage price calculated as half of the property's buy price.
      */
     public int getMortgagePrice(){
         return (int)(this.buyPrice / 2);
+    }
+
+    @Override
+    public String toString() {
+        return "Country{" +
+                "rent=" + rent +
+                "} " + super.toString();
     }
 }
