@@ -103,7 +103,7 @@ public class Player {
     // Method to move the player by 'n' steps on the game board
     public void moveN(int n) {
         int oldPos = this.pos;
-        this.pos = (this.pos + n + Driver.map.size()) % Driver.map.size();
+        this.pos = (this.pos + n + MonopolyGame.boardMap.size()) % MonopolyGame.boardMap.size();
         // Adds 'size' again to account for negative positions
         if(this.pos < oldPos){ // player passed Go!
             this.addMoney(200);

@@ -4,6 +4,8 @@ import upei.project.Properties.Country;
 import upei.project.Properties.Property;
 import upei.project.Properties.Station;
 import upei.project.Properties.Utility;
+import upei.project.Setup.BoardInit;
+
 import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -21,9 +23,9 @@ public class MainTest {
     @Test
     public void testBuyUtilities(){
         Player p1 = new Player(1500);
-        Property s = (Property) Driver.map.get(5);
-        Property u = (Utility) Driver.map.get(12);
-        Property c = (Property) Driver.map.get(39);
+        Property s = (Property) MonopolyGame.boardMap.get(5);
+        Property u = (Utility) MonopolyGame.boardMap.get(12);
+        Property c = (Property) MonopolyGame.boardMap.get(39);
 
         u.setOwner(p1);
         s.setOwner(p1);
@@ -34,12 +36,12 @@ public class MainTest {
     public void testRentOfStations(){
         Player p1 = new Player(1500);
         Player p2 = new Player(1500);
-        Property s = (Station) Driver.map.get(5);
-        Property s2 = (Station) Driver.map.get(15);
+        Property s = (Station) MonopolyGame.boardMap.get(5);
+        Property s2 = (Station) MonopolyGame.boardMap.get(15);
         s.setOwner(p1);
         s2.setOwner(p1);
         s2.setOwner(p1);
-        Driver.map.get(5).playerOnLocation(p2);
+        MonopolyGame.boardMap.get(5).playerOnLocation(p2);
         assertEquals(1500, p2);
     }
 
@@ -47,10 +49,10 @@ public class MainTest {
     public void testUtilitiesRent(){
         Player p1 = new Player(1500);
         Player p2 = new Player(1500);
-        ((Property) Driver.map.get(12)).setOwner(p1);
-        ((Property) Driver.map.get(28)).setOwner(p1);
+        ((Property) MonopolyGame.boardMap.get(12)).setOwner(p1);
+        ((Property) MonopolyGame.boardMap.get(28)).setOwner(p1);
         p2.rollDice();
-        Driver.map.get(12).playerOnLocation(p2);
+        MonopolyGame.boardMap.get(12).playerOnLocation(p2);
         assertEquals(1500, ""+p2+" "+Player.diceVal);
     }
 
@@ -58,7 +60,7 @@ public class MainTest {
     // ============== NEW ======================
     @Test
     public void testGame(){
-        ArrayList<BoardSquare> map = Driver.createBoard();
+        ArrayList<BoardSquare> map = BoardInit.createBoard();
         Player zeyad = new Player(1500, Player.strategy.GREEDY);
         Player hashem = new Player(1500, Player.strategy.STATION_GUY);
 
@@ -90,30 +92,30 @@ public class MainTest {
     public void testGoToJail(){
         Player p1 = new Player(1500);
         p1.setPos(30);
-        Driver.map.get(p1.getPos()).playerOnLocation(p1);
+        MonopolyGame.boardMap.get(p1.getPos()).playerOnLocation(p1);
         assertEquals(10, p1.getPos());
     }
     @Test
     public void testGetOutOfJail(){
         Player p1 = new Player(1500);
         p1.setPos(30);
-        Driver.map.get(p1.getPos()).playerOnLocation(p1);
+        MonopolyGame.boardMap.get(p1.getPos()).playerOnLocation(p1);
         assertEquals(1500, p1.getMoney());
     }
     @Test
     public void testBuyStation(){
         Player p1 = new Player(1500, Player.strategy.STATION_GUY);
         p1.setPos(25);
-        Driver.map.get(p1.getPos()).playerOnLocation(p1);
+        MonopolyGame.boardMap.get(p1.getPos()).playerOnLocation(p1);
         assertEquals(1500, p1.getMoney());
     }
     @Test
     public void teststationOwned() {
         Player p1 = new Player(1500);
         p1.setPos(15);
-        ((Property)Driver.map.get(15)).setOwner(p1);
-        ((Property)Driver.map.get(25)).setOwner(p1);
-        ((Property)Driver.map.get(39)).setOwner(p1);
+        ((Property)MonopolyGame.boardMap.get(15)).setOwner(p1);
+        ((Property)MonopolyGame.boardMap.get(25)).setOwner(p1);
+        ((Property)MonopolyGame.boardMap.get(39)).setOwner(p1);
         assertEquals(1500, p1.getLandsOwned());
     }
     // country tests

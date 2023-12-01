@@ -7,7 +7,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MonopolyGame {
-    Player winner;
+    public static Player winner;
+    public static ArrayList<BoardSquare> boardMap;
+
     private static class Node{
         Player player;
         Node next;
@@ -18,7 +20,7 @@ public class MonopolyGame {
     }
     
     public static Player playGame(ArrayList<Player> players){
-        ArrayList<BoardSquare> boardMap = BoardInit.createBoard();
+        boardMap = BoardInit.createBoard();
         int numPlayers = players.size();
         int diceRolls = 0;
         int rounds;

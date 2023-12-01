@@ -11,7 +11,7 @@ public class BoardInit {
     public static ArrayList<BoardSquare> createBoard(){
         ArrayList<BoardSquare> boardMap = new ArrayList<>();
         // Adding different types of BoardSquare objects to the board
-        boardMap.add(new Go(0, "GO"));
+        boardMap.add(new OtherSquare(0, "GO"));
         boardMap.add(new Country(1, "SUDAN", 2, 60));
         boardMap.add(new WildSquare(2, "CHEST"));
         boardMap.add(new Country(3, "LEBANON", 4, 60));
@@ -21,7 +21,7 @@ public class BoardInit {
         boardMap.add(new WildSquare(7, "CHANCE"));
         boardMap.add(new Country(8, "MOROCCO", 6, 100));
         boardMap.add(new Country(9, "ALGERIA", 8, 120));
-        boardMap.add(new Country(10, "JUST VISITING", 0, 0));
+        boardMap.add(new OtherSquare(10, "JUST VISITING"));
         boardMap.add(new Country(11, "JORDAN", 10, 140));
         boardMap.add(new Utility(12, "ELECTRIC COMPANY", 150));
         boardMap.add(new Country(13, "IRAQ", 10, 140));
@@ -31,7 +31,7 @@ public class BoardInit {
         boardMap.add(new WildSquare(17, "CHEST"));
         boardMap.add(new Country(18, "KUWAIT", 14, 180));
         boardMap.add(new Country(19, "TUNISIA", 14, 180));
-        boardMap.add(new Country(20, "FREE PARKING", 0, 0));
+        boardMap.add(new OtherSquare(20, "FREE PARKING"));
         boardMap.add(new Country(21, "LIBYA", 16, 200));
         boardMap.add(new WildSquare(22, "CHANCE"));
         boardMap.add(new Country(23, "BAHRAIN", 18, 220));
