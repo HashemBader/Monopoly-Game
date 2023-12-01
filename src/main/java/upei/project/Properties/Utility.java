@@ -14,7 +14,7 @@ public class Utility extends Property {
             return;
         }
         else if (this.getOwner() != player && this.getOwner() == null){
-            if (player.getMoney() > this.getBuyPrice() && player.makeChoice(this)){
+            if (player.makeChoice(this)){
                 this.setOwner(player);
                 player.subtractMoney(this.getBuyPrice());
             }
@@ -33,7 +33,7 @@ public class Utility extends Property {
         return calcRent();
     }
     private int calcRent(){
-        if(this.getOwner().getUtilitiesOwned().size() == 1){
+        if(this.getOwner().getLandsOwnedOfType(Utility.class).size() == 1){
             return Player.getDiceVal() * 4;
         } else {
             return Player.getDiceVal() * 10;

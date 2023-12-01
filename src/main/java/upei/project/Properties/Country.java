@@ -7,7 +7,7 @@ import upei.project.Player;
  * It extends the Property class and implements specific behaviors for country properties.
  */
 public class Country extends Property {
-    // String color;
+    // String color todo;
     private int rent; // Rent amount for landing on the property
     /**
      * Constructor to create a Country instance with specified parameters.
@@ -29,7 +29,7 @@ public class Country extends Property {
             return;  // Do nothing if the current player is the owner
         }
         else if (this.getOwner() != player && this.getOwner() == null){ // Property not owned
-            if (player.getMoney() > this.getBuyPrice() && player.makeChoice(this)){// make a choice depend on the strategy
+            if (player.makeChoice(this)){// make a choice depend on the strategy
                 this.setOwner(player);
                 player.subtractMoney(this.getBuyPrice());
             }
@@ -49,7 +49,7 @@ public class Country extends Property {
      * @return The mortgage price calculated as half of the property's buy price.
      */
     public int getMortgagePrice(){
-        return (int)(this.buyPrice / 2);
+        return (int)(this.BUYPRICE / 2);
     }
 
     @Override

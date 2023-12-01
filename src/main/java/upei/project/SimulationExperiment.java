@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class SimulationExperiment {
 
-    public static class Node{
+    private static class Node{
         Player player;
         Node next;
         Node prev;
@@ -17,8 +17,9 @@ public class SimulationExperiment {
     }
 
     public static void main(String[] args) {
-        ArrayList<BoardSquare> map = BoardInit.createBoard();
-        ArrayList<Player> players = PlayersInit.getPlayers(new String[] {"Zeyad","Yasser"}, new Player.strategy[] {Player.strategy.GREEDY, Player.strategy.STATION_GUY});
+        ArrayList<BoardSquare> boardMap = BoardInit.createBoard();
+        ArrayList<Player> players = PlayersInit.getPlayers(new String[] {"Zeyad","Hashem","Professor"},
+                new Player.strategy[] {Player.strategy.GREEDY, Player.strategy.STINGY, Player.strategy.STATION_GUY});
         int numPlayers = players.size();
         int diceRolls = 0;
         int rounds;
@@ -44,7 +45,7 @@ public class SimulationExperiment {
             System.out.println("DICEVAL: " + Player.diceVal);
             currPlayer.player.moveN(Player.diceVal);
             System.out.println("PLAYER before: " + currPlayer.player);
-            map.get(currPlayer.player.getPos()).playerOnLocation(currPlayer.player);
+            boardMap.get(currPlayer.player.getPos()).playerOnLocation(currPlayer.player);
             System.out.println("PLAYER after: " + currPlayer.player + "\n" +currPlayer.player.getLandsOwned());
 
             if (currPlayer.player.getMoney() == 0){

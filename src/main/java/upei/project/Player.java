@@ -20,17 +20,11 @@ public class Player {
     private strategy pStrategy = strategy.DEFAULT;
     private ArrayList<Property> landsOwned;
 
-    public Player(int money, strategy STRATEGY) {
-
-        this.money = money;
-        this.pStrategy = STRATEGY;
-        this.pos = 0;
-        this.landsOwned = new ArrayList<>();
-    }
     /**
      * Constructor to create a player with a specific initial money and default strategy.
      * @param money Initial amount of money the player has.
      */
+
     public Player(int money) {
         this.money = money;
         this.pos = 0;
@@ -40,17 +34,19 @@ public class Player {
         //buys only stations
         //buys 20%
     }
+    public Player(int money, strategy STRATEGY) {
+
+        this.money = money;
+        this.pStrategy = STRATEGY;
+        this.pos = 0;
+        this.landsOwned = new ArrayList<>();
+    }
     public Player(int money, strategy STRATEGY, String name) {
         this.money = money;
         this.pos = 0;
         this.landsOwned = new ArrayList<>();
         this.name = name;
         this.pStrategy = STRATEGY;
-        //buys 80% of time
-        //buys only utilities
-        //buys only stations
-        //buys 20%
-
     }
 
     public int getPos() {
@@ -64,7 +60,7 @@ public class Player {
     public ArrayList<Property> getLandsOwned() {
         return this.landsOwned;
     }
-    public ArrayList<Station> getStationsOwned() {
+/*    public ArrayList<Station> getStationsOwned() {
         ArrayList<Station> stationsOwned = new ArrayList<>();
         for(Property p : this.landsOwned){
             if(p instanceof Station){
@@ -90,9 +86,18 @@ public class Player {
             }
         }
         return utilitiesOwned;
+    }*/
+
+    //This reads: public ArrayList of T (such that T is a child of Property) getLandsOwnedOfType which takes a class of T propertyType
+    public <T extends Property> ArrayList<T> getLandsOwnedOfType(Class<T> propertyType){
+        ArrayList<T> ownedOfType = new ArrayList<>();
+        for(Property p : this.landsOwned){
+            if(propertyType.isInstance(p)){
+                ownedOfType.add((T) p);
+            }
+        }
+        return ownedOfType;
     }
-
-
     public void setPos(int pos) {
         this.pos = pos;
     } // goto pos
@@ -122,6 +127,9 @@ public class Player {
      * @return A boolean representing the decision made by the player based on their strategy.
      */
     public boolean makeChoice(Property property) {
+        if(this.getMoney() <= property.getBuyPrice()) {
+            return false;
+        }
         boolean res = Math.random() <= 0.5;
         switch (this.pStrategy) {
             case GREEDY ->
@@ -150,8 +158,9 @@ public class Player {
         return res;
     }
 
-    public void rollDice(){
-        Player.diceVal = DiceUtils.rollDice2();
+    public int rollDice(){
+        Player.diceVal = DiceUtils.rollDice2(); //todo game state hold diceVal instead of player
+        return DiceUtils.rollDice2();
     }
     public static int getDiceVal(){
         return Player.diceVal;

@@ -20,7 +20,7 @@ public class Station extends Property {
             return;
         }
         else if (this.getOwner() != player && this.getOwner() == null){ // not owned
-            if (player.getMoney() > this.getBuyPrice() && player.makeChoice(this)){
+            if (player.makeChoice(this)){
                 this.setOwner(player);
                 player.subtractMoney(this.getBuyPrice());
             }
@@ -34,7 +34,7 @@ public class Station extends Property {
     public int getRent() {return calcRent();}
 
     private int calcRent() {
-        return (int) (Math.pow(2, this.getOwner().getStationsOwned().size()-1)) * this.BASE_RENT;
+        return (int) (Math.pow(2, this.getOwner().getLandsOwnedOfType(Station.class).size()-1)) * this.BASE_RENT;
     }
 
     @Override

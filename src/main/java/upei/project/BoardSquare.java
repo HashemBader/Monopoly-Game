@@ -4,9 +4,18 @@ package upei.project;
  * It defines behavior when a player lands on a particular square.
  */
 public abstract class BoardSquare {
-    protected int iLoc;// Location index on the board
-    protected String name; // Name of the board square
+    protected final int ILOC;// Location index on the board
+    protected final String NAME; // Name of the board square
 
+    /**
+     * Constructor to create a BoardSquare instance with a specified location and name.
+     * @param iLoc Location index on the board.
+     * @param name Name of the board square.
+     */
+    public BoardSquare(int iLoc, String name){
+        this.ILOC = iLoc;
+        this.NAME = name;
+    }
 
     /**
      * Abstract method defining the action when a player lands on a BoardSquare.
@@ -15,23 +24,14 @@ public abstract class BoardSquare {
     public abstract void playerOnLocation(Player player);
 
     /**
-     * Constructor to create a BoardSquare instance with a specified location and name.
-     * @param iLoc Location index on the board.
-     * @param name Name of the board square.
-     */
-    public BoardSquare(int iLoc, String name){
-        this.iLoc = iLoc;
-        this.name = name;
-    }
-    /**
      * Provides a string representation of the BoardSquare.
      * @return A string displaying the location index and name of the BoardSquare.
      */
     @Override
     public String toString() {
         return "BoardLocation{" +
-                "iLoc=" + iLoc +
-                ", name='" + name + '\'' +
+                "iLoc=" + ILOC +
+                ", name='" + NAME + '\'' +
                 '}';
     }
 }

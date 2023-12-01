@@ -69,7 +69,7 @@ public class MainTest {
         u.setOwner(p1);
         s.setOwner(p1);
         c.setOwner(p1);
-        assertEquals(1500, p1.getLandsOwned());
+        assertEquals(1500, p1.getLandsOwnedOfType(Station.class));
     }
     @Test
     public void testRentOfStations(){
