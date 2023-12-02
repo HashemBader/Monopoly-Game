@@ -66,7 +66,7 @@ public class Country extends Property {
 
     public int calcRent(){
         if(this.getOwner().hasCompleteSet(this.COLOR, colorSetMapper.get(this.COLOR))){
-            return this.baseRent * 50;
+            return this.baseRent * 15;
         }
         return this.baseRent;
     }
