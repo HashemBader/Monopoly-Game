@@ -10,7 +10,7 @@ import java.util.HashMap;
  */
 public class Country extends Property {
     private final String COLOR;
-    private static final HashMap<String, Integer> colorSetMapper = new HashMap<>(){{
+    public static final HashMap<String, Integer> colorSetMapper = new HashMap<>(){{
         put("brown", 2);
         put("lightBlue", 3);
         put("pink", 3);
