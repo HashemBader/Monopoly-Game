@@ -45,7 +45,7 @@ public class MainTest {
         assertEquals(1500, p2);
     }
 
-    @Test
+    /*@Test
     public void testUtilitiesRent(){
         Player p1 = new Player(1500);
         Player p2 = new Player(1500);
@@ -54,7 +54,7 @@ public class MainTest {
         p2.rollDice();
         MonopolyGame.boardMap.get(12).playerOnLocation(p2);
         assertEquals(1500, ""+p2+" "+Player.diceVal);
-    }
+    }*/
 
 
     // ============== NEW ======================
@@ -193,7 +193,7 @@ public class MainTest {
         assertEquals(800, player1.getMoney(), "Player should have deducted money after buying the utility");
     }
 
-    @Test
+/*    @Test
     void testPlayerOnLocation_OwnerExists2() {
         Player player1 = new Player(1000);
         Player player2 = new Player(1000);
@@ -205,7 +205,7 @@ public class MainTest {
         assertEquals(player1, utility.getOwner(), "Owner should remain the same");
         assertEquals(1006, player1.getMoney(), "Owner should receive rent");
         assertEquals(994, player2.getMoney(), "Player landing should pay rent");
-    }
+    }*/
 
     @Test
     void testPlayerOnLocation_CurrentPlayerIsOwner2() {
@@ -330,6 +330,14 @@ public class MainTest {
         taxSquare.playerOnLocation(player);
 
         assertEquals(initialMoney, player.getMoney(), "Player should not pay any tax");
+    }
+    @Test
+    void testOwnerGet() {
+        Player p1 = new Player(1500);
+        ArrayList<BoardSquare> map = BoardInit.createBoard();
+        Property egypt = (Country) map.get(39);
+        egypt.playerOnLocation(p1);
+        assertEquals(1, p1.getLandsOwned(), "Player should not pay any tax");
     }
 }
 

@@ -1,15 +1,12 @@
 package upei.project;
 
+import upei.project.Properties.Property;
 import upei.project.Setup.BoardInit;
-import upei.project.Setup.PlayersInit;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class MonopolyGame {
-    public static Player winner;
-    public static ArrayList<BoardSquare> boardMap = BoardInit.createBoard();
-
+    public static ArrayList<BoardSquare> boardMap;
+    public static int diceVal;
     private static class Node{
         Player player;
         Node next;
@@ -20,6 +17,7 @@ public class MonopolyGame {
     }
     
     public static Player playGame(ArrayList<Player> players){
+        boardMap = BoardInit.createBoard();
         int numPlayers = players.size();
         int diceRolls = 0;
         int rounds;
@@ -38,11 +36,10 @@ public class MonopolyGame {
         while(numPlayers > 1){
             diceRolls++;
             rounds = diceRolls / numPlayers;
-
-            System.out.println("Round: " + rounds);
-            currPlayer.player.rollDice();
+            //System.out.println("Round: " + rounds);
+            diceVal = rollDice();
             //System.out.println("DICEVAL: " + Player.diceVal);
-            currPlayer.player.moveN(Player.diceVal);
+            currPlayer.player.moveN(diceVal);
             //System.out.println("PLAYER before: " + currPlayer.player);
             boardMap.get(currPlayer.player.getPos()).playerOnLocation(currPlayer.player);
             //System.out.println("PLAYER after: " + currPlayer.player + "\n" +currPlayer.player.getLandsOwned());
@@ -54,9 +51,18 @@ public class MonopolyGame {
                 numPlayers--;
             }
             currPlayer = currPlayer.next;
+            //System.out.println("PLAYER after: " + currPlayer.player + "\n" + currPlayer.player.getLandsOwned());
         }
+        //System.out.println("Winner: " + currPlayer.player + "\n" + currPlayer.player.getLandsOwned());
 
         return currPlayer.player;
+    }
+    public static int rollDice(){
+        diceVal = DiceUtils.rollDice2();
+        return diceVal;
+    }
+    public static int getDiceVal(){
+        return diceVal;
     }
 }
 

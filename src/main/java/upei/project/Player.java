@@ -12,7 +12,6 @@ public class Player {
     public enum strategy {
         GREEDY, STATION_GUY, UTILITY_GUY, STINGY, DEFAULT
     }
-    public static int diceVal;
     private int money;
     private String name = "anonymous";
     private int pos;
@@ -106,7 +105,7 @@ public class Player {
         this.pos = (this.pos + n + MonopolyGame.boardMap.size()) % MonopolyGame.boardMap.size();
         // Adds 'size' again to account for negative positions
         if(this.pos < oldPos){ // player passed Go!
-            this.addMoney(50);
+            this.addMoney(1);
         }
     }
     // Methods to update player's money
@@ -133,40 +132,32 @@ public class Player {
         if(this.getMoney() <= property.getBuyPrice()) {
             return false;
         }
-        boolean res = Math.random() <= 0.5;
+        boolean res = Math.random() <= 0.50;
         switch (this.pStrategy) {
             case GREEDY ->
-            res = Math.random() <= 0.8;
+            res = Math.random() <= 0.80;
 
             case STINGY ->
-                res = Math.random() <= 0.3;
+                res = Math.random() <= 0.20;
 
             case UTILITY_GUY -> {
                 if (property instanceof Utility) {
                     res = Math.random() <= 0.90;
                 } else
-                    res = Math.random() <= 0.5;
+                    res = Math.random() <= 0.50;
             }
             case STATION_GUY -> {
                 if (property instanceof Station) {
                     res = Math.random() <= 0.90;
                 } else {
-                    res = Math.random() <= 0.5;
+                    res = Math.random() <= 0.50;
                 }
             }
             case DEFAULT ->
-                res = Math.random() <= 0.5;
+                res = Math.random() <= 0.50;
 
         }
         return res;
-    }
-
-    public int rollDice(){
-        Player.diceVal = DiceUtils.rollDice2(); //todo game state hold diceVal instead of player
-        return DiceUtils.rollDice2();
-    }
-    public static int getDiceVal(){
-        return Player.diceVal;
     }
 
     public String getName(){
