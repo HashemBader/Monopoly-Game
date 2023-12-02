@@ -2,13 +2,30 @@ package upei.project.Properties;
 
 import upei.project.Player;
 
+import java.util.HashMap;
+
 /**
  * The Country class represents a country property on the game board.
  * It extends the Property class and implements specific behaviors for country properties.
  */
 public class Country extends Property {
-    // String color todo;
-    private final int RENT; // Rent amount for landing on the property
+    private final String COLOR;
+    public static final HashMap<String, Integer> colorSetMapper = new HashMap<>(){{
+        put("brown", 2);
+        put("lightBlue", 3);
+        put("pink", 3);
+        put("orange", 3);
+        put("red", 3);
+        put("yellow", 3);
+        put("green", 3);
+        put("darkBlue", 2);
+    }};
+
+    /*
+    * If color set is complete -> rent *2
+    * for each country check colorsOwned(color, completeSetVal)
+    * if colors owned == completeSetValue then double the rent
+    * */
     /**
      * Constructor to create a Country instance with specified parameters.
      * @param iLoc Location index of the country property on the board.
@@ -18,8 +35,12 @@ public class Country extends Property {
      * @param buyPrice Buying price of the country property.
      */
     public Country(int iLoc, String name, int rent, int buyPrice){
-        super(iLoc, name, buyPrice);// Calls the constructor of the superclass 'Property'
-        this.RENT = rent;
+        super(iLoc, name, buyPrice, rent);// Calls the constructor of the superclass 'Property'
+        this.COLOR = "default";
+    }
+    public Country(int iLoc, String name, int baseRent, int buyPrice, String color){
+        super(iLoc, name, buyPrice, baseRent);// Calls the constructor of the superclass 'Property'
+        this.COLOR = color;
     }
     /**
      * Determines the action to be taken when a player lands on a country property.
@@ -36,27 +57,35 @@ public class Country extends Property {
             }
         }
         else{ // A player has landed on another player's property
-            player.subtractMoney(this.getRent());// Deduct rent from the current player
-            getOwner().addMoney(this.getRent());// Add rent to the property owner's money
+            player.subtractMoney(this.calcRent());// Deduct rent from the current player
+            getOwner().addMoney(this.calcRent());// Add rent to the property owner's money
         }
     }
     // Getter and Setter methods for various attributes
 
-    public int getRent() {return RENT;} //todo based on colors
 
+    public int calcRent(){
+        if(this.getOwner().hasCompleteSet(this.COLOR, colorSetMapper.get(this.COLOR))){
+            return this.baseRent * 50;
+        }
+        return this.baseRent;
+    }
+
+    public String getColor(){return this.COLOR;}
 
     /**
      * Calculates the mortgage price of the country property.
      * @return The mortgage price calculated as half of the property's buy price.
      */
     public int getMortgagePrice(){
-        return this.BUYPRICE / 2;
+        return this.buyPrice / 2;
     }
+
 
     @Override
     public String toString() {
         return "Country{" +
-                "rent=" + RENT +
+                "color=" + COLOR +
                 "} " + super.toString();
     }
 }

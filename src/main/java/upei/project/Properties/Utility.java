@@ -1,5 +1,6 @@
 package upei.project.Properties;
 
+import upei.project.MonopolyGame;
 import upei.project.Player;
 
 public class Utility extends Property {
@@ -20,8 +21,8 @@ public class Utility extends Property {
             }
         }
         else{
-            player.subtractMoney(this.getRent());
-            this.getOwner().addMoney(this.getRent());
+            player.subtractMoney(this.calcRent());
+            this.getOwner().addMoney(this.calcRent());
         }
     }
     /**
@@ -29,15 +30,18 @@ public class Utility extends Property {
      * @return rent
      */
 
-    public int getRent(){
-        return calcRent();
-    }
-    private int calcRent(){
+    public int calcRent(){
         if(this.getOwner().getLandsOwnedOfType(Utility.class).size() == 1){
-            return Player.getDiceVal() * 4;
+            return MonopolyGame.getDiceVal() * 4;
         } else {
-            return Player.getDiceVal() * 10;
+            return MonopolyGame.getDiceVal() * 10;
         }
     }
 
+    @Override
+    public String toString() {
+        return "Utility{" +
+                super.toString()
+                + "}";
+    }
 }

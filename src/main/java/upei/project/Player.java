@@ -1,5 +1,6 @@
 package upei.project;
 
+import upei.project.Properties.Country;
 import upei.project.Properties.Property;
 import upei.project.Properties.Station;
 import upei.project.Properties.Utility;
@@ -12,7 +13,6 @@ public class Player {
     public enum strategy {
         GREEDY, STATION_GUY, UTILITY_GUY, STINGY, DEFAULT
     }
-    public static int diceVal;
     private int money;
     private String name = "anonymous";
     private int pos;
@@ -102,8 +102,12 @@ public class Player {
     } // goto pos
     // Method to move the player by 'n' steps on the game board
     public void moveN(int n) {
-        this.pos = (this.pos + n + Driver.map.size()) % Driver.map.size();
+        int oldPos = this.pos;
+        this.pos = (this.pos + n + MonopolyGame.boardMap.size()) % MonopolyGame.boardMap.size();
         // Adds 'size' again to account for negative positions
+        if(this.pos < oldPos){ // player passed Go!
+            this.addMoney(1);
+        }
     }
     // Methods to update player's money
     public void addMoney(int amt) {
@@ -129,10 +133,10 @@ public class Player {
         if(this.getMoney() <= property.getBuyPrice()) {
             return false;
         }
-        boolean res = Math.random() <= 0.5;
+        boolean res = Math.random() <= 0.50;
         switch (this.pStrategy) {
             case GREEDY ->
-            res = Math.random() <= 0.8;
+            res = Math.random() <= 0.70;
 
             case STINGY ->
                 res = Math.random() <= 0.3;
@@ -141,28 +145,20 @@ public class Player {
                 if (property instanceof Utility) {
                     res = Math.random() <= 0.90;
                 } else
-                    res = Math.random() <= 0.5;
+                    res = Math.random() <= 0.50;
             }
             case STATION_GUY -> {
                 if (property instanceof Station) {
                     res = Math.random() <= 0.90;
                 } else {
-                    res = Math.random() <= 0.5;
+                    res = Math.random() <= 0.50;
                 }
             }
             case DEFAULT ->
-                res = Math.random() <= 0.5;
+                res = Math.random() <= 0.50;
 
         }
         return res;
-    }
-
-    public int rollDice(){
-        Player.diceVal = DiceUtils.rollDice2(); //todo game state hold diceVal instead of player
-        return DiceUtils.rollDice2();
-    }
-    public static int getDiceVal(){
-        return Player.diceVal;
     }
 
     public String getName(){
@@ -171,6 +167,18 @@ public class Player {
 
     public strategy getStratey(){
         return this.pStrategy;
+    }
+
+    public boolean hasCompleteSet(String color, int completeSetSize){
+        boolean res = true;
+        int counter = 0;
+        ArrayList<Country> countriesOwned = this.getLandsOwnedOfType(Country.class);
+        for (Country country : countriesOwned) {
+            if (country.getColor().equals(color)) {
+                counter++;
+            }
+        }
+        return counter == completeSetSize;
     }
     @Override
     public String toString() {

@@ -4,7 +4,6 @@ import upei.project.Player;
 
 public class Station extends Property {
 
-    private final int BASE_RENT = 25;
     /**
      * Constructor that creates a BoardSquare instance of iLoc
      *
@@ -12,7 +11,7 @@ public class Station extends Property {
      * @param name
      */
     public Station(int iLoc, String name, int buyPrice) {
-        super(iLoc, name, buyPrice);
+        super(iLoc, name, buyPrice, 25);
     }
 
     @Override
@@ -27,21 +26,18 @@ public class Station extends Property {
             }
         }
         else{ // a player has landed on owners land
-            player.subtractMoney(this.getRent());
-            this.getOwner().addMoney(this.getRent());
+            player.subtractMoney(this.calcRent());
+            this.getOwner().addMoney(this.calcRent());
         }
     }
 
-    public int getRent() {return calcRent();}
-
-    private int calcRent() {
-        return (int) (Math.pow(2, this.getOwner().getLandsOwnedOfType(Station.class).size()-1)) * this.BASE_RENT;
+    public int calcRent() {
+        return (int) (Math.pow(2, this.getOwner().getLandsOwnedOfType(Station.class).size()-1)) * this.baseRent;
     }
 
     @Override
     public String toString() {
         return "Station{" +
-                "BASE_RENT=" + BASE_RENT +
                 "} " + super.toString();
     }
 }

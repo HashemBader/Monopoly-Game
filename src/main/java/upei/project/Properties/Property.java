@@ -8,12 +8,20 @@ import upei.project.Player;
  * */
 public abstract class Property extends BoardSquare {
     protected Player owner;
-    protected final int BUYPRICE;
+    protected int buyPrice;
+    protected int baseRent;
 
-    public Property(int iLoc, String name, int BUYPRICE){
+    public Property(int iLoc, String name, int buyPrice){
         super(iLoc, name);
         this.owner = null;
-        this.BUYPRICE = BUYPRICE;
+        this.buyPrice = buyPrice;
+        baseRent = 0;
+    }
+    public Property(int iLoc, String name, int buyPrice, int baseRent){
+        super(iLoc, name);
+        this.owner = null;
+        this.buyPrice = buyPrice;
+        this.baseRent = baseRent;
     }
 
     public Player getOwner() {
@@ -27,16 +35,21 @@ public abstract class Property extends BoardSquare {
     }
 
     public int getBuyPrice() {
-        return this.BUYPRICE;
+        return this.buyPrice;
     }
 
-    abstract int getRent();
+    public int getBaseRent(){
+        return this.baseRent;
+    }
+    abstract int calcRent();
+
 
     @Override
     public String toString() {
         return "Property{" +
                 "owner=" + owner.getName() +
-                ", buyPrice=" + BUYPRICE +
+                ", buyPrice=" + buyPrice +
+                ", baseRent=" + baseRent +
                 "} " + super.toString();
     }
 }
