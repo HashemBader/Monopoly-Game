@@ -21,8 +21,8 @@ public class Utility extends Property {
             }
         }
         else{
-            player.subtractMoney(this.getRent());
-            this.getOwner().addMoney(this.getRent());
+            player.subtractMoney(this.calcRent());
+            this.getOwner().addMoney(this.calcRent());
         }
     }
     /**
@@ -30,10 +30,7 @@ public class Utility extends Property {
      * @return rent
      */
 
-    public int getRent(){
-        return calcRent();
-    }
-    private int calcRent(){
+    public int calcRent(){
         if(this.getOwner().getLandsOwnedOfType(Utility.class).size() == 1){
             return MonopolyGame.getDiceVal() * 4;
         } else {
@@ -41,4 +38,10 @@ public class Utility extends Property {
         }
     }
 
+    @Override
+    public String toString() {
+        return "Utility{" +
+                super.toString()
+                + "}";
+    }
 }

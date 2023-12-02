@@ -8,19 +8,19 @@ public class SimulationExperiment {
     public static void main(String[] args) {
         HashMap<Integer, Player> dataset = new HashMap<>();
         ArrayList<Player> players;
-        for(int i=0; i<1000; i++) {
-            players = PlayersInit.getPlayers(new String[]{"Zeyad", "Hashem"},
-                    new Player.strategy[]{Player.strategy.GREEDY, Player.strategy.STINGY});
+        for(int i=0; i<1; i++) {
+            players = PlayersInit.getPlayers(new String[]{"Zeyad", "Hashem", "Yasser"},
+                    new Player.strategy[]{Player.strategy.GREEDY, Player.strategy.DEFAULT, Player.strategy.STINGY});
             dataset.put(i, MonopolyGame.playGame(players));
         }
 
         /*for(int i=0; i< dataset.size(); i++){
             System.out.print(i + " " + dataset.get(i).getStratey().toString() + "\n");
         }*/
-        System.out.print("Here is the HashMap: \n" + calcWinRatePerStrategy(dataset, "s"));
+        System.out.print("Here is the HashMap: \n" + calcWinRatePerStrategy(dataset));
     }
 
-    private static HashMap<String, Integer> calcWinRatePerStrategy(HashMap<Integer, Player> dataset, String strategy){
+    private static HashMap<String, Integer> calcWinRatePerStrategy(HashMap<Integer, Player> dataset){
         HashMap<String, Integer> winsPerStrategy = new HashMap<>();
         for(int i=0; i< dataset.size(); i++){
             String tempStrategy = dataset.get(i).getStratey().toString();

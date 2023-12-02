@@ -124,7 +124,7 @@ public class MainTest {
         Country country = new Country(1, "Canada", 50, 500);
 
 
-        assertEquals(50, country.getRent());
+        assertEquals(50, country.getBaseRent());
         assertEquals(500, country.getBuyPrice());
     }
 
@@ -223,7 +223,7 @@ public class MainTest {
     void testStationConstruction() {
         Station station = new Station(1, "Kings Cross Station", 150);
 
-        assertEquals(25, station.getRent(), "Rent should match");
+        assertEquals(25, station.getBaseRent(), "Rent should match");
         assertEquals(200, station.getBuyPrice(), "Buy price should match");
         assertNull(station.getOwner(), "Owner should be null initially");
     }
@@ -338,6 +338,34 @@ public class MainTest {
         Property egypt = (Country) map.get(39);
         egypt.playerOnLocation(p1);
         assertEquals(1, p1.getLandsOwned(), "Player should not pay any tax");
+    }
+    @Test
+    void testCompleteSetRent() {
+        Player p1 = new Player(1500);
+        Player p2 = new Player(1500);
+        Country egypt = new Country(39,"egypt",50,400,"red");
+        Country qatar = new Country(37,"qatar",50,400,"darkBlue");
+        egypt.setOwner(p1);
+        qatar.setOwner(p1);
+        egypt.playerOnLocation(p2);
+        assertEquals(1500-50, p2.getMoney(), "Paid different rent!");
+    }
+    @Test
+    void testLandsOwned() {
+        Player p1 = new Player(1500);
+        Player p2 = new Player(1500);
+        Country egypt = new Country(39,"egypt",50,400,"darkBlue");
+        Country qatar = new Country(37,"qatar",50,400,"darkBlue");
+        Utility util = new Utility(1, "util", 100);
+        Utility util2 = new Utility(1, "util", 100);
+        util.setOwner(p1);
+        util2.setOwner(p1);
+        egypt.setOwner(p1);
+        qatar.setOwner(p1);
+        MonopolyGame.rollDice();
+        util2.playerOnLocation(p2);
+        System.out.println(MonopolyGame.getDiceVal());
+        assertEquals(1500-MonopolyGame.getDiceVal()*10, p2.getMoney(), "Paid different rent!");
     }
 }
 

@@ -21,6 +21,8 @@ public class MonopolyGame {
         int numPlayers = players.size();
         int diceRolls = 0;
         int rounds;
+        int pos;
+        boolean hasMoved = false;
         Node currPlayer;
         Node firstPlayer = new Node(players.get(0));
         currPlayer = firstPlayer;
@@ -34,15 +36,22 @@ public class MonopolyGame {
         currPlayer = currPlayer.next;
 
         while(numPlayers > 1){
+            if(currPlayer.player.getMoney() > 10000)
+                break;
             diceRolls++;
             rounds = diceRolls / numPlayers;
-            //System.out.println("Round: " + rounds);
+            System.out.println("Round: " + rounds);
             diceVal = rollDice();
-            //System.out.println("DICEVAL: " + Player.diceVal);
+            System.out.println("DICEVAL: " + MonopolyGame.getDiceVal());
+            System.out.println("PLAYER before: " + currPlayer.player);
             currPlayer.player.moveN(diceVal);
-            //System.out.println("PLAYER before: " + currPlayer.player);
+            pos = currPlayer.player.getPos();
             boardMap.get(currPlayer.player.getPos()).playerOnLocation(currPlayer.player);
-            //System.out.println("PLAYER after: " + currPlayer.player + "\n" +currPlayer.player.getLandsOwned());
+            hasMoved = pos != currPlayer.player.getPos();
+            if(hasMoved){ // position has changed, e.g., move back 3 steps.
+                boardMap.get(currPlayer.player.getPos()).playerOnLocation(currPlayer.player);
+            }
+            System.out.println("PLAYER after: " + currPlayer.player + "\n" +currPlayer.player.getLandsOwned().size());
 
             if (currPlayer.player.getMoney() == 0){
                 currPlayer.prev.next = currPlayer.next;
@@ -53,7 +62,7 @@ public class MonopolyGame {
             currPlayer = currPlayer.next;
             //System.out.println("PLAYER after: " + currPlayer.player + "\n" + currPlayer.player.getLandsOwned());
         }
-        //System.out.println("Winner: " + currPlayer.player + "\n" + currPlayer.player.getLandsOwned());
+        System.out.println("Winner: " + currPlayer.player + "\n" + currPlayer.player.getLandsOwned());
 
         return currPlayer.player;
     }
@@ -65,6 +74,3 @@ public class MonopolyGame {
         return diceVal;
     }
 }
-
-
-// gameNo   WinnerStrategy

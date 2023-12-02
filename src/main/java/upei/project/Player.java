@@ -1,5 +1,6 @@
 package upei.project;
 
+import upei.project.Properties.Country;
 import upei.project.Properties.Property;
 import upei.project.Properties.Station;
 import upei.project.Properties.Utility;
@@ -135,10 +136,10 @@ public class Player {
         boolean res = Math.random() <= 0.50;
         switch (this.pStrategy) {
             case GREEDY ->
-            res = Math.random() <= 0.80;
+            res = Math.random() <= 0.70;
 
             case STINGY ->
-                res = Math.random() <= 0.20;
+                res = Math.random() <= 0.3;
 
             case UTILITY_GUY -> {
                 if (property instanceof Utility) {
@@ -166,6 +167,18 @@ public class Player {
 
     public strategy getStratey(){
         return this.pStrategy;
+    }
+
+    public boolean hasCompleteSet(String color, int completeSetSize){
+        boolean res = true;
+        int counter = 0;
+        ArrayList<Country> countriesOwned = this.getLandsOwnedOfType(Country.class);
+        for (Country country : countriesOwned) {
+            if (country.getColor().equals(color)) {
+                counter++;
+            }
+        }
+        return counter == completeSetSize;
     }
     @Override
     public String toString() {
