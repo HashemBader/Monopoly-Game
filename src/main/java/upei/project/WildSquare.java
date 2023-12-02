@@ -1,9 +1,14 @@
 package upei.project;
+
+import java.util.Random;
+
 /**
  * The WildSquare class represents the community chest and the chances cards type of BoardSquare that triggers random events
  * when a player lands on it.
  */
-public class WildSquare extends BoardSquare {
+public class WildSquare extends BoardSquare{
+    Random random = new Random();
+
     /**
      * Constructor to create a WildSquare instance with a specific location and name.
      *
@@ -13,6 +18,7 @@ public class WildSquare extends BoardSquare {
     public WildSquare(int iLoc, String name) {
         super(iLoc, name);
     }
+
     /**
      * Defines the action that occurs when a player lands on the WildSquare.
      * It triggers various random events affecting the player's position or money.
@@ -21,7 +27,7 @@ public class WildSquare extends BoardSquare {
      */
     @Override
     public void playerOnLocation(Player player) {
-        int rand =(int) (Math.random()*10 + 1);
+        int rand =(int) (random.nextFloat()*10) + 1;
         switch (rand){
             // advance to go
             case 1 -> player.setPos(0);
@@ -45,6 +51,10 @@ public class WildSquare extends BoardSquare {
             case 10 -> player.moveN(3);
 
         }
+    }
+
+    public void setSeed(long seed) {
+        this.random.setSeed(seed);
     }
 
 }

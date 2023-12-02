@@ -1,4 +1,7 @@
 package upei.project;
+
+import java.util.Random;
+
 /**
  * The Jail class represents a specific type of BoardSquare where a player can be sent to jail.
  * It defines actions taken when a player lands on the Jail square.
@@ -10,6 +13,7 @@ public class Jail extends BoardSquare{
      * @param iLoc Location index on the board.
      * @param name Name of the Jail square.
      */
+    Random random = new Random();
     public Jail(int iLoc, String name) {
         super(iLoc, name);
     }
@@ -25,14 +29,18 @@ public class Jail extends BoardSquare{
         final int MAX_TRIES = 3;// Maximum attempts to roll a double
         int tries = 0;
         int dice1, dice2;
-        while (tries < MAX_TRIES) {
-            dice1 = DiceUtils.rollDice1();// Rolls the first dice
-            dice2 = DiceUtils.rollDice1();// Rolls the second dice
+        while (tries < MAX_TRIES) { // 6/36 * 6/36 = 1/36
+            dice1 = (int) (random.nextFloat()*6) + 1;// Rolls the first dice
+            dice2 = (int) (random.nextFloat()*6) + 1;// Rolls the second dice
             if (dice1 == dice2) {
                 player.addMoney(50); // If a double is rolled, player gets money back and leaves Jail
                 break;
             }
             tries++;
         }
+    }
+
+    public void setSeed(long seed){
+        this.random.setSeed(seed);
     }
 }

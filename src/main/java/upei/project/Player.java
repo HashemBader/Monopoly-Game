@@ -46,13 +46,6 @@ public class Player {
         this.name = name;
         this.pStrategy = STRATEGY;
     }
-    public Player(int money, strategy STRATEGY,long seed) {//for testing
-        this.money = money;
-        this.pos = 0;
-        this.landsOwned = new ArrayList<>();
-        this.pStrategy = STRATEGY;
-        this.random = new Random(seed);
-    }
 
     public int getPos() {
         return this.pos;
@@ -108,8 +101,9 @@ public class Player {
     } // goto pos
     // Method to move the player by 'n' steps on the game board
     public void moveN(int n) {
+        final int BOARD_SIZE = 40;
         int oldPos = this.pos;
-        this.pos = (this.pos + n + MonopolyGame.boardMap.size()) % MonopolyGame.boardMap.size();
+        this.pos = (this.pos + n + BOARD_SIZE) % BOARD_SIZE;
         // Adds 'size' again to account for negative positions
         if(this.pos < oldPos){ // player passed Go!
             this.addMoney(200);
@@ -186,6 +180,11 @@ public class Player {
         }
         return counter == completeSetSize;
     }
+
+    public void setSeed(long seed){
+        this.random.setSeed(seed);
+    }
+
     @Override
     public String toString() {
         return "Player{ " +

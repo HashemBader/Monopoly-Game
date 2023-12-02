@@ -54,10 +54,14 @@ public class MainTest {
     }
     @Test
     public void testGetOutOfJail(){
+        //seed 1 gets out with no deduction
+        //seed 2 gets out with 50 deduction
         Player p1 = new Player(1500);
+        long seed = 1;
         ArrayList<BoardSquare> boardMap = BoardInit.createBoard();
-        p1.setPos(30);
-        boardMap.get(p1.getPos()).playerOnLocation(p1);
+        Jail jail = new Jail(10, "jail");
+        jail.setSeed(seed);
+        jail.playerOnLocation(p1);
         assertEquals(1500, p1.getMoney()); // got out with no deductions
     }
     @Test
@@ -133,7 +137,8 @@ public class MainTest {
     void testPlayerOnLocation_NoOwner2_Seed1() {
         //seed 1 should buy the utility for all strategies
         long seed = 1;
-        Player player1 = new Player(1500, Player.strategy.STINGY, seed);
+        Player player1 = new Player(1500, Player.strategy.STINGY);
+        player1.setSeed(seed);
         Utility utility = new Utility(2, "Water Works", 200);
 
         utility.playerOnLocation(player1);
@@ -176,7 +181,8 @@ public class MainTest {
     void testPlayerOnLocation_NoOwner3_Seed1() {
         // seed 1 should buy the station
         long seed = 1;
-        Player player1 = new Player(1500, Player.strategy.STATION_GUY, seed);
+        Player player1 = new Player(1500, Player.strategy.STATION_GUY);
+        player1.setSeed(1);
         Station station = new Station(2, "Fenchurch Street Station", 150);
         station.playerOnLocation(player1);
         assertEquals(player1, station.getOwner(), "Player should become the owner");
@@ -211,13 +217,59 @@ public class MainTest {
     }
     //wildsquare tests
 /*    @Test
-*//*    void testPlayerOnLocation_AdvanceToGo() {
+*/
+    @Test
+    void testPlayerOnLocation_AdvanceToGo() {
+        // -1 Go
+        // 0 Morocco
+        // 101010 Qatar
+        // 1010101 Lebanon
+        // 1417105 Go to Jail
+        long seed = -1;
         WildSquare chance = new WildSquare(1, "Chance");
         Player player = new Player(1500);
+        chance.setSeed(seed);
         chance.playerOnLocation(player);
-
         assertEquals(0, player.getPos(), "Player should advance to 'Go'");
-    }*/
+    }
+    @Test
+    void testPlayerGoToJail_noDeduction() {
+        // -1 Go
+        // 0 Morocco
+        // 101010 Qatar
+        // 1010101 Lebanon
+        // 1417105 Go to Jail
+        long seed1 = 1417105; //WildSquare's go to jail
+        long seed2 = 1; // Jail's 50 deduction
+        WildSquare chance = new WildSquare(1, "Chance");
+        Jail jail = new Jail(10, "jail");
+        jail.setSeed(seed2);
+        Player player = new Player(1500);
+        chance.setSeed(seed1); // go to jail card
+        chance.playerOnLocation(player);
+        jail.playerOnLocation(player);
+
+        assertEquals(1500, player.getMoney(), "Player should go to jail!");
+    }
+    @Test
+    void testPlayerGoToJail_deduction() {
+        // -1 Go
+        // 0 Morocco
+        // 101010 Qatar
+        // 1010101 Lebanon
+        // 1417105 Go to Jail
+        long seed1 = 1417105; //WildSquare's go to jail
+        long seed2 = -90; //Jail's 50 deduction
+        WildSquare chance = new WildSquare(1, "Chance");
+        Jail jail = new Jail(10, "jail");
+        jail.setSeed(seed1);
+        Player player = new Player(1500);
+        chance.setSeed(seed2); // go to jail card
+        chance.playerOnLocation(player);
+        jail.playerOnLocation(player);
+
+        assertEquals(1450, player.getMoney(), "Player should go to jail!");
+    }
 
 /*    @Test
     void testPlayerOnLocation_BankError() {// it is random process so when the random is the same as the "iloc" it works
