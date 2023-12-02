@@ -6,6 +6,8 @@ import upei.project.Properties.Station;
 import upei.project.Properties.Utility;
 
 import java.util.ArrayList;
+import java.util.Random;
+
 /**
  * The Player class represents a player in a game.
  */
@@ -18,6 +20,7 @@ public class Player {
     private int pos;
     private strategy pStrategy = strategy.DEFAULT;
     private ArrayList<Property> landsOwned;
+    private Random random = new Random(); //for testing
 
     /**
      * Constructor to create a player with a specific initial money and default strategy.
@@ -28,10 +31,6 @@ public class Player {
         this.money = money;
         this.pos = 0;
         this.landsOwned = new ArrayList<>();
-        //buys 80% of time
-        //buys only utilities
-        //buys only stations
-        //buys 20%
     }
     public Player(int money, strategy STRATEGY) {
 
@@ -46,6 +45,13 @@ public class Player {
         this.landsOwned = new ArrayList<>();
         this.name = name;
         this.pStrategy = STRATEGY;
+    }
+    public Player(int money, strategy STRATEGY,long seed) {//for testing
+        this.money = money;
+        this.pos = 0;
+        this.landsOwned = new ArrayList<>();
+        this.pStrategy = STRATEGY;
+        this.random = new Random(seed);
     }
 
     public int getPos() {
@@ -133,29 +139,29 @@ public class Player {
         if(this.getMoney() <= property.getBuyPrice()) {
             return false;
         }
-        boolean res = Math.random() <= 0.50;
+        boolean res = this.random.nextFloat() <= 0.50;
         switch (this.pStrategy) {
             case GREEDY ->
-            res = Math.random() <= 0.70;
+            res = this.random.nextFloat() <= 0.70;
 
             case STINGY ->
-                res = Math.random() <= 0.3;
+                res = this.random.nextFloat() <= 0.3;
 
             case UTILITY_GUY -> {
                 if (property instanceof Utility) {
-                    res = Math.random() <= 0.90;
+                    res = this.random.nextFloat() <= 0.90;
                 } else
-                    res = Math.random() <= 0.50;
+                    res = this.random.nextFloat() <= 0.4;
             }
             case STATION_GUY -> {
                 if (property instanceof Station) {
-                    res = Math.random() <= 0.90;
+                    res = this.random.nextFloat() <= 0.90;
                 } else {
-                    res = Math.random() <= 0.50;
+                    res = this.random.nextFloat() <= 0.4;
                 }
             }
             case DEFAULT ->
-                res = Math.random() <= 0.50;
+                res = this.random.nextFloat() <= 0.50;
 
         }
         return res;

@@ -129,30 +129,30 @@ public class MainTest {
         assertNotNull(utility, "Utility should not be null!");
     }
 
-/*    @Test
-    void testPlayerOnLocation_NoOwner2() {
-        Player player1 = new Player(1000);
+    @Test
+    void testPlayerOnLocation_NoOwner2_Seed1() {
+        //seed 1 should buy the utility for all strategies
+        long seed = 1;
+        Player player1 = new Player(1500, Player.strategy.STINGY, seed);
         Utility utility = new Utility(2, "Water Works", 200);
 
         utility.playerOnLocation(player1);
-
         assertEquals(player1, utility.getOwner(), "Player should become the owner");
-        assertEquals(800, player1.getMoney(), "Player should have deducted money after buying the utility");
-    }*/
+        assertEquals(1300, player1.getMoney(), "Player should have deducted money after buying the utility");
+    }
 
-/*    @Test
+    @Test
     void testPlayerOnLocation_OwnerExists2() {
-        Player player1 = new Player(1000);
-        Player player2 = new Player(1000);
+        Player player1 = new Player(1500);
+        Player player2 = new Player(1500);
         Utility utility = new Utility(3, "Gas Company", 250);
         utility.setOwner(player1);
-        Player.diceVal = 2;
+        MonopolyGame.setDiceVal(10);
         utility.playerOnLocation(player2);
-
         assertEquals(player1, utility.getOwner(), "Owner should remain the same");
-        assertEquals(1006, player1.getMoney(), "Owner should receive rent");
-        assertEquals(994, player2.getMoney(), "Player landing should pay rent");
-    }*/
+        assertEquals(1540, player1.getMoney(), "Owner should receive rent");
+        assertEquals(1460, player2.getMoney(), "Player landing should pay rent");
+    }
 
     @Test
     void testPlayerOnLocation_CurrentPlayerIsOwner2() {
@@ -172,16 +172,17 @@ public class MainTest {
         assertNull(station.getOwner(), "Owner should be null initially");
     }
 
-/*    @Test
-    void testPlayerOnLocation_NoOwner3() {
-        Player player1 = new Player(1000);
+    @Test
+    void testPlayerOnLocation_NoOwner3_Seed1() {
+        // seed 1 should buy the station
+        long seed = 1;
+        Player player1 = new Player(1500, Player.strategy.STATION_GUY, seed);
         Station station = new Station(2, "Fenchurch Street Station", 150);
-
         station.playerOnLocation(player1);
-
         assertEquals(player1, station.getOwner(), "Player should become the owner");
-        assertEquals(800, player1.getMoney(), "Player should have deducted money after buying the station");
-    }*/
+        assertEquals(1350, player1.getMoney(), "Player should have deducted money after buying the station");
+    }
+
 
     @Test
     void testPlayerOnLocation_OwnerExists3() {

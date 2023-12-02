@@ -8,9 +8,9 @@ public class SimulationExperiment {
     public static void main(String[] args) {
         HashMap<Integer, Player> dataset = new HashMap<>();
         ArrayList<Player> players;
-        for(int i=0; i<60; i++) {
-            players = PlayersInit.getPlayers(new String[]{"Zeyad", "Hashem", "Yasser"},
-                    new Player.strategy[]{Player.strategy.GREEDY, Player.strategy.DEFAULT, Player.strategy.STINGY});
+        for(int i=0; i<100; i++) {
+            players = PlayersInit.getPlayers(new String[]{"Zeyad", "Hashem"},
+                    new Player.strategy[]{Player.strategy.UTILITY_GUY, Player.strategy.STATION_GUY});
             dataset.put(i, MonopolyGame.playGame(players));
         }
 

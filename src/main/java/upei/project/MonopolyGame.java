@@ -73,4 +73,7 @@ public class MonopolyGame {
     public static int getDiceVal(){
         return diceVal;
     }
+    public static void setDiceVal(int diceValue){//for testing
+        diceVal = diceValue;
+    }
 }
