@@ -36,8 +36,6 @@ public class MonopolyGame {
         currPlayer = currPlayer.next;
 
         while(numPlayers > 1){
-            if(currPlayer.player.getMoney() > 10000)
-                break;
             diceRolls++;
             rounds = diceRolls / numPlayers;
             System.out.println("Round: " + rounds);
@@ -60,9 +58,13 @@ public class MonopolyGame {
                 numPlayers--;
             }
             currPlayer = currPlayer.next;
+            if(rounds > 1000){
+                System.out.println("broken!!!!");
+                break;
+            }
             //System.out.println("PLAYER after: " + currPlayer.player + "\n" + currPlayer.player.getLandsOwned());
         }
-        System.out.println("Winner: " + currPlayer.player + "\n" + currPlayer.player.getLandsOwned());
+        //System.out.println("Winner: " + currPlayer.player + "\n" + currPlayer.player.getLandsOwned());
 
         return currPlayer.player;
     }
