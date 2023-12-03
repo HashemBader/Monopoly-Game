@@ -1,11 +1,16 @@
 # 2023F CS2910 Project Report
 **Group Members**
 1. Zeyad Awad (362192)
-2. Person 2 (Student Number)
+2. Hashem Bader (362311)
 
 # Summary of Game
-_A summary description of the game that you chose.  This should include the name of the game, 
-the goal of the game and a brief description of the key objects in the game. Please provide a link to the game and/or its rules online. (100 words)_
+The game is Monopoly and it is a boardgame of 2 to 8 players, which each player
+has an initial money of $1500, a name and a strategy.
+The player will throw the dice and will move around the board then an action will be
+taken when a player lands on a square in the board. Players will start to lose money
+eventually after few rounds and whoever loses his all money will be out of the game,
+To win the game, there should be only one player left that still has money.
+For more information, here is the link to the rules(https://www.hasbro.com/common/instruct/00009.pdf).
 
 # Experiment Report
 ## Player Strategies
@@ -125,14 +130,17 @@ _A reflection on your experiences with generative AI during this project. Provid
 on your experience with AI for each of the following prompts._ 
 
 ### What generative AI did you use, and what tasks did you use it for?
-_**Example:** Git Co-Pilot: generated getters and setters_
+Chat gpt: supporting with the test cases to cover all the possible cases_
 
 ### How did you learn about the tools used by your group (delete ones that don't apply)?
-_Please describe where and how you learned about the tools_
+_most of the tools that have been used were learned in the class. Some of the tools we had to search for it in google._
 
 ### Reflecting on your experience:
-_Write a short reflection on your use of generative AI in this project, including if you did not use it. 
-You may use the prompts as headings if you wish. (500 words)_  
+Generative AI was a little bit helpful, it helped with having ideas for making test cases for the code and the classes it has.
+In another hand, it was not helpful in making codes that helps with calculating rents.
+Overall, the generative AI helped with improving the test cases which made the code more effecient,
+maybe adding some complicated functions that matches with the reality of the game
+could you have made the project turned out better, other than that, most of the game was covered effeciently.
 
 **Prompts to think about in writing your reflections if you worked with generative AI:**
 - What went well using generative AI in this project?
@@ -149,4 +157,5 @@ You may use the prompts as headings if you wish. (500 words)_
 - What could you have done so the project would turn out better?
 
 # Bonus Consideration:
-If you have aspects of your project you would like considered for the available bonus.
+Demonstrating well-structured, modular, and efficient code, along with comprehensive unit tests and code coverage to ensure robustness and reliability.
+Tracking and displaying detailed game statistics, such as win/loss ratios, average game duration and other gameplay metrics.
