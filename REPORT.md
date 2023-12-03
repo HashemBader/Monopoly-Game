@@ -58,8 +58,8 @@ Table 1.0: Player Strategies and Holdings
 
 | Strategy | Win rate    |
 |----------|-------------|
-| GREEDY   | 0.588738    |
-| STINGY   | 0.411262    |
+| GREEDY   | 58.87%    |
+| STINGY   | 41.13%    |
 
 Table 1.1: Win Rate Per Strategy
 
@@ -71,21 +71,21 @@ Table 1.1: Win Rate Per Strategy
 
 ### Station Guy vs Utility Guy:
 
-| strategy      | money | countries | utilities | stations | totalLandsOwned |
-|---------------|-------|-----------|-----------|----------|------------------|
-| STATION_GUY   | 596   | 6         | 0         | 3        | 9                |
-| UTILITY_GUY   | 514   | 5         | 1         | 3        | 9                |
-| STATION_GUY   | 14766 | 13        | 0         | 2        | 15               |
-| STATION_GUY   | 11620 | 13        | 1         | 4        | 18               |
-| UTILITY_GUY   | 12665 | 9         | 1         | 1        | 11               |
+| Strategy      | Money  | Countries | Utilities | Stations | Total Lands Owned |
+|---------------|--------|-----------|-----------|----------|-------------------|
+| STATION_GUY   | 5448.0 | 11.0      | 1.0       | 3.0      | 14.0              |
+| UTILITY_GUY   | 9578.0 | 11.0      | 1.0       | 1.0      | 14.0              |
+
 
 Table 2.0: Player Strategies and Holdings
 
 
-| strategy      | money | countries | utilities | stations | totalLandsOwned |
-|---------------|-------|-----------|-----------|----------|------------------|
-| STATION_GUY   | 5448.0| 11.0      | 1.0       | 3.0      | 14.0             |
-| UTILITY_GUY   | 9578.0| 11.0      | 1.0       | 1.0      | 14.0             |
+
+| Strategy      | Percentage   |
+|---------------|--------------|
+| STATION_GUY   | 59.48%        |
+| UTILITY_GUY   | 40.52%        |
+
 
 Table 2.1: Win Rate Per Strategy
 
