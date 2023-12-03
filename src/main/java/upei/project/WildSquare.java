@@ -45,8 +45,8 @@ public class WildSquare extends BoardSquare{
             case 7 -> player.setPos(39);
             //Advance to MOROCCO.
             case 8 -> player.setPos(8);
-            //Go Back Three {3} Spaces
-            case 9 -> player.moveN(-3);
+            /*//Go Back Three {3} Spaces
+            case 9 -> player.setPos(player.getPos())pos + n + BOARD_SIZE) % BOARD_SIZE);*/
             //Go Forward {4} Spaces
             case 10 -> player.moveN(4);
             // advance to PORTSAID STATION

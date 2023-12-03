@@ -38,10 +38,10 @@ public class MonopolyGame {
         while(numPlayers > 1){
             diceRolls++;
             rounds = diceRolls / numPlayers;
-            System.out.println("Round: " + rounds);
+            //System.out.println("Round: " + rounds);
             diceVal = rollDice();
-            System.out.println("DICEVAL: " + MonopolyGame.getDiceVal());
-            System.out.println("PLAYER before: " + currPlayer.player);
+            //System.out.println("DICEVAL: " + MonopolyGame.getDiceVal());
+            //System.out.println("PLAYER before: " + currPlayer.player);
             currPlayer.player.moveN(diceVal);
             pos = currPlayer.player.getPos();
             boardMap.get(currPlayer.player.getPos()).playerOnLocation(currPlayer.player);
@@ -49,7 +49,7 @@ public class MonopolyGame {
             if(hasMoved){ // position has changed, e.g., move back 3 steps.
                 boardMap.get(currPlayer.player.getPos()).playerOnLocation(currPlayer.player);
             }
-            System.out.println("PLAYER after: " + currPlayer.player + "\n" +currPlayer.player.getLandsOwned());
+            //System.out.println("PLAYER after: " + currPlayer.player + "\n" +currPlayer.player.getLandsOwned());
 
             if (currPlayer.player.getMoney() == 0){
                 currPlayer.prev.next = currPlayer.next;
@@ -58,9 +58,10 @@ public class MonopolyGame {
                 numPlayers--;
             }
             currPlayer = currPlayer.next;
-            if(rounds > 500){
-                System.out.println("broken!!!!");
-                break;
+            if(currPlayer.player.getMoney() > 100000){
+                //System.out.println("broken!!!!");
+                SimulationExperiment.numOfInf +=1;
+                return null;
             }
             //System.out.println("PLAYER after: " + currPlayer.player + "\n" + currPlayer.player.getLandsOwned());
         }

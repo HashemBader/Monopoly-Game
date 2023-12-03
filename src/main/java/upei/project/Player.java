@@ -139,7 +139,7 @@ public class Player {
             res = this.random.nextFloat() <= 0.70;
 
             case STINGY ->
-                res = this.random.nextFloat() <= 0.3;
+                res = this.random.nextFloat() <= 0.2;
 
             case UTILITY_GUY -> {
                 if (property instanceof Utility) {
@@ -166,15 +166,15 @@ public class Player {
         }
         switch (this.pStrategy) {
             case GREEDY -> {
-                return this.random.nextFloat() <= 0.90;
+                return this.random.nextFloat() <= 0.9;
             }
 
             case STINGY -> {
-                return this.random.nextFloat() <= 0.30;
+                return this.random.nextFloat() <= 0.1;
 
             }
             default -> {
-                return this.random.nextFloat() <= 0.50;
+                return this.random.nextFloat() <= 0.3;
             }
         }
     }

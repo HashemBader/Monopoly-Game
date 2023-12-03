@@ -75,11 +75,11 @@ public class Country extends Property {
     public int calcRent(){
         if(this.getOwner().hasCompleteSet(this.COLOR, colorSetMapper.get(this.COLOR))){
             if(this.numHouses == 0)
-                return this.baseRent * 2;
+                return this.baseRent * 2 ;
             else if (this.numHouses == 1)
-                return this.baseRent * 5;
+                return this.baseRent * 5 ;
             else{
-                return 3 * this.baseRent * 5 * (this.numHouses - 1);
+                return 3 * this.baseRent * 5 * (this.numHouses - 1) ;
             }
         }
         return this.baseRent; // no complete set
