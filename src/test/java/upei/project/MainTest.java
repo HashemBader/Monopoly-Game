@@ -248,11 +248,13 @@ public class MainTest {
      */
     @Test
     void testStationConstruction() {
-        Station station = new Station(1, "Kings Cross Station", 200);
+        Station station = new Station(1, "P6 Station", 200);
         assertEquals(25, station.getBaseRent(), "Rent should match"); //rent is fixed for stations
         assertEquals(200, station.getBuyPrice(), "Buy price should match");
         assertNull(station.getOwner(), "Owner should be null initially");
         assertNotNull(station, "Station should not be null!");
+        assertEquals(1, station.getILOC(), "Validate position of the country");
+        assertEquals("P6 Station", station.getNAME(), "Validate name of the country");
     }
     /**
      * Tests the scenario when a player lands on a station with no existing owner using seed 1.
@@ -321,10 +323,9 @@ public class MainTest {
     @Test
     public void testWildSquareConstruction() {
         WildSquare wildSquare = new WildSquare(5, "Community Chest");
-        assertNotNull(wildSquare);
-        assertEquals(5, wildSquare.getILOC());
-        assertEquals("Community Chest", wildSquare.getNAME());
-        assertNotNull(wildSquare, "Station should not be null!");
+        assertNotNull(wildSquare, "WildSquare should not be null!");
+        assertEquals(5, wildSquare.getILOC(), "Validate position of the country");
+        assertEquals("Community Chest", wildSquare.getNAME(), "Validate name of the country");
     }
     /**
      * Tests the scenario when a player lands on a WildSquare advancing to 'Go'.
