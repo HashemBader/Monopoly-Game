@@ -362,7 +362,24 @@ public class MainTest {
         assertTrue(p1.hasCompleteSet(egypt.getColor(), Country.colorSetMapper.get(egypt.getColor())), "Check hasCompleteSet in Country");
     }
     @Test
-    void testBuyUtility(){}
+    void testHousePrice(){
+        Country egypt = new Country(39, "egypt", 50, 400, "darkBlue");
+        assertEquals(egypt.getHousePrice(), 200);
+    }
+    @Test
+    void testBuildHouse(){
+        // seed -42 buys on default
+        Country egypt = new Country(39, "egypt", 50, 400, "darkBlue");
+        Country qatar = new Country(37, "qatar", 50, 400, "darkBlue");
+        Player p1 = new Player(1500);
+        Player p2 = new Player(1500);
+        p1.setSeed(-42);
+        egypt.setOwner(p1);
+        qatar.setOwner(p1);
+        egypt.playerOnLocation(p1);
+        // todo edge and beyond
+        assertEquals(egypt.getNumHouses(), 1);
+    }
 }
 
 

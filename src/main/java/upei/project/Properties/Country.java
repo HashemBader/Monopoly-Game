@@ -10,6 +10,8 @@ import java.util.HashMap;
  */
 public class Country extends Property {
     private final String COLOR;
+    private int numHouses = 0;
+    private int housePrice;
     public static final HashMap<String, Integer> colorSetMapper = new HashMap<>(){{
         put("brown", 2);
         put("lightBlue", 3);
@@ -41,6 +43,7 @@ public class Country extends Property {
     public Country(int iLoc, String name, int baseRent, int buyPrice, String color){
         super(iLoc, name, buyPrice, baseRent);// Calls the constructor of the superclass 'Property'
         this.COLOR = color;
+        calcHousePrice();
     }
     /**
      * Determines the action to be taken when a player lands on a country property.
@@ -48,7 +51,12 @@ public class Country extends Property {
      */
     public void playerOnLocation(Player player){
         if (this.getOwner() == player){
-            return;  // Do nothing if the current player is the owner
+            if(player.hasCompleteSet(this.COLOR, colorSetMapper.get(this.COLOR))){
+                if(player.makeHouseChoice(this) && this.numHouses < 4){
+                    this.numHouses += 1;
+                    player.subtractMoney(this.housePrice);
+                }
+            }
         }
         else if (this.getOwner() != player && this.getOwner() == null){ // Property not owned
             if (player.makeChoice(this)){// make a choice depend on the strategy
@@ -66,9 +74,15 @@ public class Country extends Property {
 
     public int calcRent(){
         if(this.getOwner().hasCompleteSet(this.COLOR, colorSetMapper.get(this.COLOR))){
-            return this.baseRent * 80;
+            if(this.numHouses == 0)
+                return this.baseRent * 2;
+            else if (this.numHouses == 1)
+                return this.baseRent * 5;
+            else{
+                return 3 * this.baseRent * 5 * (this.numHouses - 1);
+            }
         }
-        return this.baseRent;
+        return this.baseRent; // no complete set
     }
 
     public String getColor(){return this.COLOR;}
@@ -80,12 +94,21 @@ public class Country extends Property {
     public int getMortgagePrice(){
         return this.buyPrice / 2;
     }
+    public int getNumHouses(){
+        return this.numHouses;
+    }
 
-
-    @Override
-    public String toString() {
-        return "Country{" +
-                "color=" + COLOR +
-                "} " + super.toString();
+    private void calcHousePrice(){
+        switch (this.getColor()) {
+            case "brown", "lightBlue" -> this.housePrice = 50;
+            case "pink", "orange" -> this.housePrice = 100;
+            case "red", "yellow" -> this.housePrice = 150;
+            case "green", "darkBlue" -> this.housePrice = 200;
+            default -> this.housePrice = -0; //error
+        };
+    }
+    public int getHousePrice(){
+        return this.housePrice;
     }
 }
+

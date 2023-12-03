@@ -160,6 +160,25 @@ public class Player {
         }
         return res;
     }
+    public boolean makeHouseChoice(Country c) {
+        if (this.getMoney() <= c.getHousePrice()) {
+            return false;
+        }
+        switch (this.pStrategy) {
+            case GREEDY -> {
+                return this.random.nextFloat() <= 0.90;
+            }
+
+            case STINGY -> {
+                return this.random.nextFloat() <= 0.30;
+
+            }
+            default -> {
+                return this.random.nextFloat() <= 0.50;
+            }
+        }
+    }
+
 
     public String getName(){
         return this.name;
