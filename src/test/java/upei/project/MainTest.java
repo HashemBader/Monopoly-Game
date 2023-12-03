@@ -9,15 +9,24 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
+/**
+ * This class contains JUnit test cases for various functionalities in the Monopoly game implementation.
+ */
 public class MainTest {
-
+    /**
+     * Tests the constructor of a Station object.
+     * Verifies if a Station object is correctly instantiated.
+     */
     @Test
     public void testCountryConstructor(){
         Station country = new Station(15, "Canada",200);
         assertEquals(country, country);
 
     }
+    /**
+     * Tests setting an owner for a Country object.
+     * Verifies if the owner of the Country is correctly set and updated.
+     */
     @Test
     public void testOwner(){
         Country egypt = new Country(0, "Egypt", 1000, 190000,"red");
@@ -26,7 +35,10 @@ public class MainTest {
         egypt.playerOnLocation(p1);
         assertEquals(p1, egypt.getOwner());
     }
-
+    /**
+     * Tests the movement of a player to the jail square.
+     * Verifies if the player is correctly moved to the jail square on the board.
+     */
     @Test
     public void testGoToJail(){
         Player p1 = new Player(1500);
@@ -35,8 +47,12 @@ public class MainTest {
         boardMap.get(p1.getPos()).playerOnLocation(p1);
         assertEquals(10, p1.getPos());
     }
+    /**
+     * Tests the scenario of a player getting out of jail.
+     * Verifies if the player gets out of jail without any money deduction.
+     */
     @Test
-    public void testGetOutOfJail(){
+    public void testGetOutOfJail_NoDeduction(){
         //seed 1 gets out with no deduction
         //seed 2 gets out with 50 deduction
         Player p1 = new Player(1500);
@@ -47,6 +63,25 @@ public class MainTest {
         jail.playerOnLocation(p1);
         assertEquals(1500, p1.getMoney()); // got out with no deductions
     }
+    /**
+     * Tests the scenario of a player getting out of jail.
+     * Verifies if the player gets out of jail with money deduction.
+     */
+    @Test
+    public void testGetOutOfJail_Deduction(){
+        //seed 2 gets out with 50 deduction
+        Player p1 = new Player(1500);
+        long seed = 2;
+        ArrayList<BoardSquare> boardMap = BoardInit.createBoard();
+        Jail jail = new Jail(10, "jail");
+        jail.setSeed(seed);
+        jail.playerOnLocation(p1);
+        assertEquals(1450, p1.getMoney()); // got out with no deductions
+    }
+    /**
+     * Tests ownership of multiple stations by a player.
+     * Verifies if the player owns multiple stations and returns them as expected.
+     */
     @Test
     public void testStationOwned() {
         Player p1 = new Player(1500);
@@ -72,13 +107,19 @@ public class MainTest {
                 "BoardLocation{" +
                 "iLoc=1, name='station2'}]", p1.getLandsOwnedOfType(Station.class).toString());
     }
-    // country tests
+    /**
+     * Tests the construction of a Country object.
+     * Verifies if a Country object is properly instantiated.
+     */
     @Test
     public void testCountryConstruction() {
         Country country = new Country(1, "Canada", 50, 500, "red");
         assertNotNull(country, "Instance is null !");
     }
-
+    /**
+     * Tests the scenario when a player lands on a country where an owner exists.
+     * Verifies if the player correctly pays rent to the owner.
+     */
     @Test
     public void testPlayerOnLocation_OwnerExists() {
         Player player1 = new Player(1500);
@@ -90,7 +131,10 @@ public class MainTest {
         assertEquals(1500+70, player1.getMoney());
         assertEquals(1500-70, player2.getMoney());
     }
-
+    /**
+     * Tests the scenario when the current player is the owner of a country.
+     * Verifies if the player, being the owner, does not pay any rent.
+     */
     @Test
     public void testPlayerOnLocation_CurrentPlayerIsOwner() {
         Player player1 = new Player(1500);
@@ -101,7 +145,10 @@ public class MainTest {
         assertEquals(1500, player1.getMoney());
     }
 
-    //Utilities tests
+    /**
+     * Tests the construction of a Utility object.
+     * Verifies if a Utility object is properly instantiated.
+     */
     @Test
     void testUtilityConstruction() {
         Utility utility = new Utility(1, "Electric Company", 150);
