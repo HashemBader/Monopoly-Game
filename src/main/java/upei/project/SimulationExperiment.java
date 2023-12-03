@@ -28,7 +28,7 @@ public class SimulationExperiment {
         System.out.print("Here is the HashMap: \n" + calcWinRatePerStrategy(dataset));
         System.out.print("\nNum inf: \n" + numOfInf);
 
-        hashMapToCSV(dataset, "./data/stationGuyVsUtilityGuy.csv");
+        //hashMapToCSV(dataset, "./data/stationGuyVsUtilityGuy.csv");
     }
 
     private static HashMap<String, Integer> calcWinRatePerStrategy(HashMap<Integer, Player> dataset){

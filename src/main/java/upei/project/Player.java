@@ -189,7 +189,6 @@ public class Player {
     }
 
     public boolean hasCompleteSet(String color, int completeSetSize){
-        boolean res = true;
         int counter = 0;
         ArrayList<Country> countriesOwned = this.getLandsOwnedOfType(Country.class);
         for (Country country : countriesOwned) {
