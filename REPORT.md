@@ -1,6 +1,6 @@
 # 2023F CS2910 Project Report
 **Group Members**
-1. Person 1 (Student Number)
+1. Zeyad Awad (362192)
 2. Person 2 (Student Number)
 
 # Summary of Game

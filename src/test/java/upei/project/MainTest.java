@@ -394,10 +394,13 @@ public class MainTest {
         egypt.setOwner(p1);
         qatar.setOwner(p1);
         egypt.playerOnLocation(p1);
+        p1.setSeed(-42);
         egypt.playerOnLocation(p1);
+        p1.setSeed(-42);
+        egypt.playerOnLocation(p1);
+        p1.setSeed(-42);
         egypt.playerOnLocation(p1);
         egypt.playerOnLocation(p1);// it landed 5 times but max is 4 houses
-        egypt.playerOnLocation(p1);
         assertEquals(egypt.getNumHouses(), 4);
     }
     @Test
@@ -463,11 +466,12 @@ public class MainTest {
         Player p1 = new Player(1500);
         Player p2 = new Player(1500);
 
-        p1.setSeed(-42);
         egypt.setOwner(p1);
         qatar.setOwner(p1);
         canada.setOwner(p1);
+        p1.setSeed(-42);
         egypt.playerOnLocation(p1);
+        p1.setSeed(-42);
         egypt.playerOnLocation(p1);
         egypt.playerOnLocation(p2);
 
@@ -482,13 +486,14 @@ public class MainTest {
         Country canada = new Country(37, "qatar", 50, 400, "pink");
         Player p1 = new Player(1500);
         Player p2 = new Player(1500);
-
-        p1.setSeed(-42);
         egypt.setOwner(p1);
         qatar.setOwner(p1);
         canada.setOwner(p1);
+        p1.setSeed(-42);
         egypt.playerOnLocation(p1);
+        p1.setSeed(-42);
         egypt.playerOnLocation(p1);
+        p1.setSeed(-42);
         egypt.playerOnLocation(p1);
         egypt.playerOnLocation(p2);
 
@@ -507,31 +512,18 @@ public class MainTest {
         egypt.setOwner(p1);
         qatar.setOwner(p1);
         canada.setOwner(p1);
+        p1.setSeed(-42);
         egypt.playerOnLocation(p1);
+        p1.setSeed(-42);
         egypt.playerOnLocation(p1);
+        p1.setSeed(-42);
         egypt.playerOnLocation(p1);
+        p1.setSeed(-42);
         egypt.playerOnLocation(p1);
         egypt.playerOnLocation(p2);
 
         assertEquals(4500+(50*5*3*3)-egypt.getHousePrice()*4, p1.getMoney());
         assertEquals(4500-(50*5*3*3), p2.getMoney());
-    }
-    @Test
-    void testmama(){
-        Player player = new Player(1500);
-        ArrayList<BoardSquare> bordMap = BoardInit.createBoard();
-     int pos = player.getPos();
-
-        ((WildSquare) bordMap.get(2)).setSeed(312116534);
-
-     bordMap.get(2).playerOnLocation(player);
-     boolean hasMoved = false;
-    hasMoved = pos != player.getPos();
-            if(hasMoved) { // position has changed, e.g., move back 3 steps.
-                bordMap.get(player.getPos()).playerOnLocation(player);
-            }
-            assertEquals(30, hasMoved);
-
     }
 
 }
