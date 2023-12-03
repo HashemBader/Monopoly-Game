@@ -9,7 +9,6 @@ the goal of the game and a brief description of the key objects in the game. Ple
 
 # Experiment Report
 ## Player Strategies
-_For each of 3 STRATEGY you implemented, name the strategy, and then description of it (100 words each)_
 1. Greedy: 
     - Buys properties 70% of the time regardless of its type.
     - Builds a house 90% of the time if possible.
@@ -27,10 +26,6 @@ _For each of 3 STRATEGY you implemented, name the strategy, and then description
     - Builds a house 30% of the time if possible.
 
 ## Procedure
-_A description of your procedure for running the experiment on your code. This should include information 
-regarding the setup of the experiment in terms of what it runs and how it compares the player STRATEGY, 
-the number of trials the experiment and what data was collected. (250 words)_
-
 In the experiment, a game is created given the list of players with strategies and the board map. The winner of each trial is stored in a hash map which then exports the following data: strategy, money countries, utilities, stations, and totalLandsOwned of the winner into a CSV file for data analysis. When the simulation runs, information about each player is displayed before and after rolling the dice to give an understanding about what is happening. 
 
 After the specified number of trials, e.g., 60, the program displays the number of games won per strategy. 
@@ -44,8 +39,6 @@ We then collect the CSV data for further data analysis in Python (mainly Pandas 
 The results were interesting.
 
 ## Results
-_A presentation on the results of your simulation of the STRATEGY in table(s) or appropriate graphic(s) 
-with a short summary. (250 words)
 
 ### Greedy vs Stingy:
 
@@ -54,10 +47,15 @@ with a short summary. (250 words)
 | GREEDY   | 3514.0| 16.0      | 2.0       | 3.0      | 20.0             |
 | STINGY   | 1492.0| 3.0       | 0.0       | 1.0      | 4.0              |
 
+Table 1.0: Player Strategies and Holdings
+
 | Strategy | Win rate    |
 |----------|-------------|
 | GREEDY   | 0.588738    |
 | STINGY   | 0.411262    |
+
+Table 1.1: Win Rate Per Strategy
+
 
 ![Distribution of means](image-1.png)
 ![Distribution of difference in means](image-2.png)
@@ -65,6 +63,7 @@ with a short summary. (250 words)
 ![Boxplot: lands owned vs strategy](image-4.png)
 
 ### Station Guy vs Utility Guy:
+
 | strategy      | money | countries | utilities | stations | totalLandsOwned |
 |---------------|-------|-----------|-----------|----------|------------------|
 | STATION_GUY   | 596   | 6         | 0         | 3        | 9                |
@@ -73,10 +72,16 @@ with a short summary. (250 words)
 | STATION_GUY   | 11620 | 13        | 1         | 4        | 18               |
 | UTILITY_GUY   | 12665 | 9         | 1         | 1        | 11               |
 
+Table 2.0: Player Strategies and Holdings
+
+
 | strategy      | money | countries | utilities | stations | totalLandsOwned |
 |---------------|-------|-----------|-----------|----------|------------------|
 | STATION_GUY   | 5448.0| 11.0      | 1.0       | 3.0      | 14.0             |
 | UTILITY_GUY   | 9578.0| 11.0      | 1.0       | 1.0      | 14.0             |
+
+Table 2.1: Win Rate Per Strategy
+
 
 ![Distribution of means](image-5.png)
 ![Distribution of difference in means](image-6.png)
@@ -84,10 +89,30 @@ with a short summary. (250 words)
 ![Boxplot: lands owned vs strategy](image-8.png)
 
 ### All 5 Strategies (5 players):
-| strategy      | money | countries | utilities | stations | totalLandsOwned |
-|---------------|-------|-----------|-----------|----------|------------------|
-| STATION_GUY   | 5448.0| 11.0      | 1.0       | 3.0      | 14.0             |
-| UTILITY_GUY   | 9578.0| 11.0      | 1.0       | 1.0      | 14.0             |
+
+| Strategy    | Money  | Countries | Utilities | Stations | Total Lands Owned |
+|-------------|--------|-----------|-----------|----------|-------------------|
+| DEFAULT     | 41840.0| 7.0       | 0.0       | 1.0      | 8.0               |
+| GREEDY      | 22306.0| 8.0       | 0.0       | 1.0      | 10.0              |
+| STATION_GUY | 39085.0| 5.0       | 0.0       | 1.0      | 7.0               |
+| STINGY      | 71761.0| 4.0       | 0.0       | 0.0      | 5.0               |
+| UTILITY_GUY | 38827.0| 5.0       | 1.0       | 0.0      | 7.0               |
+
+Table 3.0: Player Strategies and Holdings
+
+
+| Strategy      | Percentage   |
+|---------------|--------------|
+| GREEDY        | 54.13%        |
+| DEFAULT       | 17.99%        |
+| STATION_GUY   | 15.19%        |
+| UTILITY_GUY   | 10.77%        |
+| STINGY        | 1.92%         |
+
+Table 3.1: Win Rate Per Strategy
+
+
+
 
 ![Boxplot: money vs strategy](image-9.png)
 ![Boxplot: lands owned vs strategy](image-10.png)
