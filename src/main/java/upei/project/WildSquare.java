@@ -27,16 +27,16 @@ public class WildSquare extends BoardSquare{
      */
     @Override
     public void playerOnLocation(Player player) {
-        int rand =(int) (random.nextFloat()*10) + 1;
+        int rand =(int) (random.nextFloat()*18) + 1;
         switch (rand){
             // advance to go
             case 1 -> player.setPos(0);
-            //Bank error in your favor. Collect $200.
-            case 2 -> player.addMoney(200);
+            //Bank error in your favor. Collect $100.
+            case 2 -> player.addMoney(100);
             //Doctor's fees. {fee} Pay $50
             case 3 -> player.subtractMoney(50);
-            //From sale of stock you get $50
-            case 4 -> player.addMoney(50);
+            //From sale of stock you get $20
+            case 4 -> player.addMoney(20);
             //School fees. Pay $50
             case 5 -> player.subtractMoney(50);
             //Go to Jail.
@@ -47,8 +47,25 @@ public class WildSquare extends BoardSquare{
             case 8 -> player.setPos(8);
             //Go Back Three {3} Spaces
             case 9 -> player.moveN(-3);
-            //Go Back Forward {3} Spaces
-            case 10 -> player.moveN(3);
+            //Go Forward {4} Spaces
+            case 10 -> player.moveN(4);
+            // advance to PORTSAID STATION
+            case 11 -> player.setPos(15);
+            // advance to water company
+            case 12 -> player.setPos(28);
+            // advance to EMIRATES
+            case 13 -> player.setPos(29);
+            // speeding fine $15
+            case 14 -> player.subtractMoney(15);
+            // pay hospital fees $100
+            case 15 -> player.subtractMoney(100);
+            // you have won second prize in a beauty contest. Collect $10
+            case 16 -> player.addMoney(10);
+            // advance to T3 STATION
+            case 17 -> player.setPos(25);
+            // advance to QATAR
+            case 18 -> player.setPos(37);
+
 
         }
     }

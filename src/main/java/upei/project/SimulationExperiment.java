@@ -8,7 +8,7 @@ public class SimulationExperiment {
     public static void main(String[] args) {
         HashMap<Integer, Player> dataset = new HashMap<>();
         ArrayList<Player> players;
-        for(int i=0; i<1; i++) {
+        for(int i=0; i<500; i++) {
             players = PlayersInit.getPlayers(new String[]{"Zeyad", "Hashem"},
                     new Player.strategy[]{Player.strategy.GREEDY, Player.strategy.STINGY});
             dataset.put(i, MonopolyGame.playGame(players));
