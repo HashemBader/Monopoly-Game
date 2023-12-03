@@ -1,7 +1,6 @@
 package upei.project.Setup;
 
 import upei.project.Player;
-import upei.project.SimulationExperiment;
 
 import java.util.ArrayList;
 

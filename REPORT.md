@@ -1,6 +1,6 @@
 # 2023F CS2910 Project Report
 **Group Members**
-1. Person 1 (Student Number)
+1. Zeyad Awad (362192)
 2. Person 2 (Student Number)
 
 # Summary of Game
@@ -10,9 +10,14 @@ the goal of the game and a brief description of the key objects in the game. Ple
 # Experiment Report
 ## Player Strategies
 _For each of 3 STRATEGY you implemented, name the strategy, and then description of it (100 words each)_
-1. Strategy 1: Description here
-2. Strategy 2: Description here
-3. Strategy 3: Description here
+1. Greedy: 
+    - Buys properties 70% of the time regardless of its type.
+    - Builds a house 90% of the time if possible.
+2. Stingy:
+    - Buys properties 20% of the time regardless of its type.
+    - Builds a house 10% of the time if possible.
+3. Default: Buys properties 50% of the time regardless of its type. If possible, builds a house 30% of the time.
+4. Station Guy: Buys properties 40% of the time with the exception of stations, which he buys 90% of the time. If possible, builds a house 10% of the time.
 
 ## Procedure
 _A description of your procedure for running the experiment on your code. This should include information 

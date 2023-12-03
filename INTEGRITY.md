@@ -12,6 +12,6 @@ outlined by my instructor and consistent with the Academic Regulation 20.
 
 Signatures:
 
-Student name (Student number)
+Zeyad Awad (362192)
 
 Student name (Student number)

@@ -1,6 +1,5 @@
 package upei.project;
 
-import upei.project.Properties.Property;
 import upei.project.Setup.BoardInit;
 import java.util.ArrayList;
 
