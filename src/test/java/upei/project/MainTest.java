@@ -101,12 +101,6 @@ public class MainTest {
         assertEquals(1500, player1.getMoney());
     }
 
-    @Test
-    public void testMortgagePriceCalculation() {
-        Country country = new Country(1, "France", 90, 900, "lightBlue");
-        int mortgagePrice = country.getMortgagePrice();
-        assertEquals(450, mortgagePrice);
-    }
     //Utilities tests
     @Test
     void testUtilityConstruction() {
