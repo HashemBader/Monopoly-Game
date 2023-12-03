@@ -23,6 +23,17 @@ public abstract class BoardSquare {
      */
     public abstract void playerOnLocation(Player player);
 
+    // getters and setters
+
+
+    public int getILOC() {
+        return ILOC;
+    }
+
+    public String getNAME() {
+        return NAME;
+    }
+
     /**
      * Provides a string representation of the BoardSquare.
      * @return A string displaying the location index and name of the BoardSquare.

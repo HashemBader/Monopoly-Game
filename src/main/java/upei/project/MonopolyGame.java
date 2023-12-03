@@ -49,7 +49,7 @@ public class MonopolyGame {
             if(hasMoved){ // position has changed, e.g., move back 3 steps.
                 boardMap.get(currPlayer.player.getPos()).playerOnLocation(currPlayer.player);
             }
-            System.out.println("PLAYER after: " + currPlayer.player + "\n" +currPlayer.player.getLandsOwned().size());
+            System.out.println("PLAYER after: " + currPlayer.player + "\n" +currPlayer.player.getLandsOwned());
 
             if (currPlayer.player.getMoney() == 0){
                 currPlayer.prev.next = currPlayer.next;
@@ -58,7 +58,7 @@ public class MonopolyGame {
                 numPlayers--;
             }
             currPlayer = currPlayer.next;
-            if(rounds > 1000){
+            if(rounds > 500){
                 System.out.println("broken!!!!");
                 break;
             }

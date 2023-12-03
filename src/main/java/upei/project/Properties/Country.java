@@ -49,26 +49,26 @@ public class Country extends Property {
      * Determines the action to be taken when a player lands on a country property.
      * @param player The player object representing the player who landed on the property.
      */
-    public void playerOnLocation(Player player){
-        if (this.getOwner() == player){
-            if(player.hasCompleteSet(this.COLOR, colorSetMapper.get(this.COLOR))){
-                if(player.makeHouseChoice(this) && this.numHouses < 4){
+    public void playerOnLocation(Player player) {
+        if (this.getOwner() == player) {
+            if (player.hasCompleteSet(this.COLOR, colorSetMapper.get(this.COLOR))) {
+                if (player.makeHouseChoice(this) && this.numHouses < 4) {
                     this.numHouses += 1;
                     player.subtractMoney(this.housePrice);
                 }
             }
         }
-        else if (this.getOwner() != player && this.getOwner() == null){ // Property not owned
-            if (player.makeChoice(this)){// make a choice depend on the strategy
+        else if (this.getOwner() != player && this.getOwner() == null) { // Property not owned
+            if (player.makeChoice(this)) {// make a choice depend on the strategy
                 this.setOwner(player);
                 player.subtractMoney(this.getBuyPrice());
             }
-        }
-        else{ // A player has landed on another player's property
+        } else { // A player has landed on another player's property
             player.subtractMoney(this.calcRent());// Deduct rent from the current player
             getOwner().addMoney(this.calcRent());// Add rent to the property owner's money
         }
     }
+
     // Getter and Setter methods for various attributes
 
 
@@ -109,6 +109,13 @@ public class Country extends Property {
     }
     public int getHousePrice(){
         return this.housePrice;
+    }
+
+    @Override
+    public String toString() {
+        return "Country{" +
+                "COLOR='" + COLOR + '\'' +
+                "} " + super.toString();
     }
 }
 

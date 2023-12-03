@@ -1,13 +1,11 @@
 package upei.project;
 import org.junit.jupiter.api.Test;
 import upei.project.Properties.Country;
-import upei.project.Properties.Property;
 import upei.project.Properties.Station;
 import upei.project.Properties.Utility;
 import upei.project.Setup.BoardInit;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,21 +18,6 @@ public class MainTest {
         assertEquals(country, country);
 
     }
-
-    /*@Test
-    public void testUtilitiesRent(){
-        Player p1 = new Player(1500);
-        Player p2 = new Player(1500);
-        ((Property) MonopolyGame.boardMap.get(12)).setOwner(p1);
-        ((Property) MonopolyGame.boardMap.get(28)).setOwner(p1);
-        p2.rollDice();
-        MonopolyGame.boardMap.get(12).playerOnLocation(p2);
-        assertEquals(1500, ""+p2+" "+Player.diceVal);
-    }*/
-
-
-    // ============== NEW ======================
-
     @Test
     public void testOwner(){
         Country egypt = new Country(0, "Egypt", 1000, 190000,"red");
@@ -168,6 +151,33 @@ public class MainTest {
         assertEquals(player1, utility.getOwner(), "Owner should remain the same");
         assertEquals(1500, player1.getMoney(), "Player should not lose money");
     }
+    @Test
+    public void testStationOwnedOnly() {
+        Player p1 = new Player(1500);
+        Station s1 = new Station(0, "station1",250);
+        Station s2 = new Station(1, "station2",250);
+        Country country = new Country(3,"canada",3,200,"pink");
+        s1.setOwner(p1);
+        s2.setOwner(p1);
+        country.setOwner(p1);
+        assertEquals("[Station{}" +
+                " Property{" +
+                "owner=anonymous," +
+                " buyPrice=250," +
+                " baseRent=25" +
+                "}" +
+                " BoardLocation{" +
+                "iLoc=0," +
+                " name='station1'" +
+                "}, Station{}" +
+                " Property{" +
+                "owner=anonymous," +
+                " buyPrice=250," +
+                " baseRent=25" +
+                "} " +
+                "BoardLocation{" +
+                "iLoc=1, name='station2'}]", p1.getLandsOwnedOfType(Station.class).toString());
+    }
     // station tests
     @Test
     void testStationConstruction() {
@@ -218,6 +228,14 @@ public class MainTest {
     //wildsquare tests
 /*    @Test
 */
+
+    @Test
+    public void testWildSquareConstruction() {
+        WildSquare wildSquare = new WildSquare(5, "Community Chest");
+        assertNotNull(wildSquare);
+        assertEquals(5, wildSquare.getILOC());
+        assertEquals("Community Chest", wildSquare.getNAME());
+    }
     @Test
     void testPlayerOnLocation_AdvanceToGo() {
         // -1 Go
@@ -253,11 +271,6 @@ public class MainTest {
     }
     @Test
     void testPlayerGoToJail_deduction() {
-        // -1 Go
-        // 0 Morocco
-        // 101010 Qatar
-        // 1010101 Lebanon
-        // 1417105 Go to Jail
         long seed1 = 1417105; //WildSquare's go to jail
         long seed2 = -90; //Jail's 50 deduction
         WildSquare chance = new WildSquare(1, "Chance");
@@ -270,27 +283,6 @@ public class MainTest {
 
         assertEquals(1450, player.getMoney(), "Player should go to jail!");
     }
-
-/*    @Test
-    void testPlayerOnLocation_BankError() {// it is random process so when the random is the same as the "iloc" it works
-        WildSquare wildSquare = new WildSquare(2, "Wild Square");
-        Player player = new Player(1000);
-
-        wildSquare.playerOnLocation(player);
-
-        assertEquals(1200, player.getMoney(), "Player should collect $200");
-    }*/
-
-/*    @Test
-    void testPlayerOnLocation_DoctorsFees() {// it is random process so when the random is the same as the "iloc" it works
-        WildSquare wildSquare = new WildSquare(3, "Wild Square");
-        Player player = new Player(1000);
-
-        wildSquare.playerOnLocation(player);
-
-        assertEquals(950, player.getMoney(), "Player should pay $50 for doctor's fees");
-    }*/
-    // tax tests
     @Test
     void testPlayerOnLocation_TaxAtPosition4() {
         Tax taxSquare = new Tax(4, "Income Tax");
@@ -338,19 +330,31 @@ public class MainTest {
     @Test
     void testLandsOwned() {
         Player p1 = new Player(1500);
-        Player p2 = new Player(1500);
         Country egypt = new Country(39,"egypt",50,400,"darkBlue");
         Country qatar = new Country(37,"qatar",50,400,"darkBlue");
         Utility util = new Utility(1, "util", 100);
-        Utility util2 = new Utility(1, "util", 100);
         util.setOwner(p1);
-        util2.setOwner(p1);
         egypt.setOwner(p1);
         qatar.setOwner(p1);
-        MonopolyGame.rollDice();
-        util2.playerOnLocation(p2);
-        System.out.println(MonopolyGame.getDiceVal());
-        assertEquals(1500-MonopolyGame.getDiceVal()*10, p2.getMoney(), "Paid different rent!");
+        assertEquals("[Utility{" +
+                "Property{" +
+                "owner=anonymous, buyPrice=100, baseRent=0} " +
+                "" +
+                "BoardLocation{iLoc=1, name='util'}}, " +
+                "Country{COLOR='darkBlue'} " +
+                "Property{owner=anonymous, buyPrice=400, baseRent=50} " +
+                "BoardLocation{iLoc=39, name='egypt'}," +
+                " Country{COLOR='darkBlue'}" +
+                " Property{owner=anonymous, buyPrice=400, baseRent=50}" +
+                " BoardLocation{iLoc=37, name='qatar'}]", p1.getLandsOwned().toString(), "checking the landsowned");
+    }
+    @Test
+    void testLandsOwnedEmpty() {
+        Player p1 = new Player(1500);
+        Country egypt = new Country(39,"egypt",50,400,"darkBlue");
+        Country qatar = new Country(37,"qatar",50,400,"darkBlue");
+        Utility util = new Utility(1, "util", 100);
+        assertEquals(0, p1.getLandsOwned().size(), "checking the landsowned");
     }
     @Test
     void testHasCompleteSet() {
@@ -377,9 +381,142 @@ public class MainTest {
         egypt.setOwner(p1);
         qatar.setOwner(p1);
         egypt.playerOnLocation(p1);
-        // todo edge and beyond
         assertEquals(egypt.getNumHouses(), 1);
     }
+    @Test
+    void testBuildHouseEdge(){
+        // seed -42 buys on default
+        Country egypt = new Country(39, "egypt", 50, 400, "darkBlue");
+        Country qatar = new Country(37, "qatar", 50, 400, "darkBlue");
+        Player p1 = new Player(1500);
+        Player p2 = new Player(1500);
+        p1.setSeed(-42);
+        egypt.setOwner(p1);
+        qatar.setOwner(p1);
+        egypt.playerOnLocation(p1);
+        egypt.playerOnLocation(p1);
+        egypt.playerOnLocation(p1);
+        egypt.playerOnLocation(p1);// it landed 5 times but max is 4 houses
+        egypt.playerOnLocation(p1);
+        assertEquals(egypt.getNumHouses(), 4);
+    }
+    @Test
+    void testBuildHouseIllegally(){
+        // seed -42 buys on default
+        Country egypt = new Country(39, "egypt", 50, 400, "yellow");
+        Country qatar = new Country(37, "qatar", 50, 400, "yellow");
+        Country canada = new Country(37, "qatar", 50, 400, "yellow");
+        Player p1 = new Player(1500);
+        Player p2 = new Player(1500);
+        p1.setSeed(-42);
+        egypt.setOwner(p1);
+        qatar.setOwner(p1);
+        canada.setOwner(p2);
+        egypt.playerOnLocation(p1);
+        egypt.playerOnLocation(p1);
+        egypt.playerOnLocation(p2);
+        egypt.playerOnLocation(p1);// he can not buy houses because he doesnt have the full set
+        egypt.playerOnLocation(p1);
+        assertEquals(egypt.getNumHouses(), 0);
+    }
+    @Test
+    void testDeductMoney(){// pays only full set withour houses
+        // seed -42 buys on default
+        Country egypt = new Country(39, "egypt", 50, 400, "yellow");
+        Country qatar = new Country(37, "qatar", 50, 400, "yellow");
+        Country canada = new Country(37, "qatar", 50, 400, "yellow");
+        Player p1 = new Player(1500);
+        Player p2 = new Player(1500);
+        p1.setSeed(-42);
+        egypt.setOwner(p1);
+        qatar.setOwner(p1);
+        canada.setOwner(p1);
+        egypt.playerOnLocation(p2);
+
+        assertEquals(1500+50*2, p1.getMoney());
+        assertEquals(1500-50*2, p2.getMoney());
+    }
+    @Test
+    void testDeductMoney1House(){// pays only full set withour houses
+        // seed -42 buys on default
+        Country egypt = new Country(39, "egypt", 50, 400, "yellow");
+        Country qatar = new Country(37, "qatar", 50, 400, "yellow");
+        Country canada = new Country(37, "qatar", 50, 400, "yellow");
+        Player p1 = new Player(1500);
+        Player p2 = new Player(1500);
+        p1.setSeed(-42);
+        egypt.setOwner(p1);
+        qatar.setOwner(p1);
+        canada.setOwner(p1);
+        egypt.playerOnLocation(p1);
+        egypt.playerOnLocation(p2);
+
+        assertEquals(1500+(50*5)-egypt.getHousePrice(), p1.getMoney());
+        assertEquals(1500-(50*5), p2.getMoney());
+    }
+    @Test
+    void testDeductMoney2Houses(){// pays only full set withour houses
+        // seed -42 buys on default
+        Country egypt = new Country(39, "egypt", 50, 400, "yellow");
+        Country qatar = new Country(37, "qatar", 50, 400, "yellow");
+        Country canada = new Country(37, "qatar", 50, 400, "yellow");
+        Player p1 = new Player(1500);
+        Player p2 = new Player(1500);
+
+        p1.setSeed(-42);
+        egypt.setOwner(p1);
+        qatar.setOwner(p1);
+        canada.setOwner(p1);
+        egypt.playerOnLocation(p1);
+        egypt.playerOnLocation(p1);
+        egypt.playerOnLocation(p2);
+
+        assertEquals(1500+(50*5*3)-egypt.getHousePrice()*2, p1.getMoney());
+        assertEquals(1500-(50*5*3), p2.getMoney());
+    }
+    @Test
+    void testDeductMoney3Houses(){// pays only full set withour houses
+        // seed -42 buys on default
+        Country egypt = new Country(39, "egypt", 50, 400, "pink");
+        Country qatar = new Country(37, "qatar", 50, 400, "pink");
+        Country canada = new Country(37, "qatar", 50, 400, "pink");
+        Player p1 = new Player(1500);
+        Player p2 = new Player(1500);
+
+        p1.setSeed(-42);
+        egypt.setOwner(p1);
+        qatar.setOwner(p1);
+        canada.setOwner(p1);
+        egypt.playerOnLocation(p1);
+        egypt.playerOnLocation(p1);
+        egypt.playerOnLocation(p1);
+        egypt.playerOnLocation(p2);
+
+        assertEquals(1500+(50*5*3*2)-egypt.getHousePrice()*3, p1.getMoney());
+        assertEquals(1500-(50*5*3*2), p2.getMoney());
+    }
+    @Test
+    void testDeductMoney4Houses(){// pays only full set withour houses
+        // seed -42 buys on default
+        Country egypt = new Country(39, "egypt", 50, 400, "pink");
+        Country qatar = new Country(37, "qatar", 50, 400, "pink");
+        Country canada = new Country(37, "qatar", 50, 400, "pink");
+        Player p1 = new Player(4500);
+        Player p2 = new Player(4500);
+        p1.setSeed(5556853);
+        egypt.setOwner(p1);
+        qatar.setOwner(p1);
+        canada.setOwner(p1);
+        egypt.playerOnLocation(p1);
+        egypt.playerOnLocation(p1);
+        egypt.playerOnLocation(p1);
+        egypt.playerOnLocation(p1);
+        egypt.playerOnLocation(p2);
+
+        assertEquals(4500+(50*5*3*3)-egypt.getHousePrice()*4, p1.getMoney());
+        assertEquals(4500-(50*5*3*3), p2.getMoney());
+    }
+
 }
 
 
