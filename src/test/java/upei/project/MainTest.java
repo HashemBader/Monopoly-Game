@@ -22,7 +22,7 @@ public class MainTest {
         Country egypt = new Country(0, "Egypt", 1000, 190000,"red");
         Player p1 = new Player(1500);
         egypt.setOwner(p1);
-        egypt.playerOnLocation(p1);
+        egypt.playerOnLocation(p1);// makes the action that needs to be taken
         assertEquals(p1, egypt.getOwner());
     }
     /**
@@ -34,7 +34,7 @@ public class MainTest {
         Player p1 = new Player(1500);
         p1.setPos(30); //Goto jail
         ArrayList<BoardSquare> boardMap = BoardInit.createBoard();
-        boardMap.get(p1.getPos()).playerOnLocation(p1);
+        boardMap.get(p1.getPos()).playerOnLocation(p1);// makes the action that needs to be taken
         assertEquals(10, p1.getPos());
     }
     /**
@@ -101,7 +101,13 @@ public class MainTest {
     @Test
     public void testCountryConstruction() {
         Country country = new Country(1, "Canada", 50, 500, "red");
+        assertEquals(500, country.getBuyPrice(), "Buy price should match");
+        assertNull(country.getOwner(), "Owner should be null initially");
         assertNotNull(country, "Instance is null !");
+        assertEquals(50, country.getBaseRent(), "Validate base rent of the country");
+        assertEquals(1, country.getILOC(), "Validate position of the country");
+        assertEquals("Canada", country.getNAME(), "Validate name of the country");
+        assertEquals("red", country.getColor(), "Validate color associated with the country");
     }
     /**
      * Tests the scenario when a player lands on a country where an owner exists.
@@ -156,6 +162,9 @@ public class MainTest {
         assertEquals(150, utility.getBuyPrice(), "Buy price should match");
         assertNull(utility.getOwner(), "Owner should be null initially");
         assertNotNull(utility, "Utility should not be null!");
+        assertEquals(0, utility.getBaseRent(), "Validate base rent of the country");
+        assertEquals(1, utility.getILOC(), "Validate position of the country");
+        assertEquals("Electric Company", utility.getNAME(), "Validate name of the country");
     }
     /**
      * Tests the scenario when a player lands on a utility with no existing owner using seed 1.
@@ -243,6 +252,7 @@ public class MainTest {
         assertEquals(25, station.getBaseRent(), "Rent should match"); //rent is fixed for stations
         assertEquals(200, station.getBuyPrice(), "Buy price should match");
         assertNull(station.getOwner(), "Owner should be null initially");
+        assertNotNull(station, "Station should not be null!");
     }
     /**
      * Tests the scenario when a player lands on a station with no existing owner using seed 1.
@@ -267,7 +277,7 @@ public class MainTest {
     void testPlayerOnLocation_OwnerExistsForStation() {
         Player player1 = new Player(1000);
         Player player2 = new Player(1000);
-        Station station = new Station(3, "Liverpool Street Station", 150);
+        Station station = new Station(3, "Liverpool Station", 150);
         station.setOwner(player1);
         station.playerOnLocation(player2);
         assertEquals(player1, station.getOwner(), "Owner should remain the same");
@@ -314,6 +324,7 @@ public class MainTest {
         assertNotNull(wildSquare);
         assertEquals(5, wildSquare.getILOC());
         assertEquals("Community Chest", wildSquare.getNAME());
+        assertNotNull(wildSquare, "Station should not be null!");
     }
     /**
      * Tests the scenario when a player lands on a WildSquare advancing to 'Go'.
@@ -339,7 +350,7 @@ public class MainTest {
         Player player = new Player(1500);
         chance.setSeed(SEED);// advance to go card
         chance.playerOnLocation(player);
-        assertEquals(15, player.getPos(), "Player should advance to 'Go'");
+        assertEquals(15, player.getPos(), "Player should advance to 'PortSaid'");
     }
     /**
      * Tests the scenario where a player lands on a WildSquare with the effect of advancing the player to a specific country (in this case, 'Egypt').
@@ -352,7 +363,7 @@ public class MainTest {
         Player player = new Player(1500);
         chance.setSeed(SEED);// advance to go card
         chance.playerOnLocation(player);
-        assertEquals(39, player.getPos(), "Player should advance to 'Go'");
+        assertEquals(39, player.getPos(), "Player should advance to 'Egypt'");
     }
     /**
      * Tests the scenario when a player lands on the 'Go to Jail' WildSquare.
@@ -370,7 +381,7 @@ public class MainTest {
         chance.playerOnLocation(player);
         jail.playerOnLocation(player);
 
-        assertEquals(1500, player.getMoney(), "Player should go to jail!");
+        assertEquals(1500, player.getMoney());
     }
     /**
      * Tests the scenario when a player lands on the 'Go to Jail' WildSquare with deduction.
@@ -388,7 +399,7 @@ public class MainTest {
         chance.playerOnLocation(player);
         jail.playerOnLocation(player);
 
-        assertEquals(1450, player.getMoney(), "Player should go to jail!");
+        assertEquals(1450, player.getMoney());
     }
     /**
      * Tests the scenario when a player lands on a tax square at position 4.
@@ -446,7 +457,7 @@ public class MainTest {
         egypt.setOwner(p1);
         qatar.setOwner(p1);
         egypt.playerOnLocation(p2);
-        assertEquals(1500-50, p2.getMoney(), "Paid different rent!");
+        assertEquals(1500-50, p2.getMoney(), "Paid base rent");
     }
     /**
      * Tests the scenario when a player owns multiple properties and utilities.
