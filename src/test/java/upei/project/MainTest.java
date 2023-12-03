@@ -45,10 +45,9 @@ public class MainTest {
     public void testGetOutOfJail_NoDeduction(){
         //seed 1 gets out with no deduction
         Player p1 = new Player(1500);
-        long seed = 1;
-        ArrayList<BoardSquare> boardMap = BoardInit.createBoard();
+        final long SEED = 1;
         Jail jail = new Jail(10, "jail");
-        jail.setSeed(seed);
+        jail.setSeed(SEED);
         jail.playerOnLocation(p1);
         assertEquals(1500, p1.getMoney()); // got out with no deductions
     }
@@ -60,10 +59,9 @@ public class MainTest {
     public void testGetOutOfJail_Deduction(){
         //seed 2 gets out with 50 deduction
         Player p1 = new Player(1500);
-        long seed = 2;
-        ArrayList<BoardSquare> boardMap = BoardInit.createBoard();
+        final long SEED = 2;
         Jail jail = new Jail(10, "jail");
-        jail.setSeed(seed);
+        jail.setSeed(SEED);
         jail.playerOnLocation(p1);
         assertEquals(1450, p1.getMoney()); // got out with no deductions
     }
@@ -136,10 +134,10 @@ public class MainTest {
 
     @Test
     public void testPlayerOnLocation_NoOwnerForCountry() {
-        long seed = 1;// should buy the country for all strategies
+        final long SEED = 1;// should buy the country for all strategies
         Player player1 = new Player(1500);
         Country country = new Country(1, "Brazil", 80, 800, "pink");
-        player1.setSeed(1);
+        player1.setSeed(SEED);
         country.playerOnLocation(player1);
         assertEquals(player1, country.getOwner());
         assertEquals(700, player1.getMoney());
@@ -163,9 +161,9 @@ public class MainTest {
     @Test
     void testPlayerOnLocation_NoOwnerForUtility() {
         //seed 1 should buy the utility for all strategies
-        long seed = 1;
+        final long SEED = 1;
         Player player1 = new Player(1500, Player.strategy.STINGY);
-        player1.setSeed(seed);
+        player1.setSeed(SEED);
         Utility utility = new Utility(2, "Water Works", 200);
 
         utility.playerOnLocation(player1);
@@ -250,10 +248,10 @@ public class MainTest {
     @Test
     void testPlayerOnLocation_NoOwnerForStation() {
         // seed 1 should buy the station
-        long seed = 1;
+        final long SEED = 1;
         Player player1 = new Player(1500, Player.strategy.STATION_GUY);
-        player1.setSeed(1);
-        Station station = new Station(2, "Fenchurch Street Station", 150);
+        player1.setSeed(SEED);
+        Station station = new Station(2, "T3 Station", 150);
         station.playerOnLocation(player1);
         assertEquals(player1, station.getOwner(), "Player should become the owner");
         assertEquals(1350, player1.getMoney(), "Player should have deducted money after buying the station");
@@ -292,7 +290,7 @@ public class MainTest {
         Player player1 = new Player(1500);
         Player player2 = new Player(1500);
         Station station1 = new Station(5, "T3 Station", 150);
-        Station station2 = new Station(6, "Euston Station", 150);
+        Station station2 = new Station(6, "T4 Station", 150);
         station1.setOwner(player1);
         station2.setOwner(player1);
         station1.playerOnLocation(player2);
@@ -317,12 +315,30 @@ public class MainTest {
      */
     @Test
     void testPlayerOnLocation_AdvanceToGo() {
-            long seed = -1;// Wildsquare's Advance to go
+            final long SEED = -1;// WildSquare's Advance to go
         WildSquare chance = new WildSquare(1, "Chance");
         Player player = new Player(1500);
-        chance.setSeed(seed);// advance to go card
+        chance.setSeed(SEED);// advance to go card
         chance.playerOnLocation(player);
         assertEquals(0, player.getPos(), "Player should advance to 'Go'");
+    }
+    @Test
+    void testPlayerOnLocation_AdvanceToPortSaidStation() {
+        final long SEED = -653734342;// WildSquare's Advance to go
+        WildSquare chance = new WildSquare(1, "Chance");
+        Player player = new Player(1500);
+        chance.setSeed(SEED);// advance to go card
+        chance.playerOnLocation(player);
+        assertEquals(15, player.getPos(), "Player should advance to 'Go'");
+    }
+    @Test
+    void testPlayerOnLocation_AdvanceToEgypt() {
+        final long SEED = -14324312;// WildSquare's Advance to go
+        WildSquare chance = new WildSquare(1, "Chance");
+        Player player = new Player(1500);
+        chance.setSeed(SEED);// advance to go card
+        chance.playerOnLocation(player);
+        assertEquals(39, player.getPos(), "Player should advance to 'Go'");
     }
     /**
      * Tests the scenario when a player lands on the 'Go to Jail' WildSquare.
@@ -330,13 +346,13 @@ public class MainTest {
      */
     @Test
     void testPlayerGoToJail_noDeduction() {
-        long seed1 = 1417105; //WildSquare's go to jail
-        long seed2 = 1; // Jail's 50 deduction
+        final long SEED1 = 1417105; //WildSquare's go-to jail
+        final long SEED2 = 1; // Jail's 50 deduction
         WildSquare chance = new WildSquare(1, "Chance");
         Jail jail = new Jail(10, "jail");
-        jail.setSeed(seed2);
+        jail.setSeed(SEED2);
         Player player = new Player(1500);
-        chance.setSeed(seed1); // go to jail card
+        chance.setSeed(SEED1); // go to jail card
         chance.playerOnLocation(player);
         jail.playerOnLocation(player);
 
@@ -348,13 +364,13 @@ public class MainTest {
      */
     @Test
     void testPlayerGoToJail_deduction() {
-        long seed1 = 1417105; //WildSquare's go to jail
-        long seed2 = -90; //Jail's 50 deduction
+        final long SEED1 = 1417105; //WildSquare's go-to jail
+        final long SEED2 = -90; //Jail's 50 deduction
         WildSquare chance = new WildSquare(1, "Chance");
         Jail jail = new Jail(10, "jail");
-        jail.setSeed(seed1);
+        jail.setSeed(SEED1);
         Player player = new Player(1500);
-        chance.setSeed(seed2); // go to jail card
+        chance.setSeed(SEED2); // go to jail card
         chance.playerOnLocation(player);
         jail.playerOnLocation(player);
 
@@ -434,14 +450,13 @@ public class MainTest {
         assertEquals("[Utility{" +
                 "Property{" +
                 "owner=anonymous, buyPrice=100, baseRent=0} " +
-                "" +
                 "BoardLocation{iLoc=1, name='util'}}, " +
                 "Country{COLOR='darkBlue'} " +
                 "Property{owner=anonymous, buyPrice=400, baseRent=50} " +
                 "BoardLocation{iLoc=39, name='egypt'}," +
                 " Country{COLOR='darkBlue'}" +
                 " Property{owner=anonymous, buyPrice=400, baseRent=50}" +
-                " BoardLocation{iLoc=37, name='qatar'}]", p1.getLandsOwned().toString(), "checking the landsowned");
+                " BoardLocation{iLoc=37, name='qatar'}]", p1.getLandsOwned().toString(), "checking the lands owned");
     }
     /**
      * Tests the scenario when a player doesn't own any properties or utilities.
@@ -450,10 +465,7 @@ public class MainTest {
     @Test
     void testLandsOwnedEmpty() {
         Player p1 = new Player(1500);
-        Country egypt = new Country(39,"egypt",50,400,"darkBlue");
-        Country qatar = new Country(37,"qatar",50,400,"darkBlue");
-        Utility util = new Utility(1, "util", 100);
-        assertEquals(0, p1.getLandsOwned().size(), "checking the landsowned");
+        assertEquals(0, p1.getLandsOwned().size(), "checking the lands owned");
     }
     /**
      * Tests the scenario when a player owns a complete set of countries of the same color.
@@ -487,7 +499,6 @@ public class MainTest {
         Country egypt = new Country(39, "egypt", 50, 400, "darkBlue");
         Country qatar = new Country(37, "qatar", 50, 400, "darkBlue");
         Player p1 = new Player(1500);
-        Player p2 = new Player(1500);
         p1.setSeed(-42);
         egypt.setOwner(p1);
         qatar.setOwner(p1);
@@ -504,7 +515,6 @@ public class MainTest {
         Country egypt = new Country(39, "egypt", 50, 400, "darkBlue");
         Country qatar = new Country(37, "qatar", 50, 400, "darkBlue");
         Player p1 = new Player(1500);
-        Player p2 = new Player(1500);
         p1.setSeed(-42);
         egypt.setOwner(p1);
         qatar.setOwner(p1);
