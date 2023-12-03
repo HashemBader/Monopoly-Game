@@ -13,10 +13,10 @@ public class SimulationExperiment {
 
     public static int numOfInf = 0;
     public static void main(String[] args) {
-
+        final int TRIALS = 2000;
         HashMap<Integer, Player> dataset = new HashMap<>();
         ArrayList<Player> players;
-        for(int i=0; i<2000; i++) {
+        for(int i=0; i<TRIALS; i++) {
             players = PlayersInit.getPlayers(new String[]{"Zeyad", "Hashem"},
                     new Player.strategy[]{Player.strategy.STATION_GUY, Player.strategy.UTILITY_GUY});
             dataset.put(i, MonopolyGame.playGame(players));
