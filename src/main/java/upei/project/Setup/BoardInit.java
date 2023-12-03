@@ -6,8 +6,17 @@ import upei.project.Properties.Station;
 import upei.project.Properties.Utility;
 
 import java.util.ArrayList;
-
+/**
+ * BoardInit class responsible for initializing the game board with different types of BoardSquare objects.
+ * Used to create an ArrayList representing the game board layout.
+ */
 public class BoardInit {
+    /**
+     * Creates and initializes the game board with various BoardSquare objects.
+     * Each BoardSquare represents a specific property, utility, station, tax, or miscellaneous square on the board.
+     *
+     * @return ArrayList<BoardSquare> representing the initialized game board.
+     */
     public static ArrayList<BoardSquare> createBoard(){
         ArrayList<BoardSquare> boardMap = new ArrayList<>();
         // Adding different types of BoardSquare objects to the board
