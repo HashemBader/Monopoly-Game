@@ -516,6 +516,23 @@ public class MainTest {
         assertEquals(4500+(50*5*3*3)-egypt.getHousePrice()*4, p1.getMoney());
         assertEquals(4500-(50*5*3*3), p2.getMoney());
     }
+    @Test
+    void testmama(){
+        Player player = new Player(1500);
+        ArrayList<BoardSquare> bordMap = BoardInit.createBoard();
+     int pos = player.getPos();
+
+        ((WildSquare) bordMap.get(2)).setSeed(312116534);
+
+     bordMap.get(2).playerOnLocation(player);
+     boolean hasMoved = false;
+    hasMoved = pos != player.getPos();
+            if(hasMoved) { // position has changed, e.g., move back 3 steps.
+                bordMap.get(player.getPos()).playerOnLocation(player);
+            }
+            assertEquals(30, hasMoved);
+
+    }
 
 }
 
