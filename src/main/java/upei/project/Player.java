@@ -19,7 +19,7 @@ public class Player {
     private int money;
     private String name;
     private int pos;
-    private strategy pStrategy = strategy.DEFAULT;
+    private strategy pStrategy;
     private ArrayList<Property> landsOwned;
     private Random random = new Random(); // Random object for making decisions(for testing)
 
@@ -32,6 +32,7 @@ public class Player {
         this.pos = 0;
         this.landsOwned = new ArrayList<>();
         this.name = "anonymous";
+        this.pStrategy  = strategy.DEFAULT;
     }
     /**
      * Constructor to create a player with a specific initial money and strategy.

@@ -131,7 +131,10 @@ public class MainTest {
         assertEquals(player1, country.getOwner());
         assertEquals(1500, player1.getMoney());
     }
-
+    /**
+     * Tests the scenario where a player purchases a country when no owner exists for the country.
+     * The player should successfully purchase the country.
+     */
     @Test
     public void testPlayerOnLocation_NoOwnerForCountry() {
         final long SEED = 1;// should buy the country for all strategies
@@ -271,7 +274,10 @@ public class MainTest {
         assertEquals(1025, player1.getMoney(), "Owner should receive rent");
         assertEquals(975, player2.getMoney(), "Player landing should pay rent");
     }
-
+    /**
+     * Tests the scenario where the current player landing on a station already owned by themselves.
+     * The player remains the owner, and no money is deducted.
+     */
     @Test
     void testPlayerOnLocation_CurrentPlayerIsOwnerForStation() {
         Player player1 = new Player(1500);
@@ -322,6 +328,10 @@ public class MainTest {
         chance.playerOnLocation(player);
         assertEquals(0, player.getPos(), "Player should advance to 'Go'");
     }
+    /**
+     * Tests the scenario where a player lands on a WildSquare with the effect of advancing the player to a specific station.
+     * The player should advance to the position of a particular station ('Port Said' station in this case).
+     */
     @Test
     void testPlayerOnLocation_AdvanceToPortSaidStation() {
         final long SEED = -653734342;// WildSquare's Advance to go
@@ -331,6 +341,10 @@ public class MainTest {
         chance.playerOnLocation(player);
         assertEquals(15, player.getPos(), "Player should advance to 'Go'");
     }
+    /**
+     * Tests the scenario where a player lands on a WildSquare with the effect of advancing the player to a specific country (in this case, 'Egypt').
+     * The player should advance to the position representing the 'Egypt' country on the board.
+     */
     @Test
     void testPlayerOnLocation_AdvanceToEgypt() {
         final long SEED = -14324312;// WildSquare's Advance to go
@@ -495,7 +509,7 @@ public class MainTest {
      */
     @Test
     void testBuildHouse(){
-        // seed -42 buys on default
+        // seed -42 buys on default strategy
         Country egypt = new Country(39, "egypt", 50, 400, "darkBlue");
         Country qatar = new Country(37, "qatar", 50, 400, "darkBlue");
         Player p1 = new Player(1500);
@@ -511,7 +525,7 @@ public class MainTest {
      */
     @Test
     void testBuildHouseEdge(){
-        // seed -42 buys on default
+        // seed -42 buys on default strategy
         Country egypt = new Country(39, "egypt", 50, 400, "darkBlue");
         Country qatar = new Country(37, "qatar", 50, 400, "darkBlue");
         Player p1 = new Player(1500);
@@ -534,7 +548,7 @@ public class MainTest {
      */
     @Test
     void testBuildHouseIllegally(){
-        // seed -42 buys on default
+        // seed -42 buys on default strategy
         Country egypt = new Country(39, "egypt", 50, 400, "yellow");
         Country qatar = new Country(37, "qatar", 50, 400, "yellow");
         Country canada = new Country(37, "qatar", 50, 400, "yellow");
@@ -557,7 +571,7 @@ public class MainTest {
      */
     @Test
     void testDeductMoney(){
-        // seed -42 buys on default
+        // seed -42 buys on default strategy
         Country egypt = new Country(39, "egypt", 50, 400, "yellow");
         Country qatar = new Country(37, "qatar", 50, 400, "yellow");
         Country canada = new Country(37, "qatar", 50, 400, "yellow");
@@ -578,7 +592,7 @@ public class MainTest {
      */
     @Test
     void testDeductMoney1House(){
-        // seed -42 buys on default
+        // seed -42 buys on default strategy
         Country egypt = new Country(39, "egypt", 50, 400, "yellow");
         Country qatar = new Country(37, "qatar", 50, 400, "yellow");
         Country canada = new Country(37, "qatar", 50, 400, "yellow");
@@ -600,7 +614,7 @@ public class MainTest {
      */
     @Test
     void testDeductMoney2Houses(){
-        // seed -42 buys on default
+        // seed -42 buys on default strategy
         Country egypt = new Country(39, "egypt", 50, 400, "yellow");
         Country qatar = new Country(37, "qatar", 50, 400, "yellow");
         Country canada = new Country(37, "qatar", 50, 400, "yellow");
@@ -625,7 +639,7 @@ public class MainTest {
      */
     @Test
     void testDeductMoney3Houses(){
-        // seed -42 buys on default
+        // seed -42 buys on default strategy
         Country egypt = new Country(39, "egypt", 50, 400, "pink");
         Country qatar = new Country(37, "qatar", 50, 400, "pink");
         Country canada = new Country(37, "qatar", 50, 400, "pink");
