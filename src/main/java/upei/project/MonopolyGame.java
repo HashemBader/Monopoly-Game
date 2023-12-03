@@ -50,6 +50,8 @@ public class MonopolyGame {
         // Game simulation loop until 1 player is left
         while (numPlayers > 1) {
             diceVal = rollDice();
+            //System.out.println("DICEVAL: " + MonopolyGame.getDiceVal());
+            //System.out.println("PLAYER before: " + currPlayer.player);
             currPlayer.player.moveN(diceVal);
             pos = currPlayer.player.getPos();
             boardMap.get(currPlayer.player.getPos()).playerOnLocation(currPlayer.player);// takes the action that needs to be taken in this square
@@ -57,6 +59,8 @@ public class MonopolyGame {
 
             if (hasMoved) {// checks if the player changed his position by a community chest or chance or jail
                 boardMap.get(currPlayer.player.getPos()).playerOnLocation(currPlayer.player);// takes the action again that needs to be taken in this square
+                //System.out.println("PLAYER after: " + currPlayer.player + "\n" +currPlayer.player.getLandsOwned());
+
             }
             // the player lost
             if (currPlayer.player.getMoney() == 0) {
@@ -68,10 +72,16 @@ public class MonopolyGame {
             currPlayer = currPlayer.next;
             // it is believed that a 2 player monopoly game has a 12% chance to not end
             if (currPlayer.player.getMoney() > 100000) {
+                //System.out.println("broken!!!!");
+
                 SimulationExperiment.numOfInf += 1;
                 return null;
             }
+            //System.out.println("PLAYER after: " + currPlayer.player + "\n" + currPlayer.player.getLandsOwned());
+
         }
+        //System.out.println("Winner: " + currPlayer.player + "\n" + currPlayer.player.getLandsOwned());
+
         return currPlayer.player;
     }
 
