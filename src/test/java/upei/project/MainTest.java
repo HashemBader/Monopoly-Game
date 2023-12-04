@@ -3,7 +3,7 @@ import org.junit.jupiter.api.Test;
 import upei.project.Properties.Country;
 import upei.project.Properties.Station;
 import upei.project.Properties.Utility;
-import upei.project.Setup.BoardInit;
+import upei.project.SetupUtils.BoardInit;
 import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 

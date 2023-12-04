@@ -2,8 +2,8 @@ package upei.project;
 import upei.project.Properties.Country;
 import upei.project.Properties.Station;
 import upei.project.Properties.Utility;
-import upei.project.Setup.BoardInit;
-import upei.project.Setup.PlayersInit;
+import upei.project.SetupUtils.BoardInit;
+import upei.project.SetupUtils.PlayersInit;
 
 import java.io.FileWriter;
 import java.io.IOException;
