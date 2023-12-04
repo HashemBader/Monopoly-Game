@@ -21,7 +21,7 @@ public class SimulationExperiment {
      */
     public static void main(String[] args) {
         // Note: the csv output is located in ./data_unused/
-        final int TRIALS = 2000;
+        final int TRIALS = 100;
         final boolean DISPLAY = false; //To display each round's output set DISPLAY to true otherwise, false.
         simGreedyStingy(TRIALS, DISPLAY);
         simAllStrategies(TRIALS, DISPLAY);

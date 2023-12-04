@@ -741,4 +741,87 @@ public class MainTest {
         Player winner = game.getWinner();
         assertNull(winner, "winner should be null");
     }
+    /**
+     * Tests the losing condition for a player in the Monopoly game simulation.
+     * It creates a player with an initial amount of money, then simulates a scenario where the player's money becomes zero.
+     * The test verifies whether the player has indeed lost the game based on having zero money.
+     */
+    @Test
+    public void testPlayerHasLost() {
+        MonopolyGame game = new MonopolyGame(new ArrayList<>(), new ArrayList<>());
+        Player player = new Player(1500);
+
+        player.subtractMoney(1500); //set player's money to zero
+
+        boolean hasLost = player.hasLost();
+        assertTrue(hasLost);
+    }
+    /**
+     * Tests that a player does not lose the game when having positive money after a deduction.
+     * The test verifies that the player has not lost the game based on having some money left.
+     */
+    @Test
+    public void testPlayerHasNotLostWithPositiveMoney() {
+        Player player = new Player(1000);
+        player.subtractMoney(500); // player has some money left
+
+        boolean hasLost = player.hasLost();
+
+        assertFalse(hasLost);
+    }
+    /**
+     * Tests that a player loses the game when having negative money after a deduction.
+     * The test verifies that the player has lost the game based on having negative money.
+     */
+    @Test
+    public void testPlayerHasLostWithNegativeMoney() {
+        Player player = new Player(500);
+        player.subtractMoney(1000); // player has negative money
+
+        boolean hasLost = player.hasLost();
+
+        assertTrue(hasLost);
+    }
+    /**
+     * Tests the range of dice values obtained after rolling the dice in a Monopoly game.
+     * The test ensures that the dice value falls within the range of 2 and 12, inclusive.
+     */
+    @Test
+    public void testRollDiceInRange() {
+        MonopolyGame game = new MonopolyGame(new ArrayList<>(), new ArrayList<>());
+        int diceValue = game.rollDice();
+        assertTrue(diceValue >= 2 && diceValue <= 12, "Dice value should be between 2 and 12");
+    }
+    /**
+     * Tests the count of non-ending games when simulating games where there are no non-ending games.
+     * The test checks that the number of non-ending games is 0.
+     */
+    @Test
+    public void testGetNumOfInfWithNoNonEndingGames() {
+        ArrayList<BoardSquare> board = new ArrayList<>();
+        ArrayList<Player> players = new ArrayList<>();
+        players.add(new Player(500));
+        MonopolyGame game = new MonopolyGame(players, board);
+        game.playGame(false);
+
+        assertEquals(0, game.getNumOfInf(), "There should be no non-ending games");
+    }
+    /**
+     * Tests the decrement of players upon elimination during a game.
+     * The test verifies that the number of players decreases correctly after a player gets eliminated.
+     */
+    @Test
+    public void testPlayersDecrementedUponElimination() {
+        ArrayList<BoardSquare> boardMap = BoardInit.createBoard();
+        ArrayList<Player> players = new ArrayList<>();
+        Player player1 = new Player(1500);
+        Player player2 = new Player(1500);
+        players.add(player1);
+        players.add(player2);
+        MonopolyGame game = new MonopolyGame(players, boardMap);
+        player1.subtractMoney(1500);
+        game.playGame(false);
+        int expectedPlayersRemaining = 1; // Only one player should remain after elimination
+        assertEquals(expectedPlayersRemaining, game.getNumPlayers(), "One player should remain after elimination");
+    }
 }
