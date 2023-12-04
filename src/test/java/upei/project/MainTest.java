@@ -688,13 +688,12 @@ public class MainTest {
         ArrayList<Player> players = new ArrayList<>();
         players.add(new Player(1500));
         ArrayList<BoardSquare> boardMap = new ArrayList<>();
-        // Initialize the boardMap with appropriate squares
         MonopolyGame game = new MonopolyGame(players, boardMap);
         game.playGame();
         Player winner = game.getWinner();
 
         assertNotNull(winner, "winner should not be null");
-        assertEquals(1, players.size()); // Ensure that only one player remains at the end
+        assertEquals(1, game.getNumPlayers()); // Ensure that only one player remains at the end
     }
 
     @Test
@@ -703,18 +702,11 @@ public class MainTest {
         final long SEED = 42; //Game is not non-ending with seed 42
         Player p1 = new Player(1500);
         Player p2 = new Player(1500);
+        ArrayList<BoardSquare> boardMap = BoardInit.createBoard();
         p1.setSeed(SEED);
         p2.setSeed(SEED);
         players.add(p1);
         players.add(p2);
-        ArrayList<BoardSquare> boardMap = BoardInit.createBoard();
-
-        for(BoardSquare square:boardMap){
-            if(square instanceof Randomizable){
-                ((Randomizable) square).setSeed(SEED);
-            }
-        }
-        // Initialize the boardMap with appropriate squares
         MonopolyGame game = new MonopolyGame(players, boardMap);
         game.setSeed(SEED);
         game.playGame(false);
@@ -733,8 +725,6 @@ public class MainTest {
         players.add(p1);
         players.add(p2);
         ArrayList<BoardSquare> boardMap = BoardInit.createBoard();
-
-        // Initialize the boardMap with appropriate squares
         MonopolyGame game = new MonopolyGame(players, boardMap);
         game.setSeed(SEED);
         game.playGame(false);

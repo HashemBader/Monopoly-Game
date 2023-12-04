@@ -27,8 +27,7 @@ public class MonopolyGame implements Randomizable{
     public MonopolyGame(ArrayList<Player> players, ArrayList<BoardSquare> boardMap){
         this.boardMap = boardMap;
         this.players = players;
-        numPlayers = this.players.size();// number of players
-
+        numPlayers = this.players.size();
     }
 
     /**
@@ -71,7 +70,7 @@ public class MonopolyGame implements Randomizable{
         // Game simulation loop until 1 player is left
         while (this.numPlayers > 1) {
             diceVal = rollDice();
-            System.out.println("DICE VALUE: " + MonopolyGame.getDiceVal());
+            System.out.println("DICE VALUE: " + getDiceVal());
             System.out.println("Player before moving: \n" + currPlayer.player + "\n" +currPlayer.player.getLandsOwned());
             currPlayer.player.moveN(diceVal);
             pos = currPlayer.player.getPos(); // Stores old position
