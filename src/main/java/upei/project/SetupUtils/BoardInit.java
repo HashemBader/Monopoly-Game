@@ -11,14 +11,13 @@ import java.util.ArrayList;
  * Used to create an ArrayList representing the game board layout.
  */
 public final class BoardInit {
+    private BoardInit(){} //To prevent instantiating. Intentionally left empty
     /**
      * Creates and initializes the game board with various BoardSquare objects.
      * Each BoardSquare represents a specific property, utility, station, tax, or miscellaneous square on the board.
      *
      * @return ArrayList<BoardSquare> representing the initialized game board.
      */
-
-    private BoardInit(){} //to prevent instantiating
     public static ArrayList<BoardSquare> createBoard(){
         ArrayList<BoardSquare> boardMap = new ArrayList<>();
         // Adding different types of BoardSquare objects to the board
