@@ -96,23 +96,8 @@ public class MainTest {
         Station s2 = new Station(1, "station2",250);
         s1.setOwner(p1);
         s2.setOwner(p1);
-        assertEquals("[Station{}" +
-                " Property{" +
-                "owner=anonymous," +
-                " buyPrice=250," +
-                " baseRent=25" +
-                "}" +
-                " BoardLocation{" +
-                "iLoc=0," +
-                " name='station1'" +
-                "}, Station{}" +
-                " Property{" +
-                "owner=anonymous," +
-                " buyPrice=250," +
-                " baseRent=25" +
-                "} " +
-                "BoardLocation{" +
-                "iLoc=1, name='station2'}]", p1.getLandsOwnedOfType(Station.class).toString());
+        assertEquals("[Station{iLoc=0, Name='station1}," +
+                " Station{iLoc=1, Name='station2}]", p1.getLandsOwnedOfType(Station.class).toString());
     }
     /**
      * Tests the construction of a Country object.
@@ -244,23 +229,8 @@ public class MainTest {
         s1.setOwner(p1);
         s2.setOwner(p1);
         country.setOwner(p1);
-        assertEquals("[Station{}" +
-                " Property{" +
-                "owner=anonymous," +
-                " buyPrice=250," +
-                " baseRent=25" +
-                "}" +
-                " BoardLocation{" +
-                "iLoc=0," +
-                " name='station1'" +
-                "}, Station{}" +
-                " Property{" +
-                "owner=anonymous," +
-                " buyPrice=250," +
-                " baseRent=25" +
-                "} " +
-                "BoardLocation{" +
-                "iLoc=1, name='station2'}]", p1.getLandsOwnedOfType(Station.class).toString());
+        assertEquals("[Station{iLoc=0, Name='station1}," +
+                " Station{iLoc=1, Name='station2}]", p1.getLandsOwnedOfType(Station.class).toString());
     }
     /**
      * Tests the construction of a Station object.
@@ -493,16 +463,10 @@ public class MainTest {
         util.setOwner(p1);
         egypt.setOwner(p1);
         qatar.setOwner(p1);
-        assertEquals("[Utility{" +
-                "Property{" +
-                "owner=anonymous, buyPrice=100, baseRent=0} " +
-                "BoardLocation{iLoc=1, name='util'}}, " +
-                "Country{COLOR='darkBlue'} " +
-                "Property{owner=anonymous, buyPrice=400, baseRent=50} " +
-                "BoardLocation{iLoc=39, name='egypt'}," +
-                " Country{COLOR='darkBlue'}" +
-                " Property{owner=anonymous, buyPrice=400, baseRent=50}" +
-                " BoardLocation{iLoc=37, name='qatar'}]", p1.getLandsOwned().toString(), "checking the lands owned");
+        assertEquals("[Utility{iLoc=1, Name='util}," +
+                " Country{iLoc=39, Name='egypt', COLOR='darkBlue'}," +
+                " Country{iLoc=37, Name='qatar', COLOR='darkBlue'}]",
+                p1.getLandsOwned().toString(), "checking the lands owned");
     }
     /**
      * Tests the scenario when a player doesn't own any properties or utilities.
