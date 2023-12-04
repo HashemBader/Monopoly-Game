@@ -3,6 +3,7 @@ package upei.project;
 /**
  * The MiscSquare class represents a miscellaneous square on the game board.
  * It extends the BoardSquare abstract class and defines the behavior for this type of square.
+ * Could be extended for other house rules, e.g, Collect x amount in free parking
  */
 public class MiscSquare extends BoardSquare {
 

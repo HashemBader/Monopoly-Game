@@ -10,6 +10,7 @@ import java.util.Random;
 
 /**
  * The Player class represents a player in a game.
+ * Implements Randomizable.
  */
 public class Player implements Randomizable {
     // Enum defining different player strategies

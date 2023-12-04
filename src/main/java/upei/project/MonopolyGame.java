@@ -6,6 +6,7 @@ import java.util.Random;
 /**
  * The MonopolyGame class manages the overall game logic for a Monopoly game simulation.
  * It controls player movements, dice rolling, game rounds, and determines the winner.
+ * Implements Randomizable
  */
 public class MonopolyGame implements Randomizable{
     private ArrayList<BoardSquare> boardMap;

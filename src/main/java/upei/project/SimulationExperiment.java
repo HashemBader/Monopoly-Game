@@ -19,11 +19,13 @@ public class SimulationExperiment {
      * Main method to execute the Monopoly game simulation experiment.
      * @param args Command-line arguments (not used in this implementation).
      */
-    public static void main(String[] args) {// Note: the csv output is located in ./data_unused/
+    public static void main(String[] args) {
+        // Note: the csv output is located in ./data_unused/
         final int TRIALS = 60;
-        simGreedyStingy(TRIALS, false);
-        //simAllStrategies(TRIALS, false);
-        //simStationUtility(TRIALS, false);
+        final boolean DISPLAY = true; //To display each round's output set DISPLAY to true otherwise, false.
+        simGreedyStingy(TRIALS, DISPLAY);
+        simAllStrategies(TRIALS, DISPLAY);
+        simStationUtility(TRIALS, DISPLAY);
     }
     /**
      * Calculates the win rate per strategy based on the dataset.

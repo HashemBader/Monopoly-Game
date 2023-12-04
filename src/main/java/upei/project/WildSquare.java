@@ -6,6 +6,7 @@ import java.util.Random;
  * The WildSquare class represents the Community Chest and Chance cards type of BoardSquare
  * triggering random events when a player lands on it.
  * It extends the BoardSquare abstract class.
+ * Implements Randomizable
  */
 public class WildSquare extends BoardSquare implements Randomizable{
     Random random = new Random();
