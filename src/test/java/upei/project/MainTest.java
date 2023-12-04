@@ -25,6 +25,20 @@ public class MainTest {
         egypt.playerOnLocation(p1);// makes the action that needs to be taken
         assertEquals(p1, egypt.getOwner());
     }
+    @Test
+    public void testMovesOverBoundary(){
+        Player p1 = new Player(1500);
+        p1.setPos(38);
+        p1.moveN(5);
+        assertEquals(3, p1.getPos());
+    }
+    @Test
+    public void testCollectGo(){
+        Player p1 = new Player(1500);
+        p1.setPos(38);
+        p1.moveN(5);
+        assertEquals(1500+200, p1.getMoney());
+    }
     /**
      * Tests the movement of a player to the jail square.
      * Verifies if the player is correctly moved to the jail square on the board.
