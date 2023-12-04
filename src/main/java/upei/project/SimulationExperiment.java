@@ -22,10 +22,13 @@ public class SimulationExperiment {
     public static void main(String[] args) {
         // Note: the csv output is located in ./data_unused/
         final int TRIALS = 60;
-        final boolean DISPLAY = true; //To display each round's output set DISPLAY to true otherwise, false.
+        final boolean DISPLAY = false; //To display each round's output set DISPLAY to true otherwise, false.
         simGreedyStingy(TRIALS, DISPLAY);
         simAllStrategies(TRIALS, DISPLAY);
         simStationUtility(TRIALS, DISPLAY);
+
+        // EXTRA
+        simDefaultDefault(TRIALS, DISPLAY); // almost 12% of the games do not end as explained in REPORT.md
     }
     /**
      * Calculates the win rate per strategy based on the dataset.
@@ -160,7 +163,29 @@ public class SimulationExperiment {
         System.out.println("Num non-ending games in this simulation: " + totalInf+"\n");
         hashMapToCSV(dataset, "./data_unused/AllStrategies.csv");
     }
+    private static void simDefaultDefault(int numTrials, boolean display){
+        System.out.print("SIMULATION OF : DEFAULT VS DEFAULT\n");
+        System.out.print("==========================================\n");
+        HashMap<Integer, Player> dataset = new HashMap<>();
+        ArrayList<Player> players;
+        ArrayList<BoardSquare> boardMap;
+        MonopolyGame game;
+        int totalInf = 0;
+        // Running multiple trials of the Monopoly game
+        for(int i=0; i<numTrials; i++) {
+            players = PlayersInit.getPlayers(new String[]{"Zeyad", "Hashem"},
+                    new Player.strategy[]{Player.strategy.DEFAULT, Player.strategy.DEFAULT});
+            boardMap = BoardInit.createBoard();
+            game = new MonopolyGame(players, boardMap);
+            game.playGame(display);
+            dataset.put(i, game.getWinner());
+            totalInf += game.getNumOfInf();
+        }
+        System.out.println("Winners for this simulation per strategy:\n" + calcWinRatePerStrategy(dataset));
+        System.out.println("Num non-ending games in this simulation: " + totalInf+"\n");
+        hashMapToCSV(dataset, "./data_unused/DefaultDefault.csv");
 
+    }
 
 }
 

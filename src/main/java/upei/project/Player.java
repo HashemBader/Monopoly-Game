@@ -91,7 +91,7 @@ public class Player implements Randomizable {
         ArrayList<T> ownedOfType = new ArrayList<>();
         for(Property p : this.landsOwned){
             if(propertyType.isInstance(p)){
-                ownedOfType.add((T) p);
+                ownedOfType.add(propertyType.cast(p));
             }
         }
         return ownedOfType;
