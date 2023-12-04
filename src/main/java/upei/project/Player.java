@@ -11,7 +11,7 @@ import java.util.Random;
 /**
  * The Player class represents a player in a game.
  */
-public class Player {
+public class Player implements Randomizable {
     // Enum defining different player strategies
     public enum strategy {
         GREEDY, STATION_GUY, UTILITY_GUY, STINGY, DEFAULT

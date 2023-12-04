@@ -7,7 +7,7 @@ import java.util.Random;
  * It defines actions taken when a player lands on the Jail square.
  * Extends the BoardSquare abstract class.
  */
-public class Jail extends BoardSquare {
+public class Jail extends BoardSquare implements Randomizable{
 
     Random random = new Random(); // Random object for dice rolling
 

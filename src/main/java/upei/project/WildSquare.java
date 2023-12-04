@@ -7,7 +7,7 @@ import java.util.Random;
  * triggering random events when a player lands on it.
  * It extends the BoardSquare abstract class.
  */
-public class WildSquare extends BoardSquare{
+public class WildSquare extends BoardSquare implements Randomizable{
     Random random = new Random();
     /**
      * Constructor to create a WildSquare instance with a specific location and name.
@@ -46,8 +46,6 @@ public class WildSquare extends BoardSquare{
             case 15 -> player.addMoney(10);// you have won second prize in a beauty contest. Collect $10
             case 16 -> player.setPos(25);// advance to T3 STATION
             case 17 -> player.setPos(37);// advance to QATAR
-
-
         }
     }
     /**

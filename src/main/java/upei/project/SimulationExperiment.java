@@ -15,18 +15,15 @@ import java.util.HashMap;
  */
 public class SimulationExperiment {
 
-    public static int numOfInf = 0;
     /**
      * Main method to execute the Monopoly game simulation experiment.
      * @param args Command-line arguments (not used in this implementation).
      */
-    public static void main(String[] args) {
-        // Exporting the dataset to a CSV file
-        //hashMapToCSV(dataset, "./data_unused/stationGuyVsUtilityGuy.csv");
+    public static void main(String[] args) {// Note: the csv output is located in ./data_unused/
         final int TRIALS = 60;
         simGreedyStingy(TRIALS, false);
-        simAllStrategies(TRIALS, false);
-        simStationUtility(TRIALS, false);
+        //simAllStrategies(TRIALS, false);
+        //simStationUtility(TRIALS, false);
     }
     /**
      * Calculates the win rate per strategy based on the dataset.
@@ -73,14 +70,19 @@ public class SimulationExperiment {
             e.printStackTrace();
         }
     }
-
+    /**
+     * Simulates a trial comparing players using "Greedy" and "Stingy" strategies.
+     *
+     * @param numTrials The number of trials to run.
+     * @param display   A boolean indicating whether to display simulation details.
+     */
     private static void simGreedyStingy(int numTrials, boolean display){
         System.out.print("SIMULATION OF : GREEDY VS STINGY\n");
         System.out.print("==========================================\n");
         HashMap<Integer, Player> dataset = new HashMap<>();
         ArrayList<Player> players;
         ArrayList<BoardSquare> boardMap;
-        MonopolyGame game = null;
+        MonopolyGame game;
         int totalInf = 0;
         // Running multiple trials of the Monopoly game
         for(int i=0; i<numTrials; i++) {
@@ -88,7 +90,8 @@ public class SimulationExperiment {
                     new Player.strategy[]{Player.strategy.GREEDY, Player.strategy.STINGY});
             boardMap = BoardInit.createBoard();
             game = new MonopolyGame(players, boardMap);
-            dataset.put(i, game.playGame(display));
+            game.playGame(display);
+            dataset.put(i, game.getWinner());
             totalInf += game.getNumOfInf();
         }
         System.out.println("Winners for this simulation per strategy:\n" + calcWinRatePerStrategy(dataset));
@@ -96,13 +99,19 @@ public class SimulationExperiment {
         hashMapToCSV(dataset, "./data_unused/GreedyStingy.csv");
 
     }
+    /**
+     * Simulates a trial comparing players using "Station Guy" and "Utility Guy" strategies.
+     *
+     * @param numTrials The number of trials to run.
+     * @param display   A boolean indicating whether to display simulation details.
+     */
     private static void simStationUtility(int numTrials, boolean display){
         System.out.print("SIMULATION OF : STATION_GUY VS UTILITY_GUY\n");
         System.out.print("==========================================\n");
         HashMap<Integer, Player> dataset = new HashMap<>();
         ArrayList<Player> players;
         ArrayList<BoardSquare> boardMap;
-        MonopolyGame game = null;
+        MonopolyGame game;
         int totalInf = 0;
         // Running multiple trials of the Monopoly game
         for(int i=0; i<numTrials; i++) {
@@ -110,7 +119,8 @@ public class SimulationExperiment {
                     new Player.strategy[]{Player.strategy.STATION_GUY, Player.strategy.UTILITY_GUY});
             boardMap = BoardInit.createBoard();
             game = new MonopolyGame(players, boardMap);
-            dataset.put(i, game.playGame(display));
+            game.playGame(display);
+            dataset.put(i, game.getWinner());
             totalInf += game.getNumOfInf();
         }
         System.out.println("Winners for this simulation per strategy:\n" + calcWinRatePerStrategy(dataset));
@@ -118,13 +128,20 @@ public class SimulationExperiment {
         hashMapToCSV(dataset, "./data_unused/StationUtility.csv");
 
     }
+    /**
+     * Simulates a trial with various strategies including "Greedy," "Stingy," "Station Guy,"
+     * "Utility Guy," and a default strategy.
+     *
+     * @param numTrials The number of trials to run.
+     * @param display   A boolean indicating whether to display simulation details.
+     */
     private static void simAllStrategies(int numTrials, boolean display){
         System.out.print("SIMULATION OF : ALL STRATEGIES\n");
         System.out.print("==========================================\n");
         HashMap<Integer, Player> dataset = new HashMap<>();
         ArrayList<Player> players;
         ArrayList<BoardSquare> boardMap;
-        MonopolyGame game = null;
+        MonopolyGame game;
         int totalInf = 0;
         // Running multiple trials of the Monopoly game
         for(int i=0; i<numTrials; i++) {
@@ -133,7 +150,8 @@ public class SimulationExperiment {
                             Player.strategy.UTILITY_GUY, Player.strategy.DEFAULT});
             boardMap = BoardInit.createBoard();
             game = new MonopolyGame(players, boardMap);
-            dataset.put(i, game.playGame(display));
+            game.playGame(display);
+            dataset.put(i, game.getWinner());
             totalInf += game.getNumOfInf();
         }
         System.out.println("Winners for this simulation per strategy:\n" + calcWinRatePerStrategy(dataset));

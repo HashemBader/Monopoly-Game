@@ -4,6 +4,7 @@ import upei.project.Properties.Country;
 import upei.project.Properties.Station;
 import upei.project.Properties.Utility;
 import upei.project.Setup.BoardInit;
+import upei.project.Setup.PlayersInit;
 
 import java.util.ArrayList;
 
@@ -685,6 +686,50 @@ public class MainTest {
         assertEquals(4500-(50*5*3*3), p2.getMoney());
     }
 
+    @Test
+    public void testSinglePlayerGame() {
+        ArrayList<Player> players = new ArrayList<>();
+        players.add(new Player(1500));
+
+        ArrayList<BoardSquare> boardMap = new ArrayList<>();
+        // Initialize the boardMap with appropriate squares
+
+        MonopolyGame game = new MonopolyGame(players, boardMap);
+        game.playGame();
+        Player winner = game.getWinner();
+
+        assertNotNull(winner, "winner should not be null");
+        assertEquals(1, players.size()); // Ensure that only one player remains at the end
+        // Add more assertions if needed based on game rules and expected behavior
+    }
+
+    @Test
+    public void testPlayerGame() {
+        ArrayList<Player> players = new ArrayList<>();
+        Player p1 = new Player(1500);
+        Player p2 = new Player(1500);
+        p1.setSeed(1);
+        p2.setSeed(10);
+        players.add(p1);
+        players.add(p2);
+        ArrayList<BoardSquare> boardMap = BoardInit.createBoard();
+
+        for(BoardSquare square:boardMap){
+            if(square instanceof Randomizable){
+                ((Randomizable) square).setSeed(3);
+            }
+        }
+        // Initialize the boardMap with appropriate squares
+
+        MonopolyGame game = new MonopolyGame(players, boardMap);
+        game.setSeed(1);
+        game.playGame(false);
+        Player winner = game.getWinner();
+
+        assertNotNull(winner, "winner should not be null");
+        assertEquals(2, players.size()); // Ensure that only one player remains at the end
+        // Add more assertions if needed based on game rules and expected behavior
+    }
 }
 
 
