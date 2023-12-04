@@ -738,7 +738,6 @@ public class MainTest {
      */
     @Test
     public void testPlayerHasLost() {
-        MonopolyGame game = new MonopolyGame(new ArrayList<>(), new ArrayList<>());
         Player player = new Player(1500);
         player.subtractMoney(1500); //set player's money to zero
         assertTrue(player.hasLost());
