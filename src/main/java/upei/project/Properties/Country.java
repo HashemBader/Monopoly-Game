@@ -121,7 +121,9 @@ public class Country extends Property {
     @Override
     public String toString() {
         return "Country{" +
-                "COLOR='" + COLOR + '\'' +
-                "} " + super.toString();
+                "iLoc=" + this.ILOC + ", "+
+                "Name='" + this.NAME +"', "+
+                "COLOR='" + this.COLOR + '\'' +
+                "}";
     }
 }

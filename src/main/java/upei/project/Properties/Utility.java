@@ -60,7 +60,8 @@ public class Utility extends Property {
     @Override
     public String toString() {
         return "Utility{" +
-                super.toString()
-                + "}";
+                "iLoc=" + this.ILOC + ", "+
+                "Name='" + this.NAME +
+                "}";
     }
 }

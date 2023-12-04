@@ -54,6 +54,8 @@ public class Station extends Property {
     @Override
     public String toString() {
         return "Station{" +
-                "} " + super.toString();
+                "iLoc=" + this.ILOC + ", "+
+                "Name='" + this.NAME +
+                "}";
     }
 }
