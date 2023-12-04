@@ -199,8 +199,16 @@ public int rollDice(){
      * Sets the seed value for the random number generator (for testing purposes).
      * @param seed The seed value to set for the random number generator.
      */
-    public void setSeed(long seed){
+    public void setSeed(long seed) {
         this.random.setSeed(seed);
+        for (Player p : this.players) {
+            p.setSeed(seed);
+        }
+        for (BoardSquare square : this.boardMap) {
+            if (square instanceof Randomizable) {
+                ((Randomizable) square).setSeed(seed);
+            }
+        }
     }
     /**
      * Gets the number of non-ending games encountered during simulations.
@@ -218,4 +226,5 @@ public int rollDice(){
     public Player getWinner() {
         return winner;
     }
+    public int getNumPlayers(){return this.players.size();}
 }
