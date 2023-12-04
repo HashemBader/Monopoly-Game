@@ -4,15 +4,15 @@
 2. Hashem Bader (362311)
 
 # Summary of Game
-
-The game is Monopoly. Monopoly is a board game of 2 to 8 players where each player
+Monopoly is a board game of 2 to 8 players where each player
 starts with $1500, a  chosen name and a strategy.
-The game involves rolling dice to move around the board, triggering actions upon landing on specific squares.
-As rounds progress, players will start gradually lose money
+The game involves rolling dice to move around the board, triggering actions upon landing on specific squares, for
+instance, landing on 'Go to Jail' would require the player to either pay $50 to get out, or roll a double.
+As rounds progress, players will start losing money gradually
 and elimination occurs when the player loses all his money.
 To win the game, there should be only one player left that still has money.
-In addition, we changed the name of the locations and made the theme middle eastern.
-For more information, here is the link to the rules(https://www.hasbro.com/common/instruct/00009.pdf).
+We have changed the names of the locations to be middle-eastern-themed.
+For more information, here is the link to the [official rules](https://www.hasbro.com/common/instruct/00009.pdf).
 
 # Experiment Report
 ## Player Strategies
