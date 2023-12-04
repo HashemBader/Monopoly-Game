@@ -230,7 +230,7 @@ it is important for developers to have solid understanding in software engineeri
 We believe that we could have picked a better AI tool such as GitHub Copilot extension to even save more time instead of copy-pasting.
 
 # Bonus Consideration:
-We believe that the data analysis conducted will distinguish our projects from the others. Knowledge from STAT 1910 
+We believe that the data analysis conducted will distinguish our project from the others. Knowledge from STAT 1910 
 (Hypothesis testing and comparing distributions). Moreover, we have created `hashMapToCSV` method in `SimulationExperiment` 
 that collects the data from the simulation and exports it to a CSV file for data analysis. The .IPYNB used for data analysis `dataAnalysis.ipynb` and the CSV 
 generated files in `data_unused` is found in this repository.
