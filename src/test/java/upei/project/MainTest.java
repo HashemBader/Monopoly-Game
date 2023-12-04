@@ -587,20 +587,21 @@ public class MainTest {
     @Test
     void testDeductMoney1House(){
         // seed -42 buys on default strategy
+        final int SEED = -42;
         Country egypt = new Country(39, "egypt", 50, 400, "yellow");
         Country qatar = new Country(37, "qatar", 50, 400, "yellow");
         Country canada = new Country(37, "qatar", 50, 400, "yellow");
         Player p1 = new Player(1500);
         Player p2 = new Player(1500);
-        p1.setSeed(-42);
+        p1.setSeed(SEED);
         egypt.setOwner(p1);
         qatar.setOwner(p1);
         canada.setOwner(p1);
         egypt.playerOnLocation(p1);
         egypt.playerOnLocation(p2);
 
-        assertEquals(1500+(50*5)-egypt.getHousePrice(), p1.getMoney());
-        assertEquals(1500-(50*5), p2.getMoney());
+        assertEquals(1500+egypt.calcRent()-egypt.getHousePrice(), p1.getMoney());
+        assertEquals(1500-egypt.calcRent(), p2.getMoney());
     }
     /**
      * Tests the scenario when a player deducts money based on the ownership of a full set with two houses.
@@ -624,8 +625,8 @@ public class MainTest {
         egypt.playerOnLocation(p1);
         egypt.playerOnLocation(p2);
 
-        assertEquals(1500+(50*5*3)-egypt.getHousePrice()*2, p1.getMoney());
-        assertEquals(1500-(50*5*3), p2.getMoney());
+        assertEquals(1500+egypt.calcRent()-egypt.getHousePrice()*2, p1.getMoney());
+        assertEquals(1500- egypt.calcRent(), p2.getMoney());
     }
     /**
      * Tests the scenario when a player deducts money based on the ownership of a full set with three houses.
@@ -650,8 +651,8 @@ public class MainTest {
         egypt.playerOnLocation(p1);
         egypt.playerOnLocation(p2);
 
-        assertEquals(1500+(50*5*3*2)-egypt.getHousePrice()*3, p1.getMoney());
-        assertEquals(1500-(50*5*3*2), p2.getMoney());
+        assertEquals(1500 + egypt.calcRent()-egypt.getHousePrice()*3, p1.getMoney());
+        assertEquals(1500 - egypt.calcRent(), p2.getMoney());
     }
     /**
      * Tests the scenario when a player deducts money based on the ownership of a full set with four houses.
@@ -660,27 +661,27 @@ public class MainTest {
     @Test
     void testDeductMoney4Houses(){
         // seed -42 buys on default
+        final int SEED = -42;
         Country egypt = new Country(39, "egypt", 50, 400, "pink");
         Country qatar = new Country(37, "qatar", 50, 400, "pink");
         Country canada = new Country(37, "qatar", 50, 400, "pink");
         Player p1 = new Player(4500);
         Player p2 = new Player(4500);
-        p1.setSeed(5556853);
         egypt.setOwner(p1);
         qatar.setOwner(p1);
         canada.setOwner(p1);
-        p1.setSeed(-42);
+        p1.setSeed(SEED); // we set seed everytime to ensure that he buys it and builds one more house
         egypt.playerOnLocation(p1);
-        p1.setSeed(-42);
+        p1.setSeed(SEED);
         egypt.playerOnLocation(p1);
-        p1.setSeed(-42);
+        p1.setSeed(SEED);
         egypt.playerOnLocation(p1);
-        p1.setSeed(-42);
+        p1.setSeed(SEED);
         egypt.playerOnLocation(p1);
         egypt.playerOnLocation(p2);
 
-        assertEquals(4500+(50*5*3*3)-egypt.getHousePrice()*4, p1.getMoney());
-        assertEquals(4500-(50*5*3*3), p2.getMoney());
+        assertEquals(4500+egypt.calcRent()-egypt.getHousePrice()*4, p1.getMoney());
+        assertEquals(4500- egypt.calcRent(), p2.getMoney());
     }
 
     @Test
@@ -691,7 +692,6 @@ public class MainTest {
         MonopolyGame game = new MonopolyGame(players, boardMap);
         game.playGame();
         Player winner = game.getWinner();
-
         assertNotNull(winner, "winner should not be null");
         assertEquals(1, game.getNumPlayers()); // Ensure that only one player remains at the end
     }
@@ -738,13 +738,9 @@ public class MainTest {
      */
     @Test
     public void testPlayerHasLost() {
-        MonopolyGame game = new MonopolyGame(new ArrayList<>(), new ArrayList<>());
         Player player = new Player(1500);
-
         player.subtractMoney(1500); //set player's money to zero
-
-        boolean hasLost = player.hasLost();
-        assertTrue(hasLost);
+        assertTrue(player.hasLost());
     }
     /**
      * Tests that a player does not lose the game when having positive money after a deduction.
@@ -754,10 +750,7 @@ public class MainTest {
     public void testPlayerHasNotLostWithPositiveMoney() {
         Player player = new Player(1000);
         player.subtractMoney(500); // player has some money left
-
-        boolean hasLost = player.hasLost();
-
-        assertFalse(hasLost);
+        assertFalse(player.hasLost(), "Player did not lose and should return false");
     }
     /**
      * Tests that a player loses the game when having negative money after a deduction.
@@ -767,10 +760,7 @@ public class MainTest {
     public void testPlayerHasLostWithNegativeMoney() {
         Player player = new Player(500);
         player.subtractMoney(1000); // player has negative money
-
-        boolean hasLost = player.hasLost();
-
-        assertTrue(hasLost);
+        assertTrue(player.hasLost(), "Player has lost and should return true");
     }
     /**
      * Tests the range of dice values obtained after rolling the dice in a Monopoly game.

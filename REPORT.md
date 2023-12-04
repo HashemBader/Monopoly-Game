@@ -135,6 +135,34 @@ Table 3.1: Win Rate Per Strategy
 ## Analysis
 _An interpretation of your data explaining why one strategy is better than the other supported with 
 data from your experiment.(500 words)_
+### Greedy vs Stingy:
+Our examination, detailed in Table 1.0, reveals that Greedy consistently outperforms Stingy in terms of average land ownership and financial gains, resulting in a commendable 58% win rate. To assess the statistical significance of this difference, bootstrapping was employed to generate multiple simulations from the dataset.
+
+The results of our analysis, illustrated in Figures 1.0 to 1.3, underscore the distinct distributions of means between Greedy and Stingy. The 95% confidence interval (0.09, 0.11) excludes 0, signaling a statistically significant advantage for Greedy with 95% confidence. The box plots in Figure 1.2 and 1.3 provide further granularity, indicating that Greedy tends to conclude rounds with a financial range of $2000 to $5000 and approximately 20 owned lands. In contrast, Stingy tends to finish rounds with just under $2000 and roughly 4 owned lands.
+
+In summary, our data strongly suggests that, in a 2-player game, Greedy is more likely to emerge victorious over Stingy.
+
+### Station Guy vs Utility Guy:
+Table 2.0 presents a comparative analysis of Station Guy and Utility Guy in 2-player games. Both strategies exhibit similar land distributions, barring stations, with Utility Guy consistently concluding the game with more monetary assets on average.
+
+Our statistical analysis, employing bootstrapping and illustrated in Figures 2.0 to 2.3, further reinforces the differences in performance. Station Guy secures victory in approximately 59% of games, while Utility Guy achieves success in 41%. The 95% confidence interval (0.18, 0.20) excludes 0, affirming the statistical significance of Station Guy's superiority with 95% confidence.
+
+The box plots in Figure 2.2 and 2.3 provide additional insights, indicating that Station Guy tends to conclude rounds with a financial range of a couple of thousand to $13,000 and around 14 owned lands. In contrast, Utility Guy ends rounds with a broader financial range of a couple of thousand to $20,000 while maintaining the same number of owned lands, 14.
+
+In conclusion, our comprehensive analysis points to Station Guy as the more likely victor in a 2-player game over Utility Guy.
+
+### All 5 Strategies:
+Table 3.0 provides a comprehensive examination of strategies in 5-player games, revealing notable distinctions among the observed approaches. Surprisingly, despite Stingy possessing the fewest lands (4-5), it concludes the game with the highest monetary assets, approximately $77,000. In contrast, Greedy, with the most lands owned (10), possesses the least amount of money, roughly $22,000. The remaining strategies exhibit fairly comparable holdings.
+
+The ranking of strategies based on win rate, as depicted in Table 3.1, is as follows: Greedy, Default, Station Guy, Utility Guy, and Stingy.
+
+Further insights from the box plots in Figure 3.1 and 3.2 emphasize the financial and land ownership dynamics. Stingy tends to conclude rounds with a financial range of just under $60,000 to just above $80,000 and around 4-5 owned lands. In contrast, Greedy ends rounds with a narrower financial range of below $20,000 to $30,000 and a wider range of lands owned, averaging between 9 and 12. The other strategies exhibit a comparable spread of money and lands, except for Utility Guy, which has a narrower range of lands owned (6-8).
+
+In conclusion, our comprehensive analysis suggests that Greedy stands out as the more likely victor in a 5-player game among the observed strategies.
+
+### Default vs Default (EXTRA):
+Surprisingly, our 2-player game simulation results for default strategies align closely with findings presented in the paper titled: [ESTIMATING THE PROBABILITY THAT THE GAME OF MONOPOLY NEVER ENDS](https://www.informs-sim.org/wsc09papers/036.pdf?fbclid=IwAR3kaMbPMHUb0MXR8hD9u8_w49IYBTQWYrQHd0auXGnQ3ssjdTwqRIlIDEs).
+Figure X.0 illustrates that the observed value of 0.12 falls within the plausible range, indicating that the proportion of non-ending games in a 2-player default strategy game is not statistically different from 0.12. This alignment with established research lends credibility to our simulation outcomes.
 
 # Reflection
 _A reflection on your experiences with generative AI during this project. Provide a few sentences reflecting

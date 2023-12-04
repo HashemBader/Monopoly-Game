@@ -1,7 +1,6 @@
 package upei.project.Properties;
 
 import upei.project.Player;
-import upei.project.Randomizable;
 
 import java.util.HashMap;
 
