@@ -8,10 +8,17 @@ import java.util.ArrayList;
  * It controls player movements, dice rolling, game rounds, and determines the winner.
  */
 public class MonopolyGame {
-    public static ArrayList<BoardSquare> boardMap;
+    private ArrayList<BoardSquare> boardMap;
+    private ArrayList<Player> players;
+    private int numOfInf = 0;
     public static int diceVal;
 
-    // Nested Node class for managing player turns in a circular linked list
+    public MonopolyGame(ArrayList<Player> players, ArrayList<BoardSquare> boardMap){
+        this.boardMap = boardMap;
+        this.players = players;
+    }
+
+    /** Nested Node class for managing player turns in a circular linked list **/
     private static class Node {
         Player player;
         Node next;
@@ -24,22 +31,22 @@ public class MonopolyGame {
 
     /**
      * Simulates the Monopoly game with given players.
-     * @param players The ArrayList containing Player objects participating in the game.
+     *
      * @return The winning Player object or null if simulation encounters an issue.
      */
-    public static Player playGame(ArrayList<Player> players) {
+    public Player playGame() {
         // Game initialization
-        boardMap = BoardInit.createBoard();// creates the board game
-        int numPlayers = players.size();// number of players
+        //boardMap = BoardInit.createBoard();// creates the board game
+        int numPlayers = this.players.size();// number of players
         int pos;// position of the player
         boolean hasMoved = false;// checks if the player moved to another position
         Node currPlayer;
-        Node firstPlayer = new Node(players.get(0));
+        Node firstPlayer = new Node(this.players.get(0));
         currPlayer = firstPlayer;
 
         // Creating a circular linked list for managing player turns
-        for (int i = 1; i < players.size(); i++) {
-            currPlayer.next = new Node(players.get(i));
+        for (int i = 1; i < this.players.size(); i++) {
+            currPlayer.next = new Node(this.players.get(i));
             currPlayer.next.prev = currPlayer;
             currPlayer = currPlayer.next;
         }
@@ -50,43 +57,106 @@ public class MonopolyGame {
         // Game simulation loop until 1 player is left
         while (numPlayers > 1) {
             diceVal = rollDice();
-            //System.out.println("DICEVAL: " + MonopolyGame.getDiceVal());
-            //System.out.println("PLAYER before: " + currPlayer.player);
+            System.out.println("DICE VALUE: " + MonopolyGame.getDiceVal());
+            System.out.println("Player before moving: \n" + currPlayer.player + "\n" +currPlayer.player.getLandsOwned());
             currPlayer.player.moveN(diceVal);
-            pos = currPlayer.player.getPos();
-            boardMap.get(currPlayer.player.getPos()).playerOnLocation(currPlayer.player);// takes the action that needs to be taken in this square
+            pos = currPlayer.player.getPos(); // Stores old position
+            this.boardMap.get(currPlayer.player.getPos()).playerOnLocation(currPlayer.player); // takes the action that needs to be taken on this square
             hasMoved = pos != currPlayer.player.getPos();
+            System.out.println("Player after moving: \n" + currPlayer.player + "\n" + currPlayer.player.getLandsOwned());
 
             if (hasMoved) {// checks if the player changed his position by a community chest or chance or jail
-                boardMap.get(currPlayer.player.getPos()).playerOnLocation(currPlayer.player);// takes the action again that needs to be taken in this square
-                //System.out.println("PLAYER after: " + currPlayer.player + "\n" +currPlayer.player.getLandsOwned());
-
+                this.boardMap.get(currPlayer.player.getPos()).playerOnLocation(currPlayer.player);// takes the action again that needs to be taken on this square
+                System.out.println("Player has moved again!: \n" + currPlayer.player + "\n" +currPlayer.player.getLandsOwned());
             }
-            // the player lost
-            if (currPlayer.player.getMoney() == 0) {
+            // the player lost; unlink him
+            if (currPlayer.player.hasLost()) {
+                System.out.println("Player eliminated: \n" + currPlayer.player);
                 currPlayer.prev.next = currPlayer.next;
                 currPlayer.next.prev = currPlayer.prev;
                 currPlayer = currPlayer.next;
                 numPlayers--;
             }
             currPlayer = currPlayer.next;
-            // it is believed that a 2 player monopoly game has a 12% chance to not end
-            if (currPlayer.player.getMoney() > 100000) {
-                //System.out.println("broken!!!!");
 
-                SimulationExperiment.numOfInf += 1;
+            // it is believed that a 2 player monopoly game has a 12% chance to not end if the player uses a strategy similar to our Player.DEFAULT.
+            // We will define a non-ending game to be a game such that a player has more than 100,000$
+            if (currPlayer.player.getMoney() > 100000) {
+                System.out.println("Game did not end !!");
+                this.numOfInf += 1;
                 return null;
             }
-            //System.out.println("PLAYER after: " + currPlayer.player + "\n" + currPlayer.player.getLandsOwned());
-
-        }
-        //System.out.println("Winner: " + currPlayer.player + "\n" + currPlayer.player.getLandsOwned());
-
+        } //end while
+        System.out.println("Winner: " + currPlayer.player + "\n" + currPlayer.player.getLandsOwned());
         return currPlayer.player;
     }
+    public Player playGame(boolean display) {
+        if(display){
+            return playGame();
+        }
+        else {
+            // Game initialization
+            //boardMap = BoardInit.createBoard();// creates the board game
+            int numPlayers = this.players.size();// number of players
+            int pos;// position of the player
+            boolean hasMoved = false;// checks if the player moved to another position
+            Node currPlayer;
+            Node firstPlayer = new Node(this.players.get(0));
+            currPlayer = firstPlayer;
+
+            // Creating a circular linked list for managing player turns
+            for (int i = 1; i < this.players.size(); i++) {
+                currPlayer.next = new Node(this.players.get(i));
+                currPlayer.next.prev = currPlayer;
+                currPlayer = currPlayer.next;
+            }
+            currPlayer.next = firstPlayer;
+            firstPlayer.prev = currPlayer;
+            currPlayer = currPlayer.next;
+
+            // Game simulation loop until 1 player is left
+            while (numPlayers > 1) {
+                diceVal = rollDice();
+                //System.out.println("DICE VALUE: " + MonopolyGame.getDiceVal());
+                //System.out.println("Player before moving: \n" + currPlayer.player + "\n" +currPlayer.player.getLandsOwned());
+                currPlayer.player.moveN(diceVal);
+                pos = currPlayer.player.getPos(); // Stores old position
+                this.boardMap.get(currPlayer.player.getPos()).playerOnLocation(currPlayer.player); // takes the action that needs to be taken on this square
+                hasMoved = pos != currPlayer.player.getPos();
+                //System.out.println("Player after moving: \n" + currPlayer.player + "\n" + currPlayer.player.getLandsOwned());
+
+                if (hasMoved) {// checks if the player changed his position by a community chest or chance or jail
+                    this.boardMap.get(currPlayer.player.getPos()).playerOnLocation(currPlayer.player);// takes the action again that needs to be taken on this square
+                    //System.out.println("Player has moved again!: \n" + currPlayer.player + "\n" +currPlayer.player.getLandsOwned());
+                }
+                // the player lost; unlink him
+                if (currPlayer.player.hasLost()) {
+                    //System.out.println("Player eliminated: \n" + currPlayer.player);
+                    currPlayer.prev.next = currPlayer.next;
+                    currPlayer.next.prev = currPlayer.prev;
+                    currPlayer = currPlayer.next;
+                    numPlayers--;
+                }
+                currPlayer = currPlayer.next;
+
+                // it is believed that a 2 player monopoly game has a 12% chance to not end if the player uses a strategy similar to our Player.DEFAULT.
+                // We will define a non-ending game to be a game such that a player has more than 100,000$
+                // It tends to not end when all 5 strategies are playing
+                if (currPlayer.player.getMoney() > 100000) {
+                    System.out.println("Game did not end !!");
+                    this.numOfInf += 1;
+                    return null;
+                }
+            } //end while
+            System.out.println("Winner: " + currPlayer.player.prettyPrint()  + "\n" + currPlayer.player.getLandsOwned());
+            return currPlayer.player;
+        }
+
+    }
+
 
     /**
-     * Simulates rolling of a dice and returns the result.
+     * Simulates rolling of dice and returns the result.
      * @return The value obtained after rolling the dice.
      */
     public static int rollDice() {
@@ -108,5 +178,9 @@ public class MonopolyGame {
      */
     public static void setDiceVal(int diceValue) {
         diceVal = diceValue;
+    }
+
+    public int getNumOfInf() {
+        return this.numOfInf;
     }
 }

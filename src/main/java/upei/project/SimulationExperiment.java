@@ -2,6 +2,7 @@ package upei.project;
 import upei.project.Properties.Country;
 import upei.project.Properties.Station;
 import upei.project.Properties.Utility;
+import upei.project.Setup.BoardInit;
 import upei.project.Setup.PlayersInit;
 
 import java.io.FileWriter;
@@ -20,24 +21,12 @@ public class SimulationExperiment {
      * @param args Command-line arguments (not used in this implementation).
      */
     public static void main(String[] args) {
-        final int TRIALS = 2000;
-        HashMap<Integer, Player> dataset = new HashMap<>();
-        ArrayList<Player> players;
-        // Running multiple trials of the Monopoly game
-        for(int i=0; i<TRIALS; i++) {
-            players = PlayersInit.getPlayers(new String[]{"Zeyad", "Hashem"},
-                    new Player.strategy[]{Player.strategy.STATION_GUY, Player.strategy.UTILITY_GUY});
-            dataset.put(i, MonopolyGame.playGame(players));
-        }
-
-        /*for(int i=0; i< dataset.size(); i++){
-            System.out.print(i + " " + dataset.get(i).getStratey().toString() + "\n");
-        }*/
-        // Printing the HashMap and number of invalid cases
-        System.out.print("Here is the HashMap: \n" + calcWinRatePerStrategy(dataset));
-        System.out.print("\nNum inf: \n" + numOfInf);
         // Exporting the dataset to a CSV file
-        //hashMapToCSV(dataset, "./data/stationGuyVsUtilityGuy.csv");
+        //hashMapToCSV(dataset, "./data_unused/stationGuyVsUtilityGuy.csv");
+        final int TRIALS = 60;
+        simGreedyStingy(TRIALS, false);
+        simStationUtility(TRIALS, false);
+        simAllStrategies(TRIALS, false);
     }
     /**
      * Calculates the win rate per strategy based on the dataset.
@@ -84,4 +73,77 @@ public class SimulationExperiment {
             e.printStackTrace();
         }
     }
+
+    private static void simGreedyStingy(int numTrials, boolean display){
+        System.out.print("SIMULATION OF : GREEDY VS STINGY\n");
+        System.out.print("==========================================\n");
+        HashMap<Integer, Player> dataset = new HashMap<>();
+        ArrayList<Player> players;
+        ArrayList<BoardSquare> boardMap;
+        MonopolyGame game = null;
+        int totalInf = 0;
+        // Running multiple trials of the Monopoly game
+        for(int i=0; i<numTrials; i++) {
+            players = PlayersInit.getPlayers(new String[]{"Zeyad", "Hashem"},
+                    new Player.strategy[]{Player.strategy.GREEDY, Player.strategy.STINGY});
+            boardMap = BoardInit.createBoard();
+            game = new MonopolyGame(players, boardMap);
+            dataset.put(i, game.playGame(display));
+            totalInf += game.getNumOfInf();
+        }
+        System.out.println("Winners for this simulation per strategy:\n" + calcWinRatePerStrategy(dataset));
+        System.out.println("Num non-ending games in this simulation: " + totalInf+"\n");
+        hashMapToCSV(dataset, "./data_unused/GreedyStingy.csv");
+
+    }
+    private static void simStationUtility(int numTrials, boolean display){
+        System.out.print("SIMULATION OF : STATION_GUY VS UTILITY_GUY\n");
+        System.out.print("==========================================\n");
+        HashMap<Integer, Player> dataset = new HashMap<>();
+        ArrayList<Player> players;
+        ArrayList<BoardSquare> boardMap;
+        MonopolyGame game = null;
+        int totalInf = 0;
+        // Running multiple trials of the Monopoly game
+        for(int i=0; i<numTrials; i++) {
+            players = PlayersInit.getPlayers(new String[]{"Zeyad", "Hashem"},
+                    new Player.strategy[]{Player.strategy.STATION_GUY, Player.strategy.UTILITY_GUY});
+            boardMap = BoardInit.createBoard();
+            game = new MonopolyGame(players, boardMap);
+            dataset.put(i, game.playGame(display));
+            totalInf += game.getNumOfInf();
+        }
+        System.out.println("Winners for this simulation per strategy:\n" + calcWinRatePerStrategy(dataset));
+        System.out.println("Num non-ending games in this simulation: " + totalInf+"\n");
+        hashMapToCSV(dataset, "./data_unused/StationUtility.csv");
+
+    }
+    private static void simAllStrategies(int numTrials, boolean display){
+        System.out.print("SIMULATION OF : ALL STRATEGIES\n");
+        System.out.print("==========================================\n");
+        HashMap<Integer, Player> dataset = new HashMap<>();
+        ArrayList<Player> players;
+        ArrayList<BoardSquare> boardMap;
+        MonopolyGame game = null;
+        int totalInf = 0;
+        // Running multiple trials of the Monopoly game
+        for(int i=0; i<numTrials; i++) {
+            players = PlayersInit.getPlayers(new String[]{"Zeyad", "Hashem", "Yasser", "Nadeem", "RJ"},
+                    new Player.strategy[]{Player.strategy.GREEDY, Player.strategy.STINGY, Player.strategy.STATION_GUY,
+                            Player.strategy.UTILITY_GUY, Player.strategy.DEFAULT});
+            boardMap = BoardInit.createBoard();
+            game = new MonopolyGame(players, boardMap);
+            dataset.put(i, game.playGame(display));
+            totalInf += game.getNumOfInf();
+        }
+        System.out.println("Winners for this simulation per strategy:\n" + calcWinRatePerStrategy(dataset));
+        System.out.println("Num non-ending games in this simulation: " + totalInf+"\n");
+        hashMapToCSV(dataset, "./data_unused/AllStrategies.csv");
+    }
+
+
 }
+
+/*for(int i=0; i< dataset.size(); i++){
+            System.out.print(i + " " + dataset.get(i).getStratey().toString() + "\n");
+        }*/

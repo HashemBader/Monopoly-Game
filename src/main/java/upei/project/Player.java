@@ -232,6 +232,16 @@ public class Player {
     public void setSeed(long seed){
         this.random.setSeed(seed);
     }
+
+    /**
+     * Checks if the player has lost the game.
+     *
+     * @return {@code true} if the player's money is zero, indicating a loss; {@code false} otherwise.
+     */
+    public boolean hasLost(){
+        return this.money == 0;
+    }
+
     /**
      * Provides a string representation of the Player object.
      * @return A string containing player information: strategy, name, money, and position.
@@ -244,6 +254,10 @@ public class Player {
                 "Money: " + this.money + "; " +
                 "Position: " + this.pos +
                 " }";
+    }
+    public String prettyPrint(){
+        return "PlayerName: " + this.name + "; " + "Strategy: " + this.pStrategy + "; " +
+                "Money: " + this.money + ";";
     }
 }
 
