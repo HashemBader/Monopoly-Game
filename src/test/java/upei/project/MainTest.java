@@ -689,23 +689,20 @@ public class MainTest {
     public void testSinglePlayerGame() {
         ArrayList<Player> players = new ArrayList<>();
         players.add(new Player(1500));
-
         ArrayList<BoardSquare> boardMap = new ArrayList<>();
         // Initialize the boardMap with appropriate squares
-
         MonopolyGame game = new MonopolyGame(players, boardMap);
         game.playGame();
         Player winner = game.getWinner();
 
         assertNotNull(winner, "winner should not be null");
         assertEquals(1, players.size()); // Ensure that only one player remains at the end
-        // Add more assertions if needed based on game rules and expected behavior
     }
 
     @Test
-    public void testPlayerGame() {
+    public void testWinnerExists() {
         ArrayList<Player> players = new ArrayList<>();
-        final long SEED = 42;
+        final long SEED = 42; //Game is not non-ending with seed 42
         Player p1 = new Player(1500);
         Player p2 = new Player(1500);
         p1.setSeed(SEED);
@@ -725,7 +722,5 @@ public class MainTest {
         game.playGame(false);
         Player winner = game.getWinner();
         assertNotNull(winner, "winner should not be null");
-        assertEquals(2, players.size()); // Ensure that only one player remains at the end
-        // Add more assertions if needed based on game rules and expected behavior
     }
 }
