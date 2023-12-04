@@ -66,9 +66,28 @@ Table 1.1: Win Rate Per Strategy
 
 
 ![Distribution of means](image-1.png)
+
+Figure 1.0
+
+---
+
 ![Distribution of difference in means](image-2.png)
+
+Figure 1.1
+
+---
+
 ![Boxplot: money vs strategy](image-3.png)
+
+Figure 1.2
+
+---
+
 ![Boxplot: lands owned vs strategy](image-4.png)
+
+Figure 1.3
+
+---
 
 ### Station Guy vs Utility Guy:
 
@@ -77,10 +96,7 @@ Table 1.1: Win Rate Per Strategy
 | STATION_GUY  | 4906.0| 11.0      | 1.0       | 3.0      | 14.0            |
 | UTILITY_GUY  | 9017.0| 11.0      | 1.0       | 1.0      | 14.0            |
 
-
-
 Table 2.0: Player Strategies and Holdings
-
 
 
 | Strategy     | Win Rate    |
@@ -89,14 +105,28 @@ Table 2.0: Player Strategies and Holdings
 | UTILITY_GUY  | 0.375282    |
 
 
-
 Table 2.1: Win Rate Per Strategy
 
-
 ![Distribution of means](image-5.png)
+
+Figure 2.0
+
+---
 ![Distribution of difference in means](image-6.png)
+
+Figure 2.1
+
+---
 ![Boxplot: money vs strategy](image-7.png)
+
+Figure 2.2
+
+---
 ![Boxplot: lands owned vs strategy](image-8.png)
+
+Figure 2.3
+
+---
 
 ### All 5 Strategies (5 players):
 
@@ -127,14 +157,25 @@ Table 3.1: Win Rate Per Strategy
 
 
 ![Boxplot: money vs strategy](image-9.png)
+
+Figure 3.0
+
+---
 ![Boxplot: lands owned vs strategy](image-10.png)
+
+Figure 3.1
+
+---
 
 ### Default vs Default (EXTRA)
 ![Distribution of means](image-11.png)
 
+Figure X.0
+
+---
+
 ## Analysis
-_An interpretation of your data explaining why one strategy is better than the other supported with 
-data from your experiment.(500 words)_
+
 ### Greedy vs Stingy:
 Our examination, detailed in Table 1.0, reveals that Greedy consistently outperforms Stingy in terms of average land ownership and financial gains, resulting in a commendable 58% win rate. To assess the statistical significance of this difference, bootstrapping was employed to generate multiple simulations from the dataset.
 
@@ -158,33 +199,35 @@ The ranking of strategies based on win rate, as depicted in Table 3.1, is as fol
 
 Further insights from the box plots in Figure 3.1 and 3.2 emphasize the financial and land ownership dynamics. Stingy tends to conclude rounds with a financial range of just under $60,000 to just above $80,000 and around 4-5 owned lands. In contrast, Greedy ends rounds with a narrower financial range of below $20,000 to $30,000 and a wider range of lands owned, averaging between 9 and 12. The other strategies exhibit a comparable spread of money and lands, except for Utility Guy, which has a narrower range of lands owned (6-8).
 
-In conclusion, our comprehensive analysis suggests that Greedy stands out as the more likely victor in a 5-player game among the observed strategies.
+In conclusion, our comprehensive analysis suggests that Greedy stands out as the more likely winner in a 5-player game among the observed strategies.
+
+---
 
 ### Default vs Default (EXTRA):
 Surprisingly, our 2-player game simulation results for default strategies align closely with findings presented in the paper titled: [ESTIMATING THE PROBABILITY THAT THE GAME OF MONOPOLY NEVER ENDS](https://www.informs-sim.org/wsc09papers/036.pdf?fbclid=IwAR3kaMbPMHUb0MXR8hD9u8_w49IYBTQWYrQHd0auXGnQ3ssjdTwqRIlIDEs).
-Figure X.0 illustrates that the observed value of 0.12 falls within the plausible range, indicating that the proportion of non-ending games in a 2-player default strategy game is not statistically different from 0.12. This alignment with established research lends credibility to our simulation outcomes.
+Figure X.0 illustrates that the value of 0.12 falls within the plausible range, indicating that the proportion of non-ending games in a 2-player default strategy game is not statistically different from 0.12. _This alignment with established research lends credibility to our simulation outcomes._
 
 # Reflection
 _A reflection on your experiences with generative AI during this project. Provide a few sentences reflecting
 on your experience with AI for each of the following prompts._ 
 
 ### What generative AI did you use, and what tasks did you use it for?
-ChatGPT: supporting with the test cases to cover most of the simple test cases. Also helped a lot with the documentation of classes and methods to cover all the details.
+ChatGPT: We have mainly used ChatGPT for the easy parts of the program, such as, creating tests for constructors, documenting the code
+and brushing up on the syntax both for Java and Python (for data analysis).
 
 ### How did you learn about the tools used by your group (delete ones that don't apply)?
-All of the tools that have been used were learned in the class, like IntelliJ IDEA Debugger, git and jUnit. Some of the tools we had to search for it in google for more clarification, .
+The great majority of non-AI tools that have been used were learned in this class, like IntelliJ IDEA Debugger, git and
+jUnit. Further, one of our team members brought prior experience in data analysis using Python.
 
 ### Reflecting on your experience:
 
 The generative AI (ChatGPT) was really helpful, ChatGPT ability to suggest test cases helped in covering various scenarios,
-improving the robustness of the test cases. The AI was valuable in ensuring that the codebase was well-documented and more understandable for developers.
-In another hand, there were limitations encountered using generative AI. The AI might have limitations in assisting with complex calculations, specifically in determining rents or other intricate game mechanics,
-which impacted that particular aspect of the project. Also the AI was not providing complex and correct test cases, we always have to adjust the code to make it work and make a complex test cases.
+improving the robustness of the test cases, and most importantly, saving coding time. The AI was valuable in ensuring that the codebase was well-documented and more understandable for developers.
+On the other hand, there were limitations encountered using generative AI. The AI might have limitations in covering complex test cases, and we had to ensure that the output of the AI was correct before we use it.
+The AI was not providing complex and correct test cases, we always have to adjust the code to make it work and make a complex test cases that cover all branches.
 Overall, The use of generative AI positively impacted the comprehensiveness and clarity of the test cases and documentation,
-leading to a more solid codebase.
-Considering that generative AI might struggle with intricate calculations, exploring alternate methods or seeking additional domain-specific knowledge
-might have helped in developing more accurate and complex game mechanics, such as rent calculations, to better mirror the reality of the game.
-This could have further enhanced the project's fidelity and completeness.
+leading to a more solid codebase. 
+Considering that ChatGPT might struggle in some areas, it is important for developers to have solid understanding in software engineering to evaluate the correctness of the AI's output.
 
 # Bonus Consideration:
 The data analysis that was provided in effeciency and covering all the details.
