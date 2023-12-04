@@ -25,8 +25,8 @@ public class SimulationExperiment {
         //hashMapToCSV(dataset, "./data_unused/stationGuyVsUtilityGuy.csv");
         final int TRIALS = 60;
         simGreedyStingy(TRIALS, false);
-        simStationUtility(TRIALS, false);
         simAllStrategies(TRIALS, false);
+        simStationUtility(TRIALS, false);
     }
     /**
      * Calculates the win rate per strategy based on the dataset.
