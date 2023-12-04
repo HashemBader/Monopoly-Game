@@ -132,8 +132,7 @@ _A reflection on your experiences with generative AI during this project. Provid
 on your experience with AI for each of the following prompts._ 
 
 ### What generative AI did you use, and what tasks did you use it for?
-_**Example:** Git Co-Pilot: generated getters and setters_
-Chat gpt: supporting with the test cases to cover all the possible cases_
+Chat gpt: supporting with the test cases to cover all the possible cases. Also helped a lot with the documentation of classes and methods to cover all the details.
 
 ### How did you learn about the tools used by your group (delete ones that don't apply)?
 _Please describe where and how you learned about the tools_
@@ -142,9 +141,9 @@ most of the tools that have been used were learned in the class. Some of the too
 ### Reflecting on your experience:
 _Write a short reflection on your use of generative AI in this project, including if you did not use it. 
 You may use the prompts as headings if you wish. (500 words)_  
-Generative AI was a little bit helpful, it helped with having ideas for making test cases for the code and the classes it has.
+Generative AI was a really helpful, it helped with having ideas for making test cases and documentaion for the code to cover all the details and the errors in the code.
 In another hand, it was not helpful in making codes that helps with calculating rents.
-Overall, the generative AI helped with improving the test cases which made the code more effecient,
+Overall, the generative AI helped with improving the test cases and the documentation, which made the code more effecient,
 maybe adding some complicated functions that matches with the reality of the game
 could you have made the project turned out better, other than that, most of the game was covered effeciently.
 
