@@ -6,7 +6,7 @@ import java.util.Random;
  * The Jail class represents a specific type of BoardSquare where a player can be sent to jail.
  * It defines actions taken when a player lands on the Jail square.
  * Extends the BoardSquare abstract class.
- * Implements Randomizable
+ * Implements Randomizable.
  */
 public class Jail extends BoardSquare implements Randomizable{
 

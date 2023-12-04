@@ -504,10 +504,11 @@ public class MainTest {
     @Test
     void testBuildHouse(){
         // seed -42 buys on default strategy
+        final int SEED = -42;
         Country egypt = new Country(39, "egypt", 50, 400, "darkBlue");
         Country qatar = new Country(37, "qatar", 50, 400, "darkBlue");
         Player p1 = new Player(1500);
-        p1.setSeed(-42);
+        p1.setSeed(SEED);
         egypt.setOwner(p1);
         qatar.setOwner(p1);
         egypt.playerOnLocation(p1);
@@ -520,18 +521,19 @@ public class MainTest {
     @Test
     void testBuildHouseEdge(){
         // seed -42 buys on default strategy
+        final int SEED = -42;
         Country egypt = new Country(39, "egypt", 50, 400, "darkBlue");
         Country qatar = new Country(37, "qatar", 50, 400, "darkBlue");
         Player p1 = new Player(1500);
-        p1.setSeed(-42);
+        p1.setSeed(SEED);
         egypt.setOwner(p1);
         qatar.setOwner(p1);
         egypt.playerOnLocation(p1);
-        p1.setSeed(-42);
+        p1.setSeed(SEED);
         egypt.playerOnLocation(p1);
-        p1.setSeed(-42);
+        p1.setSeed(SEED);
         egypt.playerOnLocation(p1);
-        p1.setSeed(-42);
+        p1.setSeed(SEED);
         egypt.playerOnLocation(p1);
         egypt.playerOnLocation(p1);// it landed 5 times but max is 4 houses
         assertEquals(egypt.getNumHouses(), 4);
@@ -543,12 +545,13 @@ public class MainTest {
     @Test
     void testBuildHouseIllegally(){
         // seed -42 buys on default strategy
+        final int SEED = -42;
         Country egypt = new Country(39, "egypt", 50, 400, "yellow");
         Country qatar = new Country(37, "qatar", 50, 400, "yellow");
         Country canada = new Country(37, "qatar", 50, 400, "yellow");
         Player p1 = new Player(1500);
         Player p2 = new Player(1500);
-        p1.setSeed(-42);
+        p1.setSeed(SEED);
         egypt.setOwner(p1);
         qatar.setOwner(p1);
         canada.setOwner(p2);
@@ -566,12 +569,13 @@ public class MainTest {
     @Test
     void testDeductMoney(){
         // seed -42 buys on default strategy
+        final int SEED = -42;
         Country egypt = new Country(39, "egypt", 50, 400, "yellow");
         Country qatar = new Country(37, "qatar", 50, 400, "yellow");
         Country canada = new Country(37, "qatar", 50, 400, "yellow");
         Player p1 = new Player(1500);
         Player p2 = new Player(1500);
-        p1.setSeed(-42);
+        p1.setSeed(SEED);
         egypt.setOwner(p1);
         qatar.setOwner(p1);
         canada.setOwner(p1);
@@ -610,6 +614,7 @@ public class MainTest {
     @Test
     void testDeductMoney2Houses(){
         // seed -42 buys on default strategy
+        final int SEED = -42;
         Country egypt = new Country(39, "egypt", 50, 400, "yellow");
         Country qatar = new Country(37, "qatar", 50, 400, "yellow");
         Country canada = new Country(37, "qatar", 50, 400, "yellow");
@@ -619,9 +624,9 @@ public class MainTest {
         egypt.setOwner(p1);
         qatar.setOwner(p1);
         canada.setOwner(p1);
-        p1.setSeed(-42);
+        p1.setSeed(SEED);
         egypt.playerOnLocation(p1);
-        p1.setSeed(-42);
+        p1.setSeed(SEED);
         egypt.playerOnLocation(p1);
         egypt.playerOnLocation(p2);
 
@@ -635,6 +640,7 @@ public class MainTest {
     @Test
     void testDeductMoney3Houses(){
         // seed -42 buys on default strategy
+        final int SEED = -42;
         Country egypt = new Country(39, "egypt", 50, 400, "pink");
         Country qatar = new Country(37, "qatar", 50, 400, "pink");
         Country canada = new Country(37, "qatar", 50, 400, "pink");
@@ -643,11 +649,11 @@ public class MainTest {
         egypt.setOwner(p1);
         qatar.setOwner(p1);
         canada.setOwner(p1);
-        p1.setSeed(-42);
+        p1.setSeed(SEED);
         egypt.playerOnLocation(p1);
-        p1.setSeed(-42);
+        p1.setSeed(SEED);
         egypt.playerOnLocation(p1);
-        p1.setSeed(-42);
+        p1.setSeed(SEED);
         egypt.playerOnLocation(p1);
         egypt.playerOnLocation(p2);
 
