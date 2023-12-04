@@ -208,8 +208,6 @@ Surprisingly, our 2-player game simulation results for default strategies align 
 Figure X.0 illustrates that the value of 0.12 falls within the plausible range, indicating that the proportion of non-ending games in a 2-player default strategy game is not statistically different from 0.12. _This alignment with established research lends credibility to our simulation outcomes._
 
 # Reflection
-_A reflection on your experiences with generative AI during this project. Provide a few sentences reflecting
-on your experience with AI for each of the following prompts._ 
 
 ### What generative AI did you use, and what tasks did you use it for?
 ChatGPT: We have mainly used ChatGPT for the easy parts of the program, such as, creating tests for constructors, documenting the code
@@ -227,7 +225,9 @@ On the other hand, there were limitations encountered using generative AI. The A
 The AI was not providing complex and correct test cases, we always have to adjust the code to make it work and make a complex test cases that cover all branches.
 Overall, The use of generative AI positively impacted the comprehensiveness and clarity of the test cases and documentation,
 leading to a more solid codebase. 
-Considering that ChatGPT might struggle in some areas, it is important for developers to have solid understanding in software engineering to evaluate the correctness of the AI's output.
+Considering that ChatGPT might struggle in some areas, 
+it is important for developers to have solid understanding in software engineering to evaluate the correctness of the AI's output.
+We believe that we could have picked a better AI tool such as GitHub Copilot extension to even save more time instead of copy-pasting.
 
 # Bonus Consideration:
 We believe that the data analysis conducted will distinguish our projects from the others. Knowledge from STAT 1910 
@@ -235,7 +235,11 @@ We believe that the data analysis conducted will distinguish our projects from t
 that collects the data from the simulation and exports it to a CSV file for data analysis. The .IPYNB used for data analysis `dataAnalysis.ipynb` and the CSV 
 generated files in `data_unused` is found in this repository.
 
+Furthermore, we have introduced `setSeed` methods for `Randomizable` classes to ensure that our test cases run correctly when we need it to make
+a specific task (such as rolling a double to get out of jail).
+
 It is worth mentioning
  that we used interfaces (such as `Randomizable`), abstract classes (such as `BoardSquare`),
 and use of generics (as in `Player` - line 90 : `getLandsOwnedOfType` method). 
 Moreover, we have extendable classes which are easy to modify if a developer wants to introduce house rules.
+
