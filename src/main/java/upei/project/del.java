@@ -27,7 +27,7 @@ public class del {
             game.setSeed(SEED);
             game.playGame(false);
             Player winner = game.getWinner();
-            if (winner != null) {
+            if (winner != null) {// IMPORTANT TO GET SEED!!
                 SEED++;
             }
             else {
