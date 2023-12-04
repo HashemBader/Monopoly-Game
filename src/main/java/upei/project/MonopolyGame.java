@@ -6,13 +6,14 @@ import java.util.Random;
 /**
  * The MonopolyGame class manages the overall game logic for a Monopoly game simulation.
  * It controls player movements, dice rolling, game rounds, and determines the winner.
- * Implements Randomizable
+ * Implements Randomizable.
  */
 public class MonopolyGame implements Randomizable{
     private ArrayList<BoardSquare> boardMap;
     private ArrayList<Player> players;
     private int numOfInf = 0;
     private Player winner;
+    private int numPlayers;
     public static int diceVal;
     private Random random = new Random(); // Random object for making decisions(for testing)
 
@@ -49,7 +50,7 @@ public class MonopolyGame implements Randomizable{
      */
     public void playGame() {
         // Game initialization
-        int numPlayers = this.players.size();// number of players
+        this.numPlayers = this.players.size();// number of players
         int pos;// position of the player
         boolean hasMoved = false;// checks if the player moved to another position
         Node currPlayer;
@@ -67,7 +68,7 @@ public class MonopolyGame implements Randomizable{
         currPlayer = currPlayer.next;
 
         // Game simulation loop until 1 player is left
-        while (numPlayers > 1) {
+        while (this.numPlayers > 1) {
             diceVal = rollDice();
             System.out.println("DICE VALUE: " + MonopolyGame.getDiceVal());
             System.out.println("Player before moving: \n" + currPlayer.player + "\n" +currPlayer.player.getLandsOwned());
@@ -87,7 +88,7 @@ public class MonopolyGame implements Randomizable{
                 currPlayer.prev.next = currPlayer.next;
                 currPlayer.next.prev = currPlayer.prev;
                 currPlayer = currPlayer.next;
-                numPlayers--;
+                this.numPlayers--;
             }
             currPlayer = currPlayer.next;
 
@@ -115,7 +116,7 @@ public class MonopolyGame implements Randomizable{
         }
         else {
             // Game initialization
-            int numPlayers = this.players.size();// number of players
+            this.numPlayers = this.players.size();// number of players
             int pos;// position of the player
             boolean hasMoved = false;// checks if the player moved to another position
             Node currPlayer;
@@ -133,7 +134,7 @@ public class MonopolyGame implements Randomizable{
             currPlayer = currPlayer.next;
 
             // Game simulation loop until 1 player is left
-            while (numPlayers > 1) {
+            while (this.numPlayers > 1) {
                 diceVal = rollDice();
                 currPlayer.player.moveN(diceVal);
                 pos = currPlayer.player.getPos(); // Stores old position
@@ -148,7 +149,7 @@ public class MonopolyGame implements Randomizable{
                     currPlayer.prev.next = currPlayer.next;
                     currPlayer.next.prev = currPlayer.prev;
                     currPlayer = currPlayer.next;
-                    numPlayers--;
+                    this.numPlayers--;
                 }
                 currPlayer = currPlayer.next;
 
@@ -168,15 +169,10 @@ public class MonopolyGame implements Randomizable{
 
     }
 
-
     /**
      * Simulates rolling of dice and returns the result.
      * @return The value obtained after rolling the dice.
      */
-    /*public static int rollDice() {
-        diceVal = DiceUtils.rollDice2();
-        return diceVal;
-    }*/
 public int rollDice(){
     return (int)(random.nextFloat()*6)+1 +(int)(random.nextFloat()*6)+1;
 }
@@ -218,4 +214,10 @@ public int rollDice(){
     public Player getWinner() {
         return winner;
     }
+    /**
+     * Retrieves the current number of players participating in the Monopoly game.
+     *
+     * @return The count of players currently involved in the game.
+     */
+    public int getNumPlayers(){return this.numPlayers;}
 }
