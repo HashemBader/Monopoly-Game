@@ -100,8 +100,10 @@ public class MonopolyGame implements Randomizable{
                 break;
             }
         } //end while
-        System.out.println("Winner: " + currPlayer.player + "\n" + currPlayer.player.getLandsOwned());
-        this.winner = currPlayer.player;
+        if(currPlayer.player != null) {
+            System.out.println("Winner: " + currPlayer.player + "\n" + currPlayer.player.getLandsOwned());
+            this.winner = currPlayer.player;
+        }
     }
     /**
      * Simulates the Monopoly game with given players, providing an option to display details.
@@ -159,13 +161,15 @@ public class MonopolyGame implements Randomizable{
                     System.out.println("Game did not end !!");
                     this.numOfInf += 1;
                     this.winner = null;
+                    currPlayer.player = null;
                     break;
                 }
             } //end while
-            System.out.println("Winner: " + currPlayer.player.prettyPrint()  + "\n" + currPlayer.player.getLandsOwned());
-            this.winner = currPlayer.player;
+            if(currPlayer.player != null) {
+                System.out.println("Winner: " + currPlayer.player + "\n" + currPlayer.player.getLandsOwned());
+                this.winner = currPlayer.player;
+            }
         }
-
     }
 
 
