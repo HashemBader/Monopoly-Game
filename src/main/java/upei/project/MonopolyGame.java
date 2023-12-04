@@ -12,7 +12,7 @@ public class MonopolyGame implements Randomizable{
     private ArrayList<BoardSquare> boardMap;
     private ArrayList<Player> players;
     private int numOfInf = 0;
-    private Player winner;
+    private Player winner = null;
     public static int diceVal;
     private Random random = new Random(); // Random object for making decisions(for testing)
 
@@ -97,7 +97,7 @@ public class MonopolyGame implements Randomizable{
                 System.out.println("Game did not end !!");
                 this.numOfInf += 1;
                 this.winner=null;
-                break;
+                return;
             }
         } //end while
         System.out.println("Winner: " + currPlayer.player + "\n" + currPlayer.player.getLandsOwned());
@@ -159,11 +159,14 @@ public class MonopolyGame implements Randomizable{
                     System.out.println("Game did not end !!");
                     this.numOfInf += 1;
                     this.winner = null;
+                    currPlayer.player = null;
                     break;
                 }
             } //end while
-            System.out.println("Winner: " + currPlayer.player.prettyPrint()  + "\n" + currPlayer.player.getLandsOwned());
-            this.winner = currPlayer.player;
+            if(currPlayer.player != null) {
+                System.out.println("Winner: " + currPlayer.player + "\n" + currPlayer.player.getLandsOwned());
+                this.winner = currPlayer.player;
+            }
         }
 
     }
@@ -216,6 +219,6 @@ public int rollDice(){
      * @return The Player object representing the winner of the game.
      */
     public Player getWinner() {
-        return winner;
+        return this.winner;
     }
 }

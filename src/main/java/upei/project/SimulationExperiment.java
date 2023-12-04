@@ -21,11 +21,11 @@ public class SimulationExperiment {
      */
     public static void main(String[] args) {
         // Note: the csv output is located in ./data_unused/
-        final int TRIALS = 60;
+        final int TRIALS = 10000;
         final boolean DISPLAY = false; //To display each round's output set DISPLAY to true otherwise, false.
-        simGreedyStingy(TRIALS, DISPLAY);
-        simAllStrategies(TRIALS, DISPLAY);
-        simStationUtility(TRIALS, DISPLAY);
+        //simGreedyStingy(TRIALS, DISPLAY);
+        //simAllStrategies(TRIALS, DISPLAY);
+        //simStationUtility(TRIALS, DISPLAY);
 
         // EXTRA
         simDefaultDefault(TRIALS, DISPLAY); // almost 12% of the games do not end as explained in REPORT.md
@@ -69,6 +69,9 @@ public class SimulationExperiment {
                     int stations = p.getLandsOwnedOfType(Station.class).size();
                     int landsOwned = p.getLandsOwned().size();
                     writer.write(strategy +","+ money +","+ countries +","+ utilities +","+ stations +","+ landsOwned + "\n");
+                }
+                else{
+                    writer.write(",,,,\n"); //null
                 }
             }
         } catch (IOException e){

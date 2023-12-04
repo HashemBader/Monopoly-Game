@@ -123,6 +123,10 @@ Table 3.1: Win Rate Per Strategy
 
 ![Boxplot: money vs strategy](image-9.png)
 ![Boxplot: lands owned vs strategy](image-10.png)
+
+### Default vs Default (EXTRA)
+![Distribution of means](image-11.png)
+
 ## Analysis
 _An interpretation of your data explaining why one strategy is better than the other supported with 
 data from your experiment.(500 words)_
