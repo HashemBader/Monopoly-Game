@@ -25,6 +25,9 @@ public class MainTest {
         egypt.playerOnLocation(p1);// makes the action that needs to be taken
         assertEquals(p1, egypt.getOwner());
     }
+    /**
+     * Tests the scenario where the player moves over the boundary of the board.
+     */
     @Test
     public void testMovesOverBoundary(){
         Player p1 = new Player(1500);
@@ -32,6 +35,9 @@ public class MainTest {
         p1.moveN(5);
         assertEquals(3, p1.getPos());
     }
+    /**
+     * Tests the scenario where the player collects the reward for passing 'Go'.
+     */
     @Test
     public void testCollectGo(){
         Player p1 = new Player(1500);
