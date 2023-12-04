@@ -168,7 +168,6 @@ public class MonopolyGame implements Randomizable{
                 this.winner = currPlayer.player;
             }
         }
-
     }
 
 
@@ -176,13 +175,9 @@ public class MonopolyGame implements Randomizable{
      * Simulates rolling of dice and returns the result.
      * @return The value obtained after rolling the dice.
      */
-    /*public static int rollDice() {
-        diceVal = DiceUtils.rollDice2();
-        return diceVal;
-    }*/
-public int rollDice(){
-    return (int)(random.nextFloat()*6)+1 +(int)(random.nextFloat()*6)+1;
-}
+    public int rollDice() {
+        return (int) (random.nextFloat() * 6) + 1 + (int) (random.nextFloat() * 6) + 1;
+    }
     /**
      * Retrieves the last rolled dice value.
      * @return The value obtained from the last dice roll.
@@ -204,6 +199,14 @@ public int rollDice(){
      */
     public void setSeed(long seed){
         this.random.setSeed(seed);
+        for(Player p : this.players){
+            p.setSeed(seed);
+        }
+        for(BoardSquare square : this.boardMap){
+            if(square instanceof Randomizable){
+                ((Randomizable) square).setSeed(seed);
+            }
+        }
     }
     /**
      * Gets the number of non-ending games encountered during simulations.
