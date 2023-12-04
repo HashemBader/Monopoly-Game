@@ -230,4 +230,12 @@ leading to a more solid codebase.
 Considering that ChatGPT might struggle in some areas, it is important for developers to have solid understanding in software engineering to evaluate the correctness of the AI's output.
 
 # Bonus Consideration:
-//todo
+We believe that the data analysis conducted will distinguish our projects from the others. Knowledge from STAT 1910 
+(Hypothesis testing and comparing distributions). Moreover, we have created `hashMapToCSV` method in `SimulationExperiment` 
+that collects the data from the simulation and exports it to a CSV file for data analysis. The .IPYNB used for data analysis `dataAnalysis.ipynb` and the CSV 
+generated files in `data_unused` is found in this repository.
+
+It is worth mentioning
+ that we used interfaces (such as `Randomizable`), abstract classes (such as `BoardSquare`),
+and use of generics (as in `Player` - line 90 : `getLandsOwnedOfType` method). 
+Moreover, we have extendable classes which are easy to modify if a developer wants to introduce house rules.
