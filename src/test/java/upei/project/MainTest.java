@@ -734,11 +734,6 @@ public class MainTest {
         players.add(p2);
         ArrayList<BoardSquare> boardMap = BoardInit.createBoard();
 
-        for(BoardSquare square:boardMap){
-            if(square instanceof Randomizable){
-                ((Randomizable) square).setSeed(SEED);
-            }
-        }
         // Initialize the boardMap with appropriate squares
         MonopolyGame game = new MonopolyGame(players, boardMap);
         game.setSeed(SEED);
