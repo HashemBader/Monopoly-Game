@@ -50,16 +50,17 @@ The results were interesting.
 ### Greedy vs Stingy:
 
 | strategy | money | countries | utilities | stations | totalLandsOwned |
-|----------|-------|-----------|-----------|----------|------------------|
-| GREEDY   | 3514.0| 16.0      | 2.0       | 3.0      | 20.0             |
-| STINGY   | 1492.0| 3.0       | 0.0       | 1.0      | 4.0              |
+|----------|-------|-----------|-----------|----------|-----------------|
+| GREEDY   | 3489.5| 16.0      | 2.0       | 3.0      | 20.0            |
+| STINGY   | 1475.0| 3.0       | 0.0       | 1.0      | 4.0             |
 
 Table 1.0: Player Strategies and Holdings
 
-| Strategy | Win rate    |
+| Strategy |  Win Rate   |
 |----------|-------------|
-| GREEDY   | 58.87%    |
-| STINGY   | 41.13%    |
+| GREEDY   | 0.582788    |
+| STINGY   | 0.417212    |
+
 
 Table 1.1: Win Rate Per Strategy
 
@@ -71,20 +72,22 @@ Table 1.1: Win Rate Per Strategy
 
 ### Station Guy vs Utility Guy:
 
-| Strategy      | Money  | Countries | Utilities | Stations | Total Lands Owned |
-|---------------|--------|-----------|-----------|----------|-------------------|
-| STATION_GUY   | 5448.0 | 11.0      | 1.0       | 3.0      | 14.0              |
-| UTILITY_GUY   | 9578.0 | 11.0      | 1.0       | 1.0      | 14.0              |
+| strategy     | money | countries | utilities | stations | totalLandsOwned |
+|--------------|-------|-----------|-----------|----------|-----------------|
+| STATION_GUY  | 4906.0| 11.0      | 1.0       | 3.0      | 14.0            |
+| UTILITY_GUY  | 9017.0| 11.0      | 1.0       | 1.0      | 14.0            |
+
 
 
 Table 2.0: Player Strategies and Holdings
 
 
 
-| Strategy      | Percentage   |
-|---------------|--------------|
-| STATION_GUY   | 59.48%        |
-| UTILITY_GUY   | 40.52%        |
+| Strategy     | Win Rate    |
+|--------------|-------------|
+| STATION_GUY  | 0.624718    |
+| UTILITY_GUY  | 0.375282    |
+
 
 
 Table 2.1: Win Rate Per Strategy
@@ -97,24 +100,26 @@ Table 2.1: Win Rate Per Strategy
 
 ### All 5 Strategies (5 players):
 
-| Strategy    | Money  | Countries | Utilities | Stations | Total Lands Owned |
-|-------------|--------|-----------|-----------|----------|-------------------|
-| DEFAULT     | 41840.0| 7.0       | 0.0       | 1.0      | 8.0               |
-| GREEDY      | 22306.0| 8.0       | 0.0       | 1.0      | 10.0              |
-| STATION_GUY | 39085.0| 5.0       | 0.0       | 1.0      | 7.0               |
-| STINGY      | 71761.0| 4.0       | 0.0       | 0.0      | 5.0               |
-| UTILITY_GUY | 38827.0| 5.0       | 1.0       | 0.0      | 7.0               |
+| strategy     | money    | countries | utilities | stations | totalLandsOwned |
+|--------------|----------|-----------|-----------|----------|-----------------|
+| DEFAULT      | 40819.5  | 7.0       | 0.0       | 0.0      | 8.0             |
+| GREEDY       | 21572.0  | 9.0       | 0.0       | 1.0      | 10.0            |
+| STATION_GUY  | 41457.0  | 5.0       | 0.0       | 1.0      | 8.0             |
+| STINGY       | 77198.5  | 4.0       | 0.0       | 0.0      | 4.5             |
+| UTILITY_GUY  | 40519.0  | 5.0       | 1.0       | 0.0      | 7.0             |
+
 
 Table 3.0: Player Strategies and Holdings
 
 
-| Strategy      | Percentage   |
-|---------------|--------------|
-| GREEDY        | 54.13%        |
-| DEFAULT       | 17.99%        |
-| STATION_GUY   | 15.19%        |
-| UTILITY_GUY   | 10.77%        |
-| STINGY        | 1.92%         |
+| Strategy     | Win Rate   |
+|--------------|------------|
+| GREEDY       | 0.533911   |
+| DEFAULT      | 0.178932   |
+| STATION_GUY  | 0.150072   |
+| UTILITY_GUY  | 0.125541   |
+| STINGY       | 0.011544   |
+
 
 Table 3.1: Win Rate Per Strategy
 
