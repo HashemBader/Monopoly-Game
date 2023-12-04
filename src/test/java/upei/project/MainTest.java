@@ -4,7 +4,6 @@ import upei.project.Properties.Country;
 import upei.project.Properties.Station;
 import upei.project.Properties.Utility;
 import upei.project.Setup.BoardInit;
-import upei.project.Setup.PlayersInit;
 
 import java.util.ArrayList;
 
@@ -706,26 +705,25 @@ public class MainTest {
     @Test
     public void testPlayerGame() {
         ArrayList<Player> players = new ArrayList<>();
+        final long SEED = 42;
         Player p1 = new Player(1500);
         Player p2 = new Player(1500);
-        p1.setSeed(1);
-        p2.setSeed(10);
+        p1.setSeed(SEED);
+        p2.setSeed(SEED);
         players.add(p1);
         players.add(p2);
         ArrayList<BoardSquare> boardMap = BoardInit.createBoard();
 
         for(BoardSquare square:boardMap){
             if(square instanceof Randomizable){
-                ((Randomizable) square).setSeed(3);
+                ((Randomizable) square).setSeed(SEED);
             }
         }
         // Initialize the boardMap with appropriate squares
-
         MonopolyGame game = new MonopolyGame(players, boardMap);
-        game.setSeed(1);
+        game.setSeed(SEED);
         game.playGame(false);
         Player winner = game.getWinner();
-
         assertNotNull(winner, "winner should not be null");
         assertEquals(2, players.size()); // Ensure that only one player remains at the end
         // Add more assertions if needed based on game rules and expected behavior
